@@ -1,0 +1,20 @@
+{
+  "name": "interop-veramo-adapter",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "description": "Veramo (実ライブラリ) を相互運用テスト harness の統一ピア契約で公開する薄いアダプタ。",
+  "dependencies": {
+    "@veramo/core": "^7.0.2",
+    "@veramo/credential-jwt": "^7.0.2",
+    "@veramo/credential-w3c": "^7.0.2",
+    "@veramo/did-manager": "^7.0.2",
+    "@veramo/did-provider-jwk": "^7.0.2",
+    "@veramo/did-provider-key": "^7.0.2",
+    "@veramo/did-resolver": "^7.0.2",
+    "@veramo/key-manager": "^7.0.2",
+    "@veramo/kms-local": "^7.0.2",
+    "did-resolver": "^4.1.0",
+    "key-did-resolver": "^4.0.0"
+  }
+}

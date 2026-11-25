@@ -1,0 +1,170 @@
+{
+  "vc": {
+    "pairs": [
+      "interop:vericerts:vericerts",
+      "interop:vericerts:veramo",
+      "interop:veramo:vericerts",
+      "interop:veramo:veramo",
+      "interop:vericerts:didkit",
+      "interop:vericerts:sphereon",
+      "interop:veramo:didkit",
+      "interop:veramo:sphereon",
+      "interop:didkit:didkit",
+      "interop:didkit:vericerts",
+      "interop:didkit:veramo",
+      "interop:sphereon:sphereon",
+      "interop:sphereon:vericerts",
+      "interop:sphereon:veramo"
+    ],
+    "knownIncompatible": [
+      {
+        "pair": "interop:didkit:vericerts",
+        "reasonIncludes": "jwt is required (string)",
+        "note": "native ピア（didkit）は LD-Proof（JSON-LD オブジェクト）で発行し、uniform ピア（vericerts）の POST /vc/verify はコンパクト JWT-VC 文字列のみを受理する。アダプタの入口検査（typeof jwt !== 'string'）が HTTP 400 で拒否する。SDK の検証ポリシーは変えない"
+      },
+      {
+        "pair": "interop:didkit:veramo",
+        "reasonIncludes": "jwt is required (string)",
+        "note": "native ピア（didkit）の LD-Proof を uniform ピア（veramo）のアダプタが入口検査で拒否する。interop:didkit:vericerts と同じ形式差"
+      },
+      {
+        "pair": "interop:sphereon:vericerts",
+        "reasonIncludes": "jwt is required (string)",
+        "note": "native ピア（sphereon）の LD-Proof を uniform ピア（vericerts）のアダプタが入口検査で拒否する。interop:didkit:vericerts と同じ形式差"
+      },
+      {
+        "pair": "interop:sphereon:veramo",
+        "reasonIncludes": "jwt is required (string)",
+        "note": "native ピア（sphereon）の LD-Proof を uniform ピア（veramo）のアダプタが入口検査で拒否する。interop:didkit:vericerts と同じ形式差"
+      },
+      {
+        "pair": "interop:vericerts:veramo",
+        "reasonIncludes": "@context is missing default context \"https://www.w3.org/2018/credentials/v1\"",
+        "note": "vericerts は VC 2.0 の @context（https://www.w3.org/ns/credentials/v2）で発行するが、veramo（did-jwt-vc）は v1 の既定 context（https://www.w3.org/2018/credentials/v1）を必須とする。SDK の @context の扱いは変えない"
+      },
+      {
+        "pair": "interop:veramo:vericerts",
+        "reasonIncludes": "3002",
+        "note": "Veramo は VC 1.1 の JWT 表現（VCDM 1.1 §6.3.1。`vc` から issuer / issuanceDate を省き、JWT の iss / nbf に委ねる）で発行するが、vericerts は VC 本体に issuer と issuanceDate を持つ JWT-VC だけを受理し、3002 で拒否する。検証ポリシーは変えない"
+      },
+      {
+        "pair": "interop:vericerts:sphereon",
+        "reasonIncludes": "@context is missing default context \"https://www.w3.org/2018/credentials/v1\"",
+        "note": "vericerts は VC 2.0 の @context（https://www.w3.org/ns/credentials/v2）で発行するが、sphereon の JWT-VC 検証（did-jwt-vc）は v1 の既定 context（https://www.w3.org/2018/credentials/v1）を必須とする。SDK の @context の扱いは変えない"
+      }
+    ],
+    "structuralSkips": []
+  },
+  "sdJwt": {
+    "credentialConfigurationId": "identity_credential_vc+sd-jwt",
+    "inputDescriptorId": "interop-sd-jwt",
+    "claims": {
+      "given_name": "Interop",
+      "family_name": "Tester"
+    },
+    "selectiveDisclosureClaims": ["given_name", "family_name"],
+    "disclosedClaims": ["family_name"],
+    "requestedClaims": ["family_name"],
+    "pairs": {
+      "issue": "interop:waltid-issuer:vericerts:sd-jwt",
+      "present": "interop:vericerts:waltid-verifier:sd-jwt"
+    }
+  },
+  "didResolution": {
+    "matrix": {
+      "key": ["sphereon", "veramo", "waltid", "didkit"],
+      "web": ["sphereon", "veramo", "waltid", "didkit", "ebsi"],
+      "ethr": ["sphereon", "veramo", "didkit"],
+      "jwk": ["sphereon", "veramo", "waltid"],
+      "ebsi": ["sphereon", "waltid", "ebsi"]
+    },
+    "structuralSkips": [
+      {
+        "pair": "interop:did-resolve:key:waltid",
+        "reasonIncludes": "resolver-unavailable"
+      },
+      {
+        "pair": "interop:did-resolve:web:sphereon",
+        "reasonIncludes": "fixture-missing"
+      },
+      {
+        "pair": "interop:did-resolve:web:veramo",
+        "reasonIncludes": "fixture-missing"
+      },
+      {
+        "pair": "interop:did-resolve:web:didkit",
+        "reasonIncludes": "fixture-missing"
+      },
+      {
+        "pair": "interop:did-resolve:web:waltid",
+        "reasonIncludes": "resolver-unavailable"
+      },
+      {
+        "pair": "interop:did-resolve:web:ebsi",
+        "reasonIncludes": "fixture-missing"
+      },
+      {
+        "pair": "interop:did-resolve:ethr:sphereon",
+        "reasonIncludes": "fixture-missing"
+      },
+      {
+        "pair": "interop:did-resolve:ethr:veramo",
+        "reasonIncludes": "fixture-missing"
+      },
+      {
+        "pair": "interop:did-resolve:ethr:didkit",
+        "reasonIncludes": "fixture-missing"
+      },
+      {
+        "pair": "interop:did-resolve:jwk:waltid",
+        "reasonIncludes": "resolver-unavailable"
+      },
+      {
+        "pair": "interop:did-resolve:ebsi:sphereon",
+        "reasonIncludes": "fixture-missing"
+      },
+      {
+        "pair": "interop:did-resolve:ebsi:waltid",
+        "reasonIncludes": "resolver-unavailable"
+      },
+      {
+        "pair": "interop:did-resolve:ebsi:ebsi",
+        "reasonIncludes": "fixture-missing"
+      }
+    ],
+    "resolveAccept": {
+      "didkit": "application/did+ld+json"
+    },
+    "expectedKeys": {
+      "key": {
+        "publicKeyMultibase": "z6MkjokRbxaU4C5YkUxGnLXvY2t85taRpBmLwRt6CakReKeh",
+        "publicKeyBase58": "6MVP1iL2ieb5dz7a6ma5gwL8GKJaQJWzFQyANJnQj6sK",
+        "publicKeyJwk": {
+          "kty": "OKP",
+          "crv": "Ed25519",
+          "x": "T4ojv4fJlplh3W6tw_McUEbp_92z6JsGZysJIIMKjPo"
+        }
+      },
+      "jwk": {
+        "publicKeyJwk": {
+          "crv": "P-256",
+          "kty": "EC",
+          "x": "6ca6IietHL7_qBhKlI9w7acelyrPyPY-HbelS8ATuDA",
+          "y": "BPI7tyWZFLs_YEtj4FklZoqPomApAkYezngs0ZrK3fc"
+        }
+      }
+    },
+    "eip1056Versions": [
+      {
+        "version": "eip1056-registry-0xdca7ef03",
+        "registry": "0xdca7ef03e98e0dc2b855be647c39abe984fcf21b",
+        "did": "did:ethr:0x1:0xb9c5714089478a327f09197987f16f9e5d936e8a"
+      },
+      {
+        "version": "eip1056-registry-0x03d5003b",
+        "registry": "0x03d5003bf0e79c5f5223588f347eba39afbc3818",
+        "did": "did:ethr:0xaa36a7:0xb9c5714089478a327f09197987f16f9e5d936e8a"
+      }
+    ]
+  }
+}

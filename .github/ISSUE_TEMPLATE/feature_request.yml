@@ -1,0 +1,15 @@
+name: Feature request
+description: Suggest an improvement to the TypeScript SDK.
+body:
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: Describe what you need to do and where the current SDK falls short.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the change and include an example if it helps explain the API.

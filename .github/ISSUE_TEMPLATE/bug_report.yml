@@ -1,0 +1,27 @@
+name: Bug report
+description: Report unexpected behavior in the TypeScript SDK.
+body:
+  - type: markdown
+    attributes:
+      value: Report suspected vulnerabilities using the [security policy](https://github.com/NonEntropyJapan/vericerts-wallet-sdk-ts/security/policy).
+  - type: input
+    id: environment
+    attributes:
+      label: SDK version and runtime
+      description: Include the package version or commit, plus the Node.js, Bun, or browser version.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include a small example using synthetic inputs. Remove keys, credentials, and personal data.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+      description: Include any relevant error code or sanitized error message.
+    validations:
+      required: true

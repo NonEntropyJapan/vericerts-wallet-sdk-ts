@@ -1,0 +1,20 @@
+# dependencies (bun install)
+node_modules
+
+# output
+dist
+sbom
+*.tgz
+
+# caches
+*.tsbuildinfo
+
+# Finder (MacOS) folder config
+.DS_Store
+
+# coverage reports
+coverage
+
+# npm pack inputs derived from the JavaScript bundles
+/.build-meta-*.json
+/NOTICE

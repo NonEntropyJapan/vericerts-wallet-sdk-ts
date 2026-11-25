@@ -1,0 +1,183 @@
+# test/interop/docker-compose.yml
+#
+# The artifact-backed network for external peer interoperability.
+#
+# 各サービスは統一ピア契約（`GET /health`・`GET /did`・`POST /vc/issue`・`POST /vc/verify`）を
+# 話すか、実装固有のネイティブ API をそのまま公開する（didkit / walt.id）。
+# `run-peer-matrix.mjs` が両方のスタイルを扱う。
+#
+# Run this Compose file in the materialized consumer context described in README.md.
+#
+# ホストポートはすべて `127.0.0.1:` にバインドする（共有 self-hosted ランナーの全 NIC に未認証の
+# issuer / verifier を公開しない）。CI は `-p vericerts-interop-$GITHUB_RUN_ID` で
+# プロジェクト名を実行ごとに分離する。
+#
+# ホスト側のポート番号は書かない（`127.0.0.1::<コンテナポート>`）。Docker が run ごとに空きポートを
+# 選び、ランナーは `docker compose port <service> <コンテナポート>` で実ポートを引く
+# （`test/interop/lib/host-ports.mjs`）。固定の 8090-8098 のままだと、Release Gate の interop job と
+# Nightly が同じランナーで重なったときに後発が bind に失敗し、ピアの不調ではなく順番待ちで
+# リリースが止まる。手で疎通を見るときは
+#   docker compose -f test/interop/docker-compose.yml port vericerts 8090
+# で実ポートを引く。コンテナ内のポートは変えていない（walt.id の baseUrl と公開ホスト検査が壊れる）。
+#
+# イメージはすべて `@sha256:` ダイジェストで固定する（タグは再 push で中身が変わり、上流更新で
+# nightly の結果が突然変わって再現できない）。Veramo / Sphereon の npm 依存は
+# 各 `package-lock.json` で固定する。didkit / walt.id は 2026-10-02 時点、nginx と各アダプタの
+# ベースイメージ（`adapters/*/Dockerfile` の `FROM`）は 2026-11-09 時点のダイジェスト（いずれも
+# マルチアーキの index ダイジェスト）。更新は `docker buildx imagetools inspect <image>:<tag>` で
+# 新ダイジェストを得て手動 PR で行う。
+#
+# 起動している実装（すべて実イメージ／実ライブラリ。モックなし）:
+#   - vericerts: 配布 tarball から独立 consumer にインストールした SDK
+#   - veramo: `@veramo/*` 公式パッケージ（did:key + JWT-VC）
+#   - didkit: `ghcr.io/spruceid/didkit-http`（VC-API、LD-Proof Ed25519Signature2018）
+#   - sphereon: `@sphereon/ssi-sdk.credential-vcdm*` 公式パッケージ（ネイティブ VC-API、LD-Proof
+#     Ed25519Signature2018。JWT 発行は Sphereon 側にインターフェース非互換の制約があるため
+#     LD-Proof 発行 + LD-Proof/JWT 両対応検証とした。依存解決の回避策は
+#     test/interop/adapters/sphereon/package.json の `overrides` コメント参照）
+#   - waltid-issuer / waltid-verifier: `waltid/issuer-api` / `waltid/verifier-api`（OID4VCI/OID4VP）
+#     — 起動・生存確認に加え、`waltid-driver`（下記）が Offer→Receive→Present を実駆動する
+#   - waltid-driver: `run-waltid-protocol.mjs`（本 SDK の Holder クライアント）を compose ネットワーク内で
+#     実行する one-off サービス（profile `driver`。`up` では起動せず、`run-peer-matrix.mjs` が
+#     `docker compose run` で呼ぶ）。walt.id の `baseUrl` は SDK の公開ホスト検査を通る FQDN
+#     （`*.waltid.interop.example`）で、`waltid-tls-proxy` の network alias で名前解決する
+#   - ebsi-proxy: EBSI Pilot への nginx リバースプロキシ。接続先は `EBSI_SANDBOX_BASE_URL` で
+#     指定する。未設定時、`run-peer-matrix.mjs` は prerequisite-missing として報告する。
+#
+# EUDI Reference Wallet は手動 Interop Event の対象。
+
+services:
+  vericerts:
+    build:
+      context: ../..
+      dockerfile: test/interop/adapters/vericerts/Dockerfile
+    ports: ['127.0.0.1::8090']
+    healthcheck:
+      test: ['CMD', 'bun', '-e', 'await fetch("http://localhost:8090/health").then(r=>{if(!r.ok)throw 1})']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  veramo:
+    build:
+      context: ../..
+      dockerfile: test/interop/adapters/veramo/Dockerfile
+    ports: ['127.0.0.1::8091']
+    healthcheck:
+      test: ['CMD', 'node', '-e', 'await fetch("http://localhost:8091/health").then(r=>{if(!r.ok)throw 1})']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  didkit:
+    image: ghcr.io/spruceid/didkit-http@sha256:0b31005d7db504c11b854f12ef8800e56614ffa1c232bb12a597e73d1646d158
+    ports: ['127.0.0.1::3000']
+    environment:
+      DIDKIT_HTTP_HTTP_ADDRESS: '[0,0,0,0]'
+      DIDKIT_HTTP_ISSUER_BASEURL: 'http://didkit:3000/'
+      # test/interop/fixtures/didkit-issuer.json の privateKeyJwk（相互運用テスト専用の
+      # 非秘匿テスト鍵。本番鍵ではない）。
+      DIDKIT_HTTP_ISSUER_KEYS: '[{"kty":"OKP","crv":"Ed25519","x":"T4ojv4fJlplh3W6tw_McUEbp_92z6JsGZysJIIMKjPo","d":"cZq5sJMKJOcRemlxKUyr-t-B-07wXdh-opc0VzYulxc"}]'
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '-O', '-', 'http://127.0.0.1:3000/healthz']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  sphereon:
+    build:
+      context: ../..
+      dockerfile: test/interop/adapters/sphereon/Dockerfile
+    ports: ['127.0.0.1::8096']
+    healthcheck:
+      test: ['CMD', 'node', '-e', 'await fetch("http://localhost:8096/health").then(r=>{if(!r.ok)throw 1})']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  waltid-issuer:
+    # 既定はダイジェスト固定のまま（Nightly のゲート対象はこの pinned image で回す）。
+    # `WALTID_ISSUER_IMAGE` を渡したときだけ差し替わるのは、新版検知の**非ゲート** job
+    # が mutable tag で同じ SD-JWT ドライバを回すため。通常の検証では既定の digest を使う。
+    image: ${WALTID_ISSUER_IMAGE:-waltid/issuer-api@sha256:29ed276057458d7f4157cf7393283de287447f446b1097737766e7d05e5b538e}
+    ports: ['127.0.0.1::7002']
+    # baseUrl はレスポンスに埋め込まれる credential_offer_uri・credential_issuer 等の自己参照
+    # URL に使われる。イメージ既定の `http://localhost:7002`（コンテナ内部からの
+    # 自己ビュー）のままではホスト側（run-peer-matrix.mjs 実行元）から解決できないため、
+    # イメージから抽出した設定ディレクトリ（他ファイルは既定のまま）に baseUrl だけ
+    # 上書きしたものをまるごとマウントする（`/waltid-issuer-api/config` は bind mount で
+    # 完全に差し替わり、一部ファイルだけを追加マウントする形にはできない）。baseUrl 自体は
+    # `waltid-tls-proxy` 経由の HTTPS アドレス（本 SDK の OID4VCI Holder クライアントが要求、
+    # `waltid/tls/README.md` 参照）。公開しているホスト側ポート（7002 の平文）はホストからの
+    # 生存確認（smoke）用のみで、ランナーは使わない。
+    # ドライバ（`waltid-driver`）は compose 内部の `http://waltid-issuer:7002` で管理系呼び出し
+    # （Offer 発行要求）を行う。
+    volumes:
+      - ./waltid/issuer-config:/waltid-issuer-api/config:ro
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '--spider', 'http://127.0.0.1:7002/']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  waltid-verifier:
+    # 既定・上書きの扱いは waltid-issuer 参照。
+    image: ${WALTID_VERIFIER_IMAGE:-waltid/verifier-api@sha256:dc67df2d5961642e18d746f60f8a6100cab49ef40f9d2c32cba4e49efb590cf1}
+    ports: ['127.0.0.1::7003']
+    # 解説は waltid-issuer 参照。公開しているホスト側ポート（7003 の平文）は生存確認用に残す。
+    volumes:
+      - ./waltid/verifier-config:/waltid-verifier-api/config:ro
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '--spider', 'http://127.0.0.1:7003/']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  waltid-tls-proxy:
+    image: nginx:1.27-alpine@sha256:65645c7bb6a0661892a8b03b89d0743208a18dd2f3f17a54ef4b76fb8e2f2a10
+    ports: ['127.0.0.1::8097', '127.0.0.1::8098']
+    depends_on: [waltid-issuer, waltid-verifier]
+    # walt.id の `baseUrl`（`waltid/*-config/*-service.conf`）が指す FQDN。SDK の公開ホスト検査
+    # （`isPublicHttpsUrl`）は `localhost` / ループバックを拒否するため、公開風の FQDN を compose
+    # ネットワークの DNS で解決させる。証明書の SAN・nginx の `server_name` と揃える。
+    networks:
+      default:
+        aliases:
+          - issuer.waltid.interop.example
+          - verifier.waltid.interop.example
+    volumes:
+      - ./nginx/waltid-tls-proxy.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./waltid/tls:/etc/nginx/tls:ro
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'wget',
+          '-q',
+          '--spider',
+          '--no-check-certificate',
+          'https://127.0.0.1:8097/',
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  # Offer→Receive→Present の駆動（`run-waltid-protocol.mjs`）。`localhost` や `/etc/hosts` に頼らず、
+  # compose ネットワーク内から FQDN を DNS で引く（共有 self-hosted ランナーは root 無しで hosts を
+  # 書き換えられない）。`up` では起動せず、`run-peer-matrix.mjs` が
+  #   docker compose -f test/interop/docker-compose.yml run --rm --no-deps -T --build waltid-driver
+  # で呼ぶ。管理系 API の URL（`WALTID_*_ADMIN_BASE_URL`）は `pairs.json` から `-e` で渡す。
+  waltid-driver:
+    profiles: ['driver']
+    build:
+      context: ../..
+      dockerfile: test/interop/adapters/waltid-driver/Dockerfile
+
+  ebsi-proxy:
+    image: nginx:1.27-alpine@sha256:65645c7bb6a0661892a8b03b89d0743208a18dd2f3f17a54ef4b76fb8e2f2a10
+    ports: ['127.0.0.1::8095']
+    environment:
+      EBSI_SANDBOX_BASE_URL: '${EBSI_SANDBOX_BASE_URL:-}'
+    volumes:
+      - ./nginx/ebsi-proxy.conf:/etc/nginx/templates/default.conf.template:ro
+    command: ['nginx-debug', '-g', 'daemon off;']

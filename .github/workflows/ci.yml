@@ -1,0 +1,231 @@
+name: SDK validation
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request: {}
+permissions:
+  contents: read
+concurrency:
+  group: sdk-validation-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  ci-bun:
+    name: SDK (Bun)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      SDK_BASE_REVISION: ${{ github.event.pull_request.base.sha || '' }}
+      SDK_PRODUCER_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      SDK_PRODUCER_WORKFLOW: .github/workflows/ci.yml
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version-file: .bun-version
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+      - name: SDK source unit / coverage / results / diff
+        run: node scripts/ci/run-isolated.mjs --profile=unit
+      - name: Download the same SDK tarball for Interop
+        if: ${{ needs.ci-bun-build.outputs.artifact_id != '' }}
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with: { artifact-ids: "${{ needs.ci-bun-build.outputs.artifact_id }}", path: "${{ runner.temp }}/sdk-interop-input", merge-multiple: true }
+      - name: SDK package Interop / complete suite union
+        run: node "$SDK_CI_WORKSPACE/scripts/ci/package-interop.mjs" --workspace="$SDK_CI_WORKSPACE" --artifact-dir="$RUNNER_TEMP/sdk-interop-input" --source-sha="$SDK_CI_REVISION" --manifest="$SDK_CI_WORKSPACE/coverage/execution-manifest.json" --result="$SDK_CI_WORKSPACE/coverage/package-interop-result.json" --validation=ci-validated
+      - name: SDK-only conformance (all five suites)
+        run: node scripts/ci/prepared.mjs conformance
+      - name: Upload SDK suite completeness proof
+        id: suite_proof
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sdk-suite-proof-${{ github.event.pull_request.head.sha || github.sha }}-${{ github.run_attempt }}
+          path: |-
+            ${{ env.SDK_CI_WORKSPACE }}/coverage/*-manifest.json
+            ${{ env.SDK_CI_WORKSPACE }}/coverage/*-result.json
+            ${{ env.SDK_CI_WORKSPACE }}/coverage/interop/*
+          if-no-files-found: error
+          retention-days: 1
+    needs:
+      - ci-bun-build
+    outputs:
+      suite_artifact_id: ${{ steps.suite_proof.outputs['artifact-id'] }}
+  ci-bun-static:
+    name: SDK (Bun static checks)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      SDK_BASE_REVISION: ${{ github.event.pull_request.base.sha || '' }}
+      SDK_PRODUCER_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      SDK_PRODUCER_WORKFLOW: .github/workflows/ci.yml
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version-file: .bun-version
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+      - name: SDK-only lint / types / schemas / boundary / security
+        run: node scripts/ci/run-isolated.mjs --profile=static
+  ci-bun-build:
+    name: SDK (Bun build)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      SDK_BASE_REVISION: ${{ github.event.pull_request.base.sha || '' }}
+      SDK_PRODUCER_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      SDK_PRODUCER_WORKFLOW: .github/workflows/ci.yml
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version-file: .bun-version
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+      - name: Prepare isolated SDK source
+        run: node scripts/ci/prepare-workspace.mjs
+      - name: Install isolated SDK
+        run: node scripts/ci/prepared.mjs install
+      - name: Prepare pinned Chromium
+        run: node scripts/ci/prepared.mjs browser
+      - name: "One tarball: Node24 / browser / Bun"
+        run: node scripts/ci/artifact.mjs produce
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 20.19.0
+      - name: "Same tarball: minimum Node20.19.0"
+        run: node scripts/ci/artifact.mjs consume
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+      - name: "Same tarball: Node22"
+        run: node scripts/ci/artifact.mjs consume
+      - name: Verified tarball publish dry-run
+        run: node scripts/ci/artifact.mjs dry-run
+      - name: Bind private validation envelope
+        run: node scripts/ci/candidate.mjs create
+      - name: Upload tested SDK package
+        id: package_output
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sdk-package-validation-${{ github.event.pull_request.head.sha || github.sha }}-${{ github.run_attempt }}
+          path: ${{ env.SDK_CI_ARTIFACT_DIR }}
+          if-no-files-found: error
+          retention-days: 1
+    outputs:
+      artifact_id: ${{ steps.package_output.outputs['artifact-id'] }}
+      artifact_digest: ${{ steps.package_output.outputs['artifact-digest'] }}
+  ci-node-20-lts:
+    name: SDK (Node 20 LTS)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      SDK_BASE_REVISION: ${{ github.event.pull_request.base.sha || '' }}
+      SDK_PRODUCER_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      SDK_PRODUCER_WORKFLOW: .github/workflows/ci.yml
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version-file: .bun-version
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 20.19.0
+      - name: SDK-only source type / build / dist smoke
+        run: node scripts/ci/run-isolated.mjs --profile=node
+  ci-node-22:
+    name: SDK (Node 22)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      SDK_BASE_REVISION: ${{ github.event.pull_request.base.sha || '' }}
+      SDK_PRODUCER_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      SDK_PRODUCER_WORKFLOW: .github/workflows/ci.yml
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version-file: .bun-version
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+      - name: SDK-only source type / build / dist smoke
+        run: node scripts/ci/run-isolated.mjs --profile=node
+  sdk-candidate:
+    name: SDK (validated candidate)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      SDK_BASE_REVISION: ${{ github.event.pull_request.base.sha || '' }}
+      SDK_PRODUCER_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      SDK_PRODUCER_WORKFLOW: .github/workflows/ci.yml
+      SDK_JOB_RESULTS: ${{ toJSON(needs) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with: { bun-version-file: .bun-version }
+      - name: Install SDK proof dependencies
+        run: bun install --frozen-lockfile
+      - name: Download tested SDK package
+        if: ${{ needs.ci-bun-build.outputs.artifact_id != '' }}
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          artifact-ids: ${{ needs.ci-bun-build.outputs.artifact_id }}
+          path: ${{ runner.temp }}/sdk-candidate
+          merge-multiple: true
+      - name: Download SDK suite completeness proof
+        if: ${{ needs.ci-bun.outputs.suite_artifact_id != '' }}
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          artifact-ids: ${{ needs.ci-bun.outputs.suite_artifact_id }}
+          path: ${{ runner.temp }}/sdk-suite-proof
+          merge-multiple: true
+      - name: Verify SDK jobs / artifact / source / suite union
+        env:
+          SDK_CI_ARTIFACT_DIR: ${{ runner.temp }}/sdk-candidate
+          SDK_SUITE_RESULTS_DIR: ${{ runner.temp }}/sdk-suite-proof
+        run: node scripts/ci/candidate.mjs aggregate
+      - name: Upload validated SDK candidate
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sdk-validated-candidate-${{ github.event.pull_request.head.sha || github.sha }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/sdk-candidate
+          if-no-files-found: error
+          retention-days: 1
+    needs:
+      - ci-bun
+      - ci-bun-static
+      - ci-bun-build
+      - ci-node-20-lts
+      - ci-node-22
+    if: ${{ !cancelled() }}

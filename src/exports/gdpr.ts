@@ -1,0 +1,46 @@
+export type {
+  AuthFailurePayload,
+  ConsentScope,
+  CorrectionRequestPayload,
+  CredentialRecord,
+  DashboardLogDeletionRecords,
+  DashboardLogEntry,
+  DashboardLogIssue,
+  DashboardLogIssueReason,
+  DashboardLogStorage,
+  DashboardLogTrimWatermark,
+  DashboardLogVerification,
+  DashboardLogVerifierKey,
+  DashboardLogVerifierKeyResolver,
+  DeletedLogEntryRecord,
+  DpoContactMetadata,
+  DsrEndpointMetadata,
+  LogEntryDeletedPayload,
+  LogEntryType,
+  LogFilter,
+  PresentationEventInput,
+  PresentedToEntry,
+  TransferWarning,
+  TransferWarningPayload,
+  TransferWarningSource,
+  UnlockPayload,
+} from '../internal/gdpr/index.js';
+// 保存 layout とエクスポート MIME の契約として公開し、値を固定する。key prefix / tail anchor key は、
+// 組込先が `DashboardLogStorage` の保存先のキーを直接組み立てて削除する（期限切れエントリの切り捨て）ため。ログ種別は、
+// 組込先が同じ種別で追記し、`list()` の結果を種別で絞り込むため。
+// エクスポート MIME は、組込先が `Blob` を内部メッセージ境界に載せられず MIME 文字列を別に運ぶため。
+export {
+  assertNoSpecialCategoryOnChain,
+  DASHBOARD_LOG_EXPORT_MIME,
+  DASHBOARD_LOG_KEY_PREFIX,
+  DASHBOARD_LOG_TAIL_ANCHOR_KEY,
+  DashboardLog,
+  discoverDpoContact,
+  discoverDsrEndpoint,
+  findSpecialCategoryAttributes,
+  logPresentationEvent,
+  PRESENTATION_LOG_TYPE,
+  recordTransferWarning,
+  resolveDeletionRecords,
+  verifyDashboardLogChain,
+} from '../internal/gdpr/index.js';

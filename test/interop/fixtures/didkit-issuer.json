@@ -1,0 +1,15 @@
+{
+  "_comment": "相互運用テスト harness 専用のテスト鍵（本番鍵ではない・秘匿情報ではない）。didkit-http コンテナ起動時の DIDKIT_HTTP_ISSUER_KEYS はこの privateJwk を使う（docker-compose.yml 参照）。vericerts-issuer.json と別鍵にして、ピアごとに独立した did:key を持たせている。",
+  "did": "did:key:z6MkjokRbxaU4C5YkUxGnLXvY2t85taRpBmLwRt6CakReKeh",
+  "publicKeyJwk": {
+    "kty": "OKP",
+    "crv": "Ed25519",
+    "x": "T4ojv4fJlplh3W6tw_McUEbp_92z6JsGZysJIIMKjPo"
+  },
+  "privateKeyJwk": {
+    "kty": "OKP",
+    "crv": "Ed25519",
+    "x": "T4ojv4fJlplh3W6tw_McUEbp_92z6JsGZysJIIMKjPo",
+    "d": "cZq5sJMKJOcRemlxKUyr-t-B-07wXdh-opc0VzYulxc"
+  }
+}

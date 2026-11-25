@@ -1,0 +1,253 @@
+{
+  "_comment": "VC発行・検証の公開相互運用設定。uniformピアはPOST /vc/issue・POST /vc/verify、nativeピアはPOST /credentials/issue・POST /credentials/verifyを使用する。固定テスト鍵、service/containerPort、runごとのホストポート解決、knownIncompatibleと厳格なskip判定はREADME.mdとcontracts/matrix.jsonのVC契約を参照する。",
+  "uniformPeers": [
+    { "name": "vericerts", "service": "vericerts", "containerPort": 8090, "kind": "uniform" },
+    { "name": "veramo", "service": "veramo", "containerPort": 8091, "kind": "uniform" }
+  ],
+  "nativePeers": [
+    {
+      "name": "didkit",
+      "service": "didkit",
+      "containerPort": 3000,
+      "kind": "didkit-vc-api",
+      "issuerDid": "did:key:z6MkjokRbxaU4C5YkUxGnLXvY2t85taRpBmLwRt6CakReKeh"
+    },
+    {
+      "name": "sphereon",
+      "service": "sphereon",
+      "containerPort": 8096,
+      "kind": "sphereon-vc-api",
+      "issuerDid": "did:key:z6MkrwgwKPGunsZjHEYJBGYjQH95YTefowBVXfkV753pocgB"
+    }
+  ],
+  "waltidProtocolPeers": {
+    "issuer": {
+      "name": "waltid-issuer",
+      "baseUrl": "http://waltid-issuer:7002",
+      "note": "OID4VCI issuer-apiの管理系ベースURL（openid4vc/jwt/issue）。waltid-driverから見たcompose内部のサービス名・コンテナポートを指定する。run-peer-matrix.mjsが起動するrun-waltid-protocol.mjsは、インストールしたSDKの公開Holder APIでOffer→Receiveを実行する。"
+    },
+    "verifier": {
+      "name": "waltid-verifier",
+      "baseUrl": "http://waltid-verifier:7003",
+      "note": "OID4VP verifier-apiの管理系ベースURL（openid4vc/verify・openid4vc/session）。waltid-driverから見たcompose内部アドレスを指定し、SDK公開APIによる提示の管理系呼び出しに使用する。"
+    }
+  },
+  "waltidSdJwt": {
+    "_comment": "SD-JWT VCの発行・提示ペアを定義する。ドライバは公開SDKを使用し、Offer→Issuer Metadataから告知されたvctを取得する。提示のpresentation_definitionには$.vctと要求claimのJSONPathが入り、開示済みclaimと照合される。SD-JWTペアはknownIncompatibleに登録せず、全ペアskippedは実駆動失敗として扱う。実行方法と設定はREADME.mdおよびcontracts/matrix.jsonを参照する。",
+    "credentialConfigurationId": "identity_credential_vc+sd-jwt",
+    "inputDescriptorId": "interop-sd-jwt",
+    "claims": { "given_name": "Interop", "family_name": "Tester" },
+    "selectiveDisclosureClaims": ["given_name", "family_name"],
+    "disclosedClaims": ["family_name"],
+    "requestedClaims": ["family_name"],
+    "pairs": {
+      "issue": "interop:waltid-issuer:vericerts:sd-jwt",
+      "present": "interop:vericerts:waltid-verifier:sd-jwt"
+    }
+  },
+  "externalPrerequisitePeers": [
+    {
+      "name": "ebsi",
+      "service": "ebsi-proxy",
+      "containerPort": 8095,
+      "healthPath": "/did-registry/v5/identifiers",
+      "requiresEnv": "EBSI_SANDBOX_BASE_URL",
+      "note": "公開の EBSI Pilot DID Registry への接続先を指定する。"
+    }
+  ],
+  "didResolution": {
+    "_comment": "DID解決の公開相互運用設定。matrixはcontracts/matrix.jsonの18個の固定cellと対応する。peersは解決経路・Accept・外部前提、fixturesは解決対象と期待公開鍵、structuralSkipsは13個のpair/reasonIncludesを保持する。判定はresolver-unavailable、prerequisite-missing、host-port-unresolved、fixture-missing、実解決の順で行い、登録と異なるskip理由は厳格モードで失敗する。README.mdのDID解決契約を参照する。",
+    "matrix": {
+      "key": ["sphereon", "veramo", "waltid", "didkit"],
+      "web": ["sphereon", "veramo", "waltid", "didkit", "ebsi"],
+      "ethr": ["sphereon", "veramo", "didkit"],
+      "jwk": ["sphereon", "veramo", "waltid"],
+      "ebsi": ["sphereon", "waltid", "ebsi"]
+    },
+    "peers": {
+      "sphereon": {
+        "service": "sphereon",
+        "containerPort": 8096,
+        "resolvePath": "/identifiers/",
+        "note": "Sphereonアダプタ（adapters/sphereon/）のDIF DID Resolution HTTPS Binding相当のGET /identifiers/{did}を使用する。"
+      },
+      "veramo": {
+        "service": "veramo",
+        "containerPort": 8091,
+        "resolvePath": "/identifiers/",
+        "note": "Veramoアダプタ（adapters/veramo/）のGET /identifiers/{did}。登録済みのkey-did-resolver等へ委譲する。"
+      },
+      "waltid": {
+        "unavailable": "walt.id issuer-api / verifier-api は DID 解決の HTTP エンドポイントを公開しておらず、pinned image に解決経路が無い。"
+      },
+      "didkit": {
+        "service": "didkit",
+        "containerPort": 3000,
+        "resolvePath": "/identifiers/",
+        "resolveAccept": "application/did+ld+json",
+        "note": "DIF DID Resolution HTTPS Binding。`spruceid/didkit-http` の `GET /identifiers/{did}`（解決器は `ssi` の AnyDidMethod）。`resolveAccept` で既定（Resolution Result の profile）を上書きするのは、pinned の didkit-http が Resolution Result を DIF の形で返さないため: `Accept: application/ld+json;profile=\"https://w3id.org/did-resolution\"` に対して `{\"Success\":{\"content\":\"<DID Document を JSON 文字列にしたもの>\",\"metadata\":…,\"document_metadata\":…}}` という Rust 側の enum 表現をそのまま返し、`didDocument` も `id` も直下に無いのでランナーが did-mismatch で fail する。`application/did+ld+json` を要求すれば DID Document 表現（`@context` + `id` + `verificationMethod`）を正しく返すので、こちらで解決する。Accept の内容交渉は実装されておらず、ヘッダ全体を 1 個のメディア型トークンとして完全一致で見るため、複数値や `q=` を足すと 406（`unknown DID document representation`）になる — したがって「両方を受理する Accept」は書けず、ピア単位で 1 値に決める必要がある。異常系（解決不能な DID）は `application/did+ld+json` でも 2xx を返さない（400 / 500 / 501）ので fail-closed は保たれる。"
+      },
+      "ebsi": {
+        "service": "ebsi-proxy",
+        "containerPort": 8095,
+        "resolvePath": "/did-registry/v5/identifiers/",
+        "requiresEnv": "EBSI_SANDBOX_BASE_URL",
+        "note": "公開の EBSI Pilot DID Registry への接続先を指定する。未設定時は prerequisite-missing として報告する。"
+      }
+    },
+    "fixtures": {
+      "key": {
+        "did": "did:key:z6MkjokRbxaU4C5YkUxGnLXvY2t85taRpBmLwRt6CakReKeh",
+        "expectedKey": {
+          "publicKeyMultibase": "z6MkjokRbxaU4C5YkUxGnLXvY2t85taRpBmLwRt6CakReKeh",
+          "publicKeyBase58": "6MVP1iL2ieb5dz7a6ma5gwL8GKJaQJWzFQyANJnQj6sK",
+          "publicKeyJwk": {
+            "kty": "OKP",
+            "crv": "Ed25519",
+            "x": "T4ojv4fJlplh3W6tw_McUEbp_92z6JsGZysJIIMKjPo"
+          }
+        },
+        "note": "fixtures/didkit-issuer.json の did（harness 専用のテスト鍵・本番鍵ではない）。did:key は method-specific id 自体が multicodec（0xed01 = Ed25519）された公開鍵なので、解決結果の検証鍵が DID から導かれる鍵と一致することまで確かめられる。expectedKey は同じ 32 バイト鍵の 3 表現で、publicKeyMultibase は method-specific id そのもの、publicKeyBase58 は multicodec を外した生鍵の base58btc（key-did-resolver が Ed25519VerificationKey2018 で返す形）、publicKeyJwk は同じ鍵の OKP 表現（didkit / ssi が返す形）。ピアが返した表現に対応する期待値だけを突き合わせる（run-did-resolution-matrix.mjs / lib/did-resolution-clients.mjs の findVerificationMethodWithKey）。"
+      },
+      "web": {
+        "unavailable": "did:web は HTTPS 固定で、全ピアから到達でき証明書を検証できる DID 文書ホストが harness に無い"
+      },
+      "ethr": {
+        "_comment": "did:ethrは既存eip1056Versionsの各registry/DID fixtureを版ごとに解決する。ランナーは全版が成功した場合だけpassとし、未整備・失敗を版ごとに報告する。版と期待値はこの公開configで固定し、実行結果から再生成しない。",
+        "eip1056Versions": [
+          {
+            "version": "eip1056-registry-0xdca7ef03",
+            "registry": "0xdca7ef03e98e0dc2b855be647c39abe984fcf21b",
+            "did": "did:ethr:0x1:0xb9c5714089478a327f09197987f16f9e5d936e8a",
+            "unavailable": "EIP-1056 registry を載せたチェーン fixture が harness に無い"
+          },
+          {
+            "version": "eip1056-registry-0x03d5003b",
+            "registry": "0x03d5003bf0e79c5f5223588f347eba39afbc3818",
+            "did": "did:ethr:0xaa36a7:0xb9c5714089478a327f09197987f16f9e5d936e8a",
+            "unavailable": "EIP-1056 registry を載せたチェーン fixture が harness に無い（新しいチェーン向け registry）"
+          }
+        ]
+      },
+      "jwk": {
+        "did": "did:jwk:eyJjcnYiOiJQLTI1NiIsImt0eSI6IkVDIiwieCI6IjZjYTZJaWV0SEw3X3FCaEtsSTl3N2FjZWx5clB5UFktSGJlbFM4QVR1REEiLCJ5IjoiQlBJN3R5V1pGTHNfWUV0ajRGa2xab3FQb21BcEFrWWV6bmdzMFpySzNmYyJ9",
+        "expectedKey": {
+          "publicKeyJwk": {
+            "crv": "P-256",
+            "kty": "EC",
+            "x": "6ca6IietHL7_qBhKlI9w7acelyrPyPY-HbelS8ATuDA",
+            "y": "BPI7tyWZFLs_YEtj4FklZoqPomApAkYezngs0ZrK3fc"
+          }
+        },
+        "note": "harness 専用に生成した P-256 公開鍵（本番鍵ではない。秘密鍵は持たず解決のみに使う）。did:jwk は JWK の UTF-8 JSON を base64url したものが method-specific id で、外部依存なしに解決できる。DID 文書の verificationMethod は定義上この JWK そのものになるため、expectedKey としてランナーが解決結果の検証鍵と突き合わせる。"
+      },
+      "ebsi": {
+        "unavailable": "EBSI のテスト DID が未確定"
+      }
+    },
+    "structuralSkips": [
+      {
+        "pair": "interop:did-resolve:key:waltid",
+        "reasonIncludes": "resolver-unavailable",
+        "note": "walt.id は DID 解決の HTTP エンドポイントを公開しておらず、pinned image に解決経路を足す余地が無い（didResolution.peers.waltid.unavailable）"
+      },
+      {
+        "pair": "interop:did-resolve:web:sphereon",
+        "reasonIncludes": "fixture-missing",
+        "note": "did:web は HTTPS 固定で、全ピアから到達でき証明書を検証できる DID 文書ホストが harness に無い"
+      },
+      {
+        "pair": "interop:did-resolve:web:veramo",
+        "reasonIncludes": "fixture-missing",
+        "note": "did:web の DID 文書ホストが harness に無い。interop:did-resolve:web:sphereon と同じ前提"
+      },
+      {
+        "pair": "interop:did-resolve:web:didkit",
+        "reasonIncludes": "fixture-missing",
+        "note": "did:web の DID 文書ホストが harness に無い。interop:did-resolve:web:sphereon と同じ前提"
+      },
+      {
+        "pair": "interop:did-resolve:web:waltid",
+        "reasonIncludes": "resolver-unavailable",
+        "note": "walt.id は DID 解決の HTTP エンドポイントを公開していない。fixture 未整備より先に判定される"
+      },
+      {
+        "pair": "interop:did-resolve:web:ebsi",
+        "reasonIncludes": "fixture-missing",
+        "note": "did:web の DID 文書ホストが harness に無い。EBSI_SANDBOX_BASE_URL が未設定のあいだは prerequisite-missing になり、登録と異なる理由として厳格モードで違反になる。"
+      },
+      {
+        "pair": "interop:did-resolve:ethr:sphereon",
+        "reasonIncludes": "fixture-missing",
+        "note": "EIP-1056 registry を載せたチェーン fixture が harness に無い"
+      },
+      {
+        "pair": "interop:did-resolve:ethr:veramo",
+        "reasonIncludes": "fixture-missing",
+        "note": "EIP-1056 registry のチェーン fixture が harness に無い。interop:did-resolve:ethr:sphereon と同じ前提"
+      },
+      {
+        "pair": "interop:did-resolve:ethr:didkit",
+        "reasonIncludes": "fixture-missing",
+        "note": "EIP-1056 registry のチェーン fixture が harness に無い。interop:did-resolve:ethr:sphereon と同じ前提"
+      },
+      {
+        "pair": "interop:did-resolve:jwk:waltid",
+        "reasonIncludes": "resolver-unavailable",
+        "note": "walt.id は DID 解決の HTTP エンドポイントを公開していない"
+      },
+      {
+        "pair": "interop:did-resolve:ebsi:sphereon",
+        "reasonIncludes": "fixture-missing",
+        "note": "did:ebsi のテスト DID が未確定"
+      },
+      {
+        "pair": "interop:did-resolve:ebsi:waltid",
+        "reasonIncludes": "resolver-unavailable",
+        "note": "walt.id は DID 解決の HTTP エンドポイントを公開していない"
+      },
+      {
+        "pair": "interop:did-resolve:ebsi:ebsi",
+        "reasonIncludes": "fixture-missing",
+        "note": "did:ebsi のテスト DID が未確定。EBSI_SANDBOX_BASE_URL が未設定のあいだは prerequisite-missing になり、登録と異なる理由として厳格モードで違反になる。"
+      }
+    ]
+  },
+  "knownIncompatible": [
+    {
+      "pair": "interop:didkit:vericerts",
+      "reasonIncludes": "jwt is required (string)",
+      "note": "native ピア（didkit）は LD-Proof（JSON-LD オブジェクト）で発行し、uniform ピア（vericerts）の POST /vc/verify はコンパクト JWT-VC 文字列のみを受理する。アダプタの入口検査（typeof jwt !== 'string'）が HTTP 400 で拒否する。SDK の検証ポリシーは変えない"
+    },
+    {
+      "pair": "interop:didkit:veramo",
+      "reasonIncludes": "jwt is required (string)",
+      "note": "native ピア（didkit）の LD-Proof を uniform ピア（veramo）のアダプタが入口検査で拒否する。interop:didkit:vericerts と同じ形式差"
+    },
+    {
+      "pair": "interop:sphereon:vericerts",
+      "reasonIncludes": "jwt is required (string)",
+      "note": "native ピア（sphereon）の LD-Proof を uniform ピア（vericerts）のアダプタが入口検査で拒否する。interop:didkit:vericerts と同じ形式差"
+    },
+    {
+      "pair": "interop:sphereon:veramo",
+      "reasonIncludes": "jwt is required (string)",
+      "note": "native ピア（sphereon）の LD-Proof を uniform ピア（veramo）のアダプタが入口検査で拒否する。interop:didkit:vericerts と同じ形式差"
+    },
+    {
+      "pair": "interop:vericerts:veramo",
+      "reasonIncludes": "@context is missing default context \"https://www.w3.org/2018/credentials/v1\"",
+      "note": "vericerts は VC 2.0 の @context（https://www.w3.org/ns/credentials/v2）で発行するが、veramo（did-jwt-vc）は v1 の既定 context（https://www.w3.org/2018/credentials/v1）を必須とする。SDK の @context の扱いは変えない"
+    },
+    {
+      "pair": "interop:veramo:vericerts",
+      "reasonIncludes": "3002",
+      "note": "Veramo は VC 1.1 の JWT 表現（VCDM 1.1 §6.3.1。`vc` から issuer / issuanceDate を省き、JWT の iss / nbf に委ねる）で発行するが、vericerts は VC 本体に issuer と issuanceDate を持つ JWT-VC だけを受理し、3002 で拒否する。検証ポリシーは変えない"
+    },
+    {
+      "pair": "interop:vericerts:sphereon",
+      "reasonIncludes": "@context is missing default context \"https://www.w3.org/2018/credentials/v1\"",
+      "note": "vericerts は VC 2.0 の @context（https://www.w3.org/ns/credentials/v2）で発行するが、sphereon の JWT-VC 検証（did-jwt-vc）は v1 の既定 context（https://www.w3.org/2018/credentials/v1）を必須とする。SDK の @context の扱いは変えない"
+    }
+  ]
+}

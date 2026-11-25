@@ -1,0 +1,6 @@
+{
+  "_comment": "相互運用テスト harness 専用のテスト鍵（本番鍵ではない・秘匿情報ではない）。walt.id issuer-api の openid4vc/jwt/issue 呼び出し（test/interop/run-waltid-protocol.mjs）で issuerKey/issuerDid として渡す発行者鍵。walt.id issuer-api はステートレスな署名サービスとして動作し、呼び出し側がこの鍵を都度渡す設計のため、他のピア鍵（didkit-issuer.json 等）と同様に本 SDK の createPrivateKeySigner / createDidKey で再現可能な固定シードを使う。",
+  "alg": "EdDSA",
+  "did": "did:key:z6Mkw3GSoC34Lsud8FxhEAbJVzncm8DKRnkihGRbm4jyqQeE",
+  "seedHex": "b9fabc2f5610b48d43d429337ce2b508cf055b5a79fb5baad5b40cbbeec709e4"
+}

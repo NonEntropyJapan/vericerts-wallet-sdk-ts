@@ -1,0 +1,12 @@
+{
+  "_comment": "相互運用テスト harness 専用のテスト鍵（本番鍵ではない・秘匿情報ではない）。test/interop/adapters/vericerts が発行者鍵として、didkit サービス起動時の DIDKIT_HTTP_ISSUER_KEYS に対応する検証鍵として、test/interop/run-peer-matrix.mjs が固定 did:key として、それぞれこのファイルを参照する。",
+  "alg": "EdDSA",
+  "seedHex": "9b11f1386f9dbb023d74603e7d4612fd724de50112322360b662b5b851361082",
+  "publicKeyJwk": {
+    "kty": "OKP",
+    "crv": "Ed25519",
+    "x": "6pGUvqr9dUdCUW0UQenn4WNrC8fKXEX22tPTuqiDyL8"
+  },
+  "did": "did:key:z6MkvEvCWuGLM3PqKSfVkYbTNSg6KQvX6szzh76vFNTvARUA",
+  "verificationMethod": "did:key:z6MkvEvCWuGLM3PqKSfVkYbTNSg6KQvX6szzh76vFNTvARUA#z6MkvEvCWuGLM3PqKSfVkYbTNSg6KQvX6szzh76vFNTvARUA"
+}

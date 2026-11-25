@@ -1,0 +1,47 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`buildDidEthrDocument 複合シナリオのスナップショット 1`] = `
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/secp256k1recovery-2020/v2",
+  ],
+  "assertionMethod": [
+    "did:ethr:1:0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb#controller",
+    "did:ethr:1:0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb#delegate-1",
+  ],
+  "authentication": [
+    "did:ethr:1:0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb#controller",
+    "did:ethr:1:0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb#delegate-2",
+  ],
+  "controller": "did:ethr:1:0x1111111111111111111111111111111111111111",
+  "id": "did:ethr:1:0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb",
+  "service": [
+    {
+      "id": "did:ethr:1:0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb#service-1",
+      "serviceEndpoint": "https://example.com/msg",
+      "type": "MessagingService",
+    },
+  ],
+  "verificationMethod": [
+    {
+      "blockchainAccountId": "eip155:1:0x1111111111111111111111111111111111111111",
+      "controller": "did:ethr:1:0x1111111111111111111111111111111111111111",
+      "id": "did:ethr:1:0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb#controller",
+      "type": "EcdsaSecp256k1RecoveryMethod2020",
+    },
+    {
+      "controller": "did:ethr:1:0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb",
+      "id": "did:ethr:1:0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb#delegate-1",
+      "publicKeyHex": "0x02b97c30de767f084ce3080168ee293053ba33b235d7116a3263d29f1450936b71",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+    },
+    {
+      "controller": "did:ethr:1:0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb",
+      "id": "did:ethr:1:0xab16a96D359eC26a11e2C2b3d8f8B8942d5Bfcdb#delegate-2",
+      "publicKeyHex": "0x02b97c30de767f084ce3080168ee293053ba33b235d7116a3263d29f1450936b71",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+    },
+  ],
+}
+`;

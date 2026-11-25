@@ -1,0 +1,30 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./dist"
+  },
+  "include": [
+    "src/index.ts",
+    "src/exports/experimental.ts",
+    "src/exports/experimental/eudi.ts",
+    "src/exports/experimental/oid4vci.ts",
+    "src/exports/otel.ts",
+    "src/exports/aa.ts",
+    "src/exports/asset.ts",
+    "src/exports/common.ts",
+    "src/exports/credential.ts",
+    "src/exports/eudi.ts",
+    "src/exports/gdpr.ts",
+    "src/exports/identity.ts",
+    "src/exports/keymanager.ts",
+    "src/exports/oid4vci.ts",
+    "src/exports/oid4vp.ts",
+    "src/exports/persona.ts",
+    "src/exports/trust.ts"
+  ],
+  "exclude": ["src/**/*.test.ts"]
+}

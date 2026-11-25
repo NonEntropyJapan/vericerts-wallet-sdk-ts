@@ -1,0 +1,286 @@
+{
+  "name": "vericerts-wallet-sdk",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "VeriCerts Wallet SDK — did:key/did:ethr, VC/VP (SD-JWT / JWT-VC), OID4VCI/OID4VP を扱うウォレット SDK",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NonEntropyJapan/vericerts-wallet-sdk-ts.git"
+  },
+  "homepage": "https://github.com/NonEntropyJapan/vericerts-wallet-sdk-ts#readme",
+  "bugs": {
+    "url": "https://github.com/NonEntropyJapan/vericerts-wallet-sdk-ts/issues"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": {
+        "import": "./dist/index.d.ts",
+        "require": "./dist/cjs-types/index.d.ts",
+        "default": "./dist/index.d.ts"
+      },
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    },
+    "./aa": {
+      "types": {
+        "import": "./dist/exports/aa.d.ts",
+        "require": "./dist/cjs-types/exports/aa.d.ts",
+        "default": "./dist/exports/aa.d.ts"
+      },
+      "import": "./dist/exports/aa.js",
+      "require": "./dist/exports/aa.cjs",
+      "default": "./dist/exports/aa.js"
+    },
+    "./asset": {
+      "types": {
+        "import": "./dist/exports/asset.d.ts",
+        "require": "./dist/cjs-types/exports/asset.d.ts",
+        "default": "./dist/exports/asset.d.ts"
+      },
+      "import": "./dist/exports/asset.js",
+      "require": "./dist/exports/asset.cjs",
+      "default": "./dist/exports/asset.js"
+    },
+    "./common": {
+      "types": {
+        "import": "./dist/exports/common.d.ts",
+        "require": "./dist/cjs-types/exports/common.d.ts",
+        "default": "./dist/exports/common.d.ts"
+      },
+      "import": "./dist/exports/common.js",
+      "require": "./dist/exports/common.cjs",
+      "default": "./dist/exports/common.js"
+    },
+    "./credential": {
+      "types": {
+        "import": "./dist/exports/credential.d.ts",
+        "require": "./dist/cjs-types/exports/credential.d.ts",
+        "default": "./dist/exports/credential.d.ts"
+      },
+      "import": "./dist/exports/credential.js",
+      "require": "./dist/exports/credential.cjs",
+      "default": "./dist/exports/credential.js"
+    },
+    "./eudi": {
+      "types": {
+        "import": "./dist/exports/eudi.d.ts",
+        "require": "./dist/cjs-types/exports/eudi.d.ts",
+        "default": "./dist/exports/eudi.d.ts"
+      },
+      "import": "./dist/exports/eudi.js",
+      "require": "./dist/exports/eudi.cjs",
+      "default": "./dist/exports/eudi.js"
+    },
+    "./gdpr": {
+      "types": {
+        "import": "./dist/exports/gdpr.d.ts",
+        "require": "./dist/cjs-types/exports/gdpr.d.ts",
+        "default": "./dist/exports/gdpr.d.ts"
+      },
+      "import": "./dist/exports/gdpr.js",
+      "require": "./dist/exports/gdpr.cjs",
+      "default": "./dist/exports/gdpr.js"
+    },
+    "./identity": {
+      "types": {
+        "import": "./dist/exports/identity.d.ts",
+        "require": "./dist/cjs-types/exports/identity.d.ts",
+        "default": "./dist/exports/identity.d.ts"
+      },
+      "import": "./dist/exports/identity.js",
+      "require": "./dist/exports/identity.cjs",
+      "default": "./dist/exports/identity.js"
+    },
+    "./keymanager": {
+      "types": {
+        "import": "./dist/exports/keymanager.d.ts",
+        "require": "./dist/cjs-types/exports/keymanager.d.ts",
+        "default": "./dist/exports/keymanager.d.ts"
+      },
+      "import": "./dist/exports/keymanager.js",
+      "require": "./dist/exports/keymanager.cjs",
+      "default": "./dist/exports/keymanager.js"
+    },
+    "./oid4vci": {
+      "types": {
+        "import": "./dist/exports/oid4vci.d.ts",
+        "require": "./dist/cjs-types/exports/oid4vci.d.ts",
+        "default": "./dist/exports/oid4vci.d.ts"
+      },
+      "import": "./dist/exports/oid4vci.js",
+      "require": "./dist/exports/oid4vci.cjs",
+      "default": "./dist/exports/oid4vci.js"
+    },
+    "./oid4vp": {
+      "types": {
+        "import": "./dist/exports/oid4vp.d.ts",
+        "require": "./dist/cjs-types/exports/oid4vp.d.ts",
+        "default": "./dist/exports/oid4vp.d.ts"
+      },
+      "import": "./dist/exports/oid4vp.js",
+      "require": "./dist/exports/oid4vp.cjs",
+      "default": "./dist/exports/oid4vp.js"
+    },
+    "./persona": {
+      "types": {
+        "import": "./dist/exports/persona.d.ts",
+        "require": "./dist/cjs-types/exports/persona.d.ts",
+        "default": "./dist/exports/persona.d.ts"
+      },
+      "import": "./dist/exports/persona.js",
+      "require": "./dist/exports/persona.cjs",
+      "default": "./dist/exports/persona.js"
+    },
+    "./trust": {
+      "types": {
+        "import": "./dist/exports/trust.d.ts",
+        "require": "./dist/cjs-types/exports/trust.d.ts",
+        "default": "./dist/exports/trust.d.ts"
+      },
+      "import": "./dist/exports/trust.js",
+      "require": "./dist/exports/trust.cjs",
+      "default": "./dist/exports/trust.js"
+    },
+    "./experimental": {
+      "types": {
+        "import": "./dist/exports/experimental.d.ts",
+        "require": "./dist/cjs-types/exports/experimental.d.ts",
+        "default": "./dist/exports/experimental.d.ts"
+      },
+      "import": "./dist/exports/experimental.js",
+      "require": "./dist/exports/experimental.cjs",
+      "default": "./dist/exports/experimental.js"
+    },
+    "./experimental/eudi": {
+      "types": {
+        "import": "./dist/exports/experimental/eudi.d.ts",
+        "require": "./dist/cjs-types/exports/experimental/eudi.d.ts",
+        "default": "./dist/exports/experimental/eudi.d.ts"
+      },
+      "import": "./dist/exports/experimental/eudi.js",
+      "require": "./dist/exports/experimental/eudi.cjs",
+      "default": "./dist/exports/experimental/eudi.js"
+    },
+    "./experimental/oid4vci": {
+      "types": {
+        "import": "./dist/exports/experimental/oid4vci.d.ts",
+        "require": "./dist/cjs-types/exports/experimental/oid4vci.d.ts",
+        "default": "./dist/exports/experimental/oid4vci.d.ts"
+      },
+      "import": "./dist/exports/experimental/oid4vci.js",
+      "require": "./dist/exports/experimental/oid4vci.cjs",
+      "default": "./dist/exports/experimental/oid4vci.js"
+    },
+    "./otel": {
+      "types": {
+        "import": "./dist/exports/otel.d.ts",
+        "require": "./dist/cjs-types/exports/otel.d.ts",
+        "default": "./dist/exports/otel.d.ts"
+      },
+      "import": "./dist/exports/otel.js",
+      "require": "./dist/exports/otel.cjs",
+      "default": "./dist/exports/otel.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "NOTICE",
+    "sbom/sdk.cdx.json"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "bun run build:clean && bun run build:js && bun run build:cjs && bun run build:types",
+    "build:clean": "rm -rf ./dist",
+    "build:js": "bun build ./src/index.ts ./src/exports/experimental.ts ./src/exports/experimental/eudi.ts ./src/exports/experimental/oid4vci.ts ./src/exports/otel.ts ./src/exports/aa.ts ./src/exports/asset.ts ./src/exports/common.ts ./src/exports/credential.ts ./src/exports/eudi.ts ./src/exports/gdpr.ts ./src/exports/identity.ts ./src/exports/keymanager.ts ./src/exports/oid4vci.ts ./src/exports/oid4vp.ts ./src/exports/persona.ts ./src/exports/trust.ts --root ./src --outdir ./dist --target browser --format esm --splitting --external @opentelemetry/api --external @opentelemetry/api-logs --external ethers --metafile=./.build-meta-esm.json",
+    "build:cjs": "bun build ./src/cjs-entry.ts --outfile ./dist/_shared.cjs --target node --format cjs --external cbor-x --metafile=./.build-meta-cjs.json && bun build ./src/exports/otel.ts --outfile ./dist/exports/otel.cjs --target node --format cjs --external @opentelemetry/api --external @opentelemetry/api-logs --metafile=./.build-meta-otel.json && node scripts/emit-cjs-pickers.mjs",
+    "build:types": "tsc -p tsconfig.build.json && node scripts/emit-cjs-types.mjs",
+    "check": "biome check --config-path=./biome.json .",
+    "check:fix": "biome check --config-path=./biome.json --write .",
+    "test": "node scripts/ci/test.mjs --input=working-tree",
+    "test:coverage": "node scripts/ci/test.mjs --input=working-tree --coverage",
+    "test:watch": "node scripts/ci/source-watch.mjs",
+    "test:conformance:vc": "bun test src/internal/credential/vc src/internal/credential/presentation",
+    "test:conformance:pe": "bun test src/internal/presentation-exchange",
+    "test:conformance:haip": "bun test src/internal/credential/sdjwt",
+    "test:conformance:oid4vci": "bun test src/internal/auth/oid4vci",
+    "test:conformance:oid4vp": "bun test src/internal/auth/siop src/internal/auth/oid4vp-par src/internal/auth/__tests__/oid4vp",
+    "test:conformance": "bun run test:conformance:vc && bun run test:conformance:pe && bun run test:conformance:haip && bun run test:conformance:oid4vci && bun run test:conformance:oid4vp",
+    "smoke:node": "node scripts/smoke-node.mjs",
+    "smoke:node-cjs": "node scripts/smoke-node.cjs",
+    "smoke:types": "node scripts/smoke-types.mjs",
+    "gen:error-codes": "node scripts/gen-error-codes.mjs",
+    "check:error-codes": "node scripts/gen-error-codes.mjs --check && bun test scripts/error-codes-registry.test.mjs src/internal/__tests__/errors src/internal/__tests__/error-codes-registry-drift.test.ts",
+    "gen:log-entry-schema": "node scripts/gen-log-entry-schema.mjs",
+    "check:log-entry-schema": "node scripts/gen-log-entry-schema.mjs --check && bun test scripts/gen-log-entry-schema.test.mjs src/internal/observability/log-entry-schema.test.ts",
+    "export:test-support": "bun run scripts/gen-test-support.ts",
+    "test:test-support": "bun test scripts/test-support",
+    "gen:conformance-vectors": "bun run scripts/gen-conformance-vectors.ts",
+    "check:conformance-vectors": "bun run scripts/gen-conformance-vectors.ts --check",
+    "jwk-monitor": "node scripts/jwk-registry/monitor.mjs",
+    "typecheck": "tsc --noEmit",
+    "prepack": "bun run build && node scripts/gen-notice.mjs && bun run gen:sbom",
+    "gen:sbom": "bun scripts/gen-sbom.mjs",
+    "publish:dry-run": "npm publish --dry-run",
+    "smoke:pack": "node scripts/packed-consumer/run.mjs",
+    "release:dry-run": "node scripts/packed-consumer/release.mjs",
+    "check:skipped-tests": "node scripts/check-skipped-tests.mjs",
+    "check:test-results": "node scripts/check-test-results.mjs",
+    "check:coverage": "node scripts/check-coverage.mjs",
+    "check:diff-coverage": "node scripts/check-diff-coverage.mjs",
+    "check:source-boundary": "node scripts/ci/source-boundary.mjs",
+    "check:security": "node scripts/ci/audit.mjs",
+    "ci:profile": "node scripts/ci/run.mjs",
+    "test:ci-tools": "bun test scripts/__tests__/gates-*.test.ts scripts/__tests__/ci-*.test.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.16",
+    "@opentelemetry/sdk-logs": "^0.222.0",
+    "@opentelemetry/sdk-metrics": "^2.11.0",
+    "@opentelemetry/sdk-trace-base": "^2.11.0",
+    "@types/bun": "latest",
+    "ajv": "8.20.0",
+    "typescript": "5.9.3",
+    "fast-xml-parser": "5.12.1",
+    "semver": "7.8.6"
+  },
+  "dependencies": {
+    "@noble/curves": "^2.2.0",
+    "@noble/hashes": "^2.2.0",
+    "@scure/base": "^2.2.0",
+    "@scure/bip32": "^2.2.0",
+    "@scure/bip39": "^2.2.0",
+    "@zxcvbn-ts/core": "^4.2.0",
+    "@zxcvbn-ts/language-common": "^4.1.3",
+    "@zxcvbn-ts/language-en": "^4.1.1",
+    "cbor-x": "^1.6.6",
+    "ethers": "^6.17.0",
+    "jsonpath-plus": "^10.4.0",
+    "permissionless": "^0.2.57",
+    "viem": "^2.54.2"
+  },
+  "peerDependencies": {
+    "@opentelemetry/api": "^1.9.1",
+    "@opentelemetry/api-logs": "^0.222.0"
+  },
+  "peerDependenciesMeta": {
+    "@opentelemetry/api": {
+      "optional": true
+    },
+    "@opentelemetry/api-logs": {
+      "optional": true
+    }
+  }
+}

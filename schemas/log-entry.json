@@ -1,0 +1,63 @@
+{
+  "$id": "https://vericerts.dev/schemas/log-entry.json",
+  "type": "object",
+  "required": [
+    "ts",
+    "level",
+    "msg"
+  ],
+  "properties": {
+    "ts": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "level": {
+      "enum": [
+        "debug",
+        "info",
+        "warn",
+        "error"
+      ]
+    },
+    "msg": {
+      "type": "string"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{32}$"
+    },
+    "span_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{16}$"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "component": {
+      "type": "string",
+      "description": "sdk.did | sdk.vc | sdk.aa | sdk.wallet | sdk.eudi (Planned) | ext.popup (Planned) | ext.bg (Planned)"
+    },
+    "operation": {
+      "type": "string",
+      "description": "did.resolve | vc.verify | oid4vci.token 等"
+    },
+    "did_method": {
+      "type": "string"
+    },
+    "vc_format": {
+      "enum": [
+        "jwt",
+        "sd-jwt",
+        "data-integrity",
+        "cose"
+      ]
+    },
+    "error_code": {
+      "type": "string"
+    },
+    "duration_ms": {
+      "type": "number"
+    }
+  },
+  "additionalProperties": true
+}

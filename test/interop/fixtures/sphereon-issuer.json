@@ -1,0 +1,8 @@
+{
+  "_comment": "相互運用テスト harness 専用のテスト鍵（本番鍵ではない・秘匿情報ではない）。test/interop/adapters/sphereon が発行者鍵として、test/interop/run-peer-matrix.mjs が固定 did:key（nativePeers[].issuerDid）として、それぞれこのファイルを参照する。didkit-issuer.json・vericerts-issuer.json とは別鍵にして、ピアごとに独立した did:key を持たせている。@veramo/kms-local の Ed25519 鍵形式（privateKeyHex は @stablelib/ed25519 の 64byte secretKey = 32byte seed + 32byte publicKey）で保持する。",
+  "type": "Ed25519",
+  "did": "did:key:z6MkrwgwKPGunsZjHEYJBGYjQH95YTefowBVXfkV753pocgB",
+  "verificationMethod": "did:key:z6MkrwgwKPGunsZjHEYJBGYjQH95YTefowBVXfkV753pocgB#z6MkrwgwKPGunsZjHEYJBGYjQH95YTefowBVXfkV753pocgB",
+  "publicKeyHex": "b994a6abd982d06ac50167461d99196357fec39b10111cd8df8e746fe7bb332c",
+  "privateKeyHex": "6c113569019e5c201971175fafc37b3f1bd083549ef0df3dee3580365b65c998b994a6abd982d06ac50167461d99196357fec39b10111cd8df8e746fe7bb332c"
+}

@@ -1,0 +1,2072 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "codes": [
+    {
+      "code": "1001",
+      "category": "key",
+      "name": "INVALID_MNEMONIC",
+      "description": "BIP-39 ニーモニック不正",
+      "related_apis": [
+        "importMnemonic",
+        "generateMnemonic"
+      ]
+    },
+    {
+      "code": "1002",
+      "category": "key",
+      "name": "INVALID_WORD_COUNT",
+      "description": "ワード数が 12 / 24 以外",
+      "related_apis": [
+        "generateMnemonic"
+      ]
+    },
+    {
+      "code": "1003",
+      "category": "key",
+      "name": "INVALID_PRIVATE_KEY",
+      "description": "秘密鍵フォーマット不正",
+      "related_apis": [
+        "signP256",
+        "getP256PublicKey",
+        "signSecp256k1Recoverable",
+        "getSecp256k1PublicKey",
+        "updateDID"
+      ]
+    },
+    {
+      "code": "1004",
+      "category": "key",
+      "name": "KEY_NOT_FOUND",
+      "description": "鍵ハンドルを解決できない（KeyManager 内の `keyId` 不明、および `KmsProvider.getKey` による鍵メタデータ解決の失敗）",
+      "related_apis": [
+        "sign",
+        "createKmsSigner"
+      ]
+    },
+    {
+      "code": "1005",
+      "category": "key",
+      "name": "KEY_LOCKED",
+      "description": "鍵がロック中",
+      "related_apis": [
+        "exportMnemonic",
+        "createShamirShares",
+        "unlockMnemonic",
+        "importMnemonic"
+      ]
+    },
+    {
+      "code": "1006",
+      "category": "key",
+      "name": "KEY_ID_NOT_FOUND",
+      "description": "(Deprecated) 鍵が見つからない",
+      "related_apis": []
+    },
+    {
+      "code": "1007",
+      "category": "key",
+      "name": "SIGN_OPERATION_FAILED",
+      "description": "(Deprecated) 署名失敗",
+      "related_apis": []
+    },
+    {
+      "code": "1010",
+      "category": "key",
+      "name": "KEY_NOT_WSCD",
+      "description": "鍵が WSCD 条件を満たさない（未実装 / 予約。WSCD 判定を公開 API へ配線する時点で有効化する）",
+      "related_apis": [],
+      "fail_safe": "FC-9"
+    },
+    {
+      "code": "1011",
+      "category": "key",
+      "name": "SHAMIR_ENCODE_FAILED",
+      "description": "SLIP-0039 エンコード失敗",
+      "related_apis": [
+        "createShamirShares"
+      ]
+    },
+    {
+      "code": "1012",
+      "category": "key",
+      "name": "SHAMIR_INSUFFICIENT_SHARES",
+      "description": "シェア数が閾値未満（未実装 / 予約。`recoverFromShamirShares` は例外を投げず `status: 'insufficient_shares'` で返す。例外送出へ変更する時点で有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "1013",
+      "category": "key",
+      "name": "SHAMIR_GROUP_MISMATCH",
+      "description": "シェア間のグループ不一致（未実装 / 予約。`recoverFromShamirShares` は例外を投げず `status` で返す）",
+      "related_apis": []
+    },
+    {
+      "code": "1014",
+      "category": "key",
+      "name": "SHAMIR_CHECKSUM_INVALID",
+      "description": "シェアのチェックサム検証失敗（未実装 / 予約。`recoverFromShamirShares` は例外を投げず `status` で返す）",
+      "related_apis": []
+    },
+    {
+      "code": "1015",
+      "category": "key",
+      "name": "SHAMIR_INVALID_PARAMS",
+      "description": "threshold / total が不正",
+      "related_apis": [
+        "createShamirShares"
+      ]
+    },
+    {
+      "code": "1020",
+      "category": "key",
+      "name": "SIGN_FAILED",
+      "description": "署名演算失敗",
+      "related_apis": [
+        "sign",
+        "createRemoteSigner",
+        "issueCredentialAsync",
+        "createSdJwtAsync",
+        "issuePresentationAsync",
+        "signStatusListTokenAsync",
+        "createKmsSigner",
+        "IssuerModule.generateTokenStatusList"
+      ]
+    },
+    {
+      "code": "1021",
+      "category": "key",
+      "name": "CHAIN_SUBMIT_FAILED",
+      "description": "チェーン送信失敗 / RPC 呼び出し失敗",
+      "related_apis": [
+        "emergencyRevokeValidator",
+        "getTokenBalance",
+        "getErc721Balance",
+        "getErc721Owner",
+        "getErc721TokenUri",
+        "getErc1155Balance",
+        "getErc1155BalanceBatch",
+        "getErc1155Uri",
+        "getTokenDecimals",
+        "getTokenSymbol",
+        "sendUserOperation",
+        "sponsorUserOperation",
+        "createFetchPaymasterClient"
+      ]
+    },
+    {
+      "code": "1022",
+      "category": "key",
+      "name": "VALIDATOR_NOT_AVAILABLE",
+      "description": "有効な ECDSA Validator が存在しない",
+      "related_apis": [
+        "emergencyRevokeValidator"
+      ]
+    },
+    {
+      "code": "1030",
+      "category": "key",
+      "name": "UNSUPPORTED_ALGORITHM",
+      "description": "アルゴリズム未対応",
+      "related_apis": [
+        "issueCredential",
+        "createRemoteSigner",
+        "createKmsSigner"
+      ]
+    },
+    {
+      "code": "1031",
+      "category": "key",
+      "name": "PIN_POLICY_VIOLATION",
+      "description": "PIN ポリシー不適合",
+      "related_apis": [
+        "importRecoveredWallet",
+        "importMnemonic"
+      ]
+    },
+    {
+      "code": "1032",
+      "category": "key",
+      "name": "PASSKEY_CREATE_FAILED",
+      "description": "Passkey 作成失敗",
+      "related_apis": [
+        "importRecoveredWallet"
+      ]
+    },
+    {
+      "code": "1033",
+      "category": "key",
+      "name": "WUA_REISSUE_FAILED",
+      "description": "WUA 再発行失敗",
+      "related_apis": [
+        "importRecoveredWallet"
+      ]
+    },
+    {
+      "code": "1040",
+      "category": "key",
+      "name": "DERIVATION_PATH_INVALID",
+      "description": "不正な BIP-44 導出パス",
+      "related_apis": [
+        "deriveKey",
+        "createPersona"
+      ]
+    },
+    {
+      "code": "1041",
+      "category": "key",
+      "name": "MASTER_SEED_NOT_INITIALIZED",
+      "description": "マスターシード未設定",
+      "related_apis": [
+        "deriveKey"
+      ]
+    },
+    {
+      "code": "1042",
+      "category": "key",
+      "name": "MNEMONIC_NOT_FOUND",
+      "description": "ニーモニックが存在しない",
+      "related_apis": [
+        "importMnemonic",
+        "recoverFromShamirShares",
+        "unlockMnemonic",
+        "exportMnemonic",
+        "createShamirShares"
+      ]
+    },
+    {
+      "code": "1043",
+      "category": "key",
+      "name": "MNEMONIC_ALREADY_PERSISTED",
+      "description": "既にニーモニックが永続化済み（明示的な上書き指定が必要）",
+      "related_apis": [
+        "recoverFromShamirShares",
+        "importRecoveredWallet"
+      ]
+    },
+    {
+      "code": "1050",
+      "category": "key",
+      "name": "DECRYPT_FAILED",
+      "description": "復号化失敗",
+      "related_apis": [
+        "decrypt"
+      ]
+    },
+    {
+      "code": "1051",
+      "category": "key",
+      "name": "ENCRYPT_FAILED",
+      "description": "AES-256-GCM 暗号化失敗",
+      "related_apis": [
+        "encrypt"
+      ]
+    },
+    {
+      "code": "2001",
+      "category": "did",
+      "name": "INVALID_DID",
+      "description": "DID 文字列形式不正",
+      "related_apis": [
+        "resolveDID",
+        "createDID",
+        "updateDID",
+        "buildSetControllerTx",
+        "buildRemoveControllerTx",
+        "detectController"
+      ]
+    },
+    {
+      "code": "2002",
+      "category": "did",
+      "name": "METHOD_NOT_SUPPORTED",
+      "description": "登録されていない DID メソッド",
+      "related_apis": [
+        "resolveDID",
+        "updateDID"
+      ]
+    },
+    {
+      "code": "2003",
+      "category": "did",
+      "name": "DID_NOT_FOUND",
+      "description": "DID が解決できない",
+      "related_apis": [
+        "resolveDID",
+        "updateDID"
+      ]
+    },
+    {
+      "code": "2004",
+      "category": "did",
+      "name": "DID_FORMAT_INVALID",
+      "description": "(Deprecated) DID フォーマット不正",
+      "related_apis": []
+    },
+    {
+      "code": "2005",
+      "category": "did",
+      "name": "PERSONA_NOT_FOUND",
+      "description": "指定された DID のペルソナが存在しない",
+      "related_apis": [
+        "setActivePersona",
+        "getPersona",
+        "getActivePersona",
+        "listPersonas"
+      ]
+    },
+    {
+      "code": "2006",
+      "category": "did",
+      "name": "CONTROLLER_NOT_AUTHORIZED",
+      "description": "controller 権限なし / controller 未設定",
+      "related_apis": [
+        "detectController",
+        "verifyDelegationControl",
+        "verifyDelegatedKey",
+        "resolveDelegatedSigner"
+      ]
+    },
+    {
+      "code": "2007",
+      "category": "did",
+      "name": "DID_SIGNING_KEY_UNAVAILABLE",
+      "description": "DID の署名鍵が利用不可",
+      "related_apis": [
+        "generateDIDConfiguration",
+        "resolvePersonaSigner",
+        "signMessageJws",
+        "resolveDelegatedSigner"
+      ]
+    },
+    {
+      "code": "2008",
+      "category": "did",
+      "name": "PERSONA_ALREADY_EXISTS",
+      "description": "同一 index / DID / 導出パス（= 同じ鍵）のペルソナが既に存在",
+      "related_apis": [
+        "createPersona",
+        "registerImportedPersona",
+        "importPersonaFromDid"
+      ]
+    },
+    {
+      "code": "2009",
+      "category": "did",
+      "name": "CONTENT_HASH_MISMATCH",
+      "description": "content-addressed DID / VC の contentHash 不一致",
+      "related_apis": [
+        "verifyDidContentHash",
+        "verifyVcContentHashClaim"
+      ]
+    },
+    {
+      "code": "2010",
+      "category": "did",
+      "name": "DID_DOC_INVALID",
+      "description": "DID ドキュメントのスキーマ不正",
+      "related_apis": [
+        "resolveDID",
+        "updateDID",
+        "verifyDelegationControl",
+        "verifyDelegatedKey",
+        "resolveDelegatedSigner",
+        "inlineExternalMethods",
+        "verifyMessageJws",
+        "verifyIDToken"
+      ]
+    },
+    {
+      "code": "2011",
+      "category": "did",
+      "name": "SUBJECT_BINDING_AGE_LIMIT",
+      "description": "(Deprecated) SubjectBinding の年齢制限違反",
+      "related_apis": []
+    },
+    {
+      "code": "2012",
+      "category": "did",
+      "name": "SUBJECT_BINDING_SCOPE_DENIED",
+      "description": "(Deprecated) SubjectBinding の scope と relationship の不整合",
+      "related_apis": []
+    },
+    {
+      "code": "2013",
+      "category": "did",
+      "name": "DELEGATION_BASIS_MISMATCH",
+      "description": "(Deprecated) DelegationGrant の basis と根拠 VC の不整合",
+      "related_apis": []
+    },
+    {
+      "code": "2014",
+      "category": "did",
+      "name": "DELEGATION_SCOPE_EXCEEDED",
+      "description": "(Deprecated) 委任スコープ超過（`signAsDelegate`）",
+      "related_apis": []
+    },
+    {
+      "code": "2015",
+      "category": "did",
+      "name": "SUBJECT_BINDING_NOT_FOUND",
+      "description": "(Deprecated) 指定 ID の SubjectBinding が存在しない",
+      "related_apis": []
+    },
+    {
+      "code": "2016",
+      "category": "did",
+      "name": "CONTENT_HASH_FORMAT_INVALID",
+      "description": "contentHash 表記の形式不正",
+      "related_apis": [
+        "parseContentHash",
+        "extractDidContentHash"
+      ]
+    },
+    {
+      "code": "2017",
+      "category": "did",
+      "name": "DID_KEY_MISMATCH",
+      "description": "保持している公開鍵が、DID Document の検証メソッド（要求した検証関係）と一致しない",
+      "related_apis": [
+        "verifyHeldKeyAgainstDid",
+        "importPersonaFromDid",
+        "resolvePersonaSigner",
+        "verifyMessageJws",
+        "verifyDelegatedKey",
+        "resolveDelegatedSigner",
+        "verifyIDToken"
+      ]
+    },
+    {
+      "code": "2020",
+      "category": "did",
+      "name": "DID_CONFIG_MISMATCH",
+      "description": "(Deprecated) Well-Known DID Config 検証失敗",
+      "related_apis": []
+    },
+    {
+      "code": "2030",
+      "category": "did",
+      "name": "CONTROLLER_CHAIN_LOOP",
+      "description": "controller 循環参照",
+      "related_apis": [
+        "detectController"
+      ]
+    },
+    {
+      "code": "2040",
+      "category": "did",
+      "name": "DID_DEACTIVATED",
+      "description": "(Deprecated) did:webvh 等で DID が deactivated 状態",
+      "related_apis": []
+    },
+    {
+      "code": "2050",
+      "category": "did",
+      "name": "DID_CREATION_FAILED",
+      "description": "DID 生成失敗（未実装 / 予約。`createDID` の失敗は現在 DID メソッド側のコードで送出される）",
+      "related_apis": []
+    },
+    {
+      "code": "3001",
+      "category": "vc",
+      "name": "VC_SCHEMA_FETCH_FAILED",
+      "description": "credentialSchema 取得失敗（未実装 / 予約。検証フローへの自動配線時に使用する）",
+      "related_apis": [],
+      "fail_safe": "FO-3"
+    },
+    {
+      "code": "3002",
+      "category": "vc",
+      "name": "VC_SCHEMA_INVALID",
+      "description": "VC / VP の構造不正、および受理対象外の列挙値・値域外の引数（credentialSchema 必須属性違反 / SD-JWT VC の `typ` が受理対象外 / Status List Token の `typ` が `statuslist+jwt` でない（欠落を含む） / W3C Bitstring Status List のリストがビット列 131,072 ビット（16 KiB）未満（`STATUS_LIST_LENGTH_ERROR`）・`encodedList` 不正・リスト VC の種別違い・エントリとリストの不整合（`type` / `statusPurpose` / `statusSize`）・不正または範囲外の `statusListIndex` / VP 構造不正 / 内包 VC を 1 件も含まない VP / 内包 VC が 64 件を超える VP・共有 `PresentationWorkBudget`（署名検証回数・Trusted Issuer List 走査量）の超過（`reason: \"work_budget_exceeded\"`）/ `DelegatedDIDStore.upsert` の `name` / `resolvedAt` が文字列でない・`DelegatedDIDStore.upsert` / `updateStatus` の `status` が列挙値外（永続化前に拒否）/ `IssueOptions.format`・`statusListType` が列挙外 / Status List のビット値・`ttlSeconds` が値域外 / `IssuerModuleOptions.issuer` が空文字 / `IssuerModule.importEntries` が未設定 purpose・範囲外 idx・別 `vcId` と重複する idx を含む / `validFrom` / `validUntil` が解釈不能 / `UsageContext.at` が不正な ISO / evidence エントリが object でない・`type` を欠く / 派生 VC 構築時に親 VC が `id` を持たない）",
+      "related_apis": [
+        "validateCredentialSchema",
+        "createSdJwt",
+        "createSdJwtAsync",
+        "verifySdJwt",
+        "toQueryableFromSdJwt",
+        "issuePresentation",
+        "issuePresentationAsync",
+        "signStatusListToken",
+        "signStatusListTokenAsync",
+        "IssuerModule.issueVC",
+        "IssuerModule.setTokenStatus",
+        "IssuerModule.generateTokenStatusList",
+        "buildDerivedCredential",
+        "checkTermsOfUse",
+        "validateTermsOfUseOnPresentation",
+        "interpretEvidence",
+        "verifyEvidence",
+        "verifyPresentation",
+        "verifyPresentationWithReplayGuard",
+        "issueCredential",
+        "issueCredentialAsync",
+        "verifyStatusListToken",
+        "createStatusListResolver",
+        "BitstringStatusList.create",
+        "BitstringStatusList.decode",
+        "BitstringStatusList.get",
+        "BitstringStatusList.set",
+        "createBitstringStatusListEntry",
+        "signBitstringStatusListCredential",
+        "verifyBitstringStatusListCredential",
+        "resolveBitstringStatus",
+        "checkBitstringStatus"
+      ]
+    },
+    {
+      "code": "3003",
+      "category": "vc",
+      "name": "OFFER_URI_PARSE_FAILED",
+      "description": "Offer URI のパースに失敗",
+      "related_apis": [
+        "receiveCredential",
+        "receivePID",
+        "receiveEAA"
+      ]
+    },
+    {
+      "code": "3004",
+      "category": "vc",
+      "name": "ISSUER_COMMUNICATION_FAILED",
+      "description": "発行者との通信失敗",
+      "related_apis": [
+        "receiveCredential",
+        "receiveCredentialViaAuthorizationCode",
+        "pushAuthorizationRequest",
+        "refreshCredential"
+      ],
+      "fail_safe": "FO-9"
+    },
+    {
+      "code": "3005",
+      "category": "vc",
+      "name": "VP_REQUEST_PARSE_FAILED",
+      "description": "(Deprecated) リクエストのパース失敗（`8030 OID4VP_REQUEST_PARSE_FAILED` に統合済み）",
+      "related_apis": []
+    },
+    {
+      "code": "3006",
+      "category": "vc",
+      "name": "HOLDER_DID_FORMAT_INVALID",
+      "description": "Holder DID フォーマット不正",
+      "related_apis": [
+        "issueCredential",
+        "IssuerModule.issueVC"
+      ]
+    },
+    {
+      "code": "3007",
+      "category": "vc",
+      "name": "STATUS_LIST_INDEX_EXHAUSTED",
+      "description": "StatusList インデックス枯渇",
+      "related_apis": [
+        "issueCredential",
+        "IssuerModule.issueVC"
+      ]
+    },
+    {
+      "code": "3008",
+      "category": "vc",
+      "name": "INVALID_CREDENTIAL_OFFER_OPTIONS",
+      "description": "不正な CredentialOfferOptions（未実装 / 予約。`createCredentialOffer` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "3009",
+      "category": "vc",
+      "name": "ACCESS_TOKEN_INVALID",
+      "description": "アクセストークン無効または期限切れ（未実装 / 予約。`processCredentialRequest` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "3010",
+      "category": "vc",
+      "name": "SIG_INVALID",
+      "description": "VC / VP 署名検証失敗",
+      "related_apis": [
+        "verifyCredential",
+        "verifyPresentation",
+        "verifyPresentationWithReplayGuard",
+        "verifySdJwt",
+        "verifySdJwtWithReplayGuard",
+        "addKeyBinding",
+        "createKeyBindingTemplate",
+        "attachKeyBinding",
+        "attachKeyBindingSignature",
+        "addKeyBindingWithTransactionData",
+        "buildVPToken",
+        "buildVPTokenTemplate",
+        "verifyTransactionDataHashes",
+        "receiveCredential",
+        "receivePID",
+        "receiveEAA",
+        "verifyMessageJws",
+        "verifyIDToken",
+        "verifyStatusListToken",
+        "createStatusListResolver",
+        "verifyBitstringStatusListCredential",
+        "resolveBitstringStatus",
+        "toQueryableFromSdJwt"
+      ],
+      "fail_safe": "FC-1"
+    },
+    {
+      "code": "3011",
+      "category": "vc",
+      "name": "ALG_NONE",
+      "description": "ヘッダ `alg=none`",
+      "related_apis": [
+        "verifyCredential",
+        "verifyPresentation",
+        "verifyPresentationWithReplayGuard",
+        "verifySdJwt"
+      ],
+      "fail_safe": "FC-2"
+    },
+    {
+      "code": "3012",
+      "category": "vc",
+      "name": "HOLDER_BIND_MISMATCH",
+      "description": "Holder Binding 不一致",
+      "related_apis": [
+        "verifyPresentation",
+        "verifyPresentationWithReplayGuard",
+        "verifyEmbeddedCredentials",
+        "verifySdJwt",
+        "verifySdJwtWithReplayGuard",
+        "addKeyBinding",
+        "createKeyBindingTemplate",
+        "attachKeyBinding",
+        "attachKeyBindingSignature",
+        "buildVPToken",
+        "buildVPTokenTemplate"
+      ],
+      "fail_safe": "FC-3"
+    },
+    {
+      "code": "3013",
+      "category": "vc",
+      "name": "VC_NOT_BBS_FORMAT",
+      "description": "VC が BBS+ 署名形式ではない（未実装 / 予約。`createBBSPresentation` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "3014",
+      "category": "vc",
+      "name": "CLAIM_NOT_FOUND",
+      "description": "指定されたクレームが VC に存在しない（未実装 / 予約。`createBBSPresentation` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "3015",
+      "category": "vc",
+      "name": "SCHEMA_FETCH_FAILED",
+      "description": "credentialSchema が指すスキーマ文書の取得失敗",
+      "related_apis": [
+        "validateCredentialSchema",
+        "validateClaimsAgainstCredentialSchema",
+        "validateClaimsAgainstSchema"
+      ],
+      "fail_safe": "FO-3"
+    },
+    {
+      "code": "3016",
+      "category": "vc",
+      "name": "SCHEMA_NOT_SPECIFIED",
+      "description": "検証できるスキーマの指定なし（credentialSchema 未設定かつ schema パラメータも未指定、または受理対象外の `type` のみ）",
+      "related_apis": [
+        "validateCredentialSchema",
+        "validateClaimsAgainstCredentialSchema",
+        "validateClaimsAgainstSchema"
+      ]
+    },
+    {
+      "code": "3017",
+      "category": "vc",
+      "name": "BSL_SUSPENSION_UNSUPPORTED",
+      "description": "VC が Bitstring Status List v1.0 の suspension 未対応（未実装 / 予約。`suspendCredential` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "3018",
+      "category": "vc",
+      "name": "TOKEN_STATUS_LIST_UNSUPPORTED",
+      "description": "対象の VC / purpose が Token Status List で扱えない（VC の status クレーム未設定 / 指定 purpose の Status List が `IssuerModuleOptions.statusLists` に未設定 / その VC が当該 purpose のインデックスを持たない）",
+      "related_apis": [
+        "setTokenStatus",
+        "generateTokenStatusList"
+      ]
+    },
+    {
+      "code": "3019",
+      "category": "vc",
+      "name": "VERIFY_ALGO_PROHIBITED",
+      "description": "Verifier が署名アルゴリズムを `prohibited` と判定したため検証を拒否",
+      "related_apis": [
+        "verifyCredential"
+      ]
+    },
+    {
+      "code": "3020",
+      "category": "vc",
+      "name": "VC_REVOKED",
+      "description": "VC 失効",
+      "related_apis": [
+        "assertStatusValid"
+      ],
+      "fail_safe": "FC-4"
+    },
+    {
+      "code": "3021",
+      "category": "vc",
+      "name": "VC_SUSPENDED",
+      "description": "VC 一時停止",
+      "related_apis": [
+        "assertStatusValid"
+      ]
+    },
+    {
+      "code": "3022",
+      "category": "vc",
+      "name": "REFRESHED_VC_VERIFICATION_FAILED",
+      "description": "新 VC の検証失敗",
+      "related_apis": [
+        "refreshCredential"
+      ]
+    },
+    {
+      "code": "3023",
+      "category": "vc",
+      "name": "HOLDER_CONSENT_NOT_OBTAINED",
+      "description": "Holder 同意が取得できない",
+      "related_apis": [
+        "refreshCredential"
+      ]
+    },
+    {
+      "code": "3024",
+      "category": "vc",
+      "name": "VC_EXPIRED",
+      "description": "VC / Status List Token 有効期限切れ",
+      "related_apis": [
+        "verifyCredential",
+        "verifyPresentation",
+        "verifyPresentationWithReplayGuard",
+        "verifySdJwt",
+        "createStatusListResolver"
+      ]
+    },
+    {
+      "code": "3025",
+      "category": "vc",
+      "name": "VC_NOT_YET_VALID",
+      "description": "VC 有効化前",
+      "related_apis": [
+        "verifyCredential",
+        "verifyPresentation",
+        "verifyPresentationWithReplayGuard",
+        "verifySdJwt"
+      ]
+    },
+    {
+      "code": "3030",
+      "category": "vc",
+      "name": "REFRESH_FAILED",
+      "description": "refreshService 失敗",
+      "related_apis": [
+        "refreshCredential"
+      ],
+      "fail_safe": "FO-9"
+    },
+    {
+      "code": "3031",
+      "category": "vc",
+      "name": "MANIFEST_SCHEMA_INVALID",
+      "description": "Manifest スキーマ違反",
+      "related_apis": [
+        "fetchCredentialManifest"
+      ]
+    },
+    {
+      "code": "3032",
+      "category": "vc",
+      "name": "MANIFEST_SPEC_VERSION_UNSUPPORTED",
+      "description": "未対応 spec_version",
+      "related_apis": [
+        "fetchCredentialManifest"
+      ]
+    },
+    {
+      "code": "3033",
+      "category": "vc",
+      "name": "REFRESH_SERVICE_NOT_SET",
+      "description": "`refreshService` プロパティが未設定",
+      "related_apis": [
+        "refreshCredential"
+      ]
+    },
+    {
+      "code": "3034",
+      "category": "vc",
+      "name": "MANIFEST_FETCH_FAILED",
+      "description": "Credential Manifest 取得失敗",
+      "related_apis": [
+        "fetchCredentialManifest"
+      ]
+    },
+    {
+      "code": "3040",
+      "category": "vc",
+      "name": "DATA_INTEGRITY_CONTEXT_FAIL",
+      "description": "JSON-LD Context 解決失敗（未実装 / 予約。Data Integrity / JSON-LD 経路の実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "3041",
+      "category": "vc",
+      "name": "NOTIFICATION_ACCESS_TOKEN_INVALID",
+      "description": "アクセストークン不正",
+      "related_apis": [
+        "processCredentialNotification",
+        "subscribeCredentialNotification"
+      ]
+    },
+    {
+      "code": "3042",
+      "category": "vc",
+      "name": "NOTIFICATION_ID_UNKNOWN",
+      "description": "未知の notification_id",
+      "related_apis": [
+        "processCredentialNotification"
+      ]
+    },
+    {
+      "code": "3050",
+      "category": "vc",
+      "name": "VP_FORMATS_NOT_SUPPORTED",
+      "description": "Verifier 要求 VP format 不支持",
+      "related_apis": [
+        "evaluateFormatCapability"
+      ]
+    },
+    {
+      "code": "3060",
+      "category": "vc",
+      "name": "TYPE_METADATA_FETCH_FAILED",
+      "description": "SD-JWT VC Type Metadata / スキーマ文書の取得失敗",
+      "related_apis": [
+        "resolveTypeMetadata",
+        "validateClaimsAgainstTypeMetadata",
+        "validateClaimsAgainstSchema"
+      ],
+      "fail_safe": "FO-3"
+    },
+    {
+      "code": "3061",
+      "category": "vc",
+      "name": "TYPE_METADATA_INVALID",
+      "description": "SD-JWT VC Type Metadata の構造不正、および `claims` / `display` の件数超過・取得文書数 / 総バイト数の予算超過（`reason: \"metadata_too_large\"`）、検証できない `#integrity`（`extends#integrity` / `schema_uri#integrity` / SD-JWT VC の `vct#integrity`。`reason: \"integrity_unverifiable\"`）、W3C VC の `credentialSchema` が宣言する検証できない `digestSRI` / `digestMultibase`（同じ `reason`）",
+      "related_apis": [
+        "resolveTypeMetadata",
+        "validateClaimsAgainstTypeMetadata",
+        "validateClaimsAgainstSchema"
+      ]
+    },
+    {
+      "code": "3070",
+      "category": "vc",
+      "name": "VC_NOT_FOUND",
+      "description": "指定された VC が見つからない",
+      "related_apis": [
+        "setTokenStatus",
+        "deleteCredential"
+      ]
+    },
+    {
+      "code": "3071",
+      "category": "vc",
+      "name": "STATUS_LIST_FETCH_FAILED",
+      "description": "StatusList Credential の取得失敗（未実装 / 予約。Status List 取得失敗を検証フローへ配線する時点で有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "3080",
+      "category": "vc",
+      "name": "VC_REQUIREMENT_MISMATCH",
+      "description": "選択 VC が要件に合致しない",
+      "related_apis": [
+        "createPresentation"
+      ]
+    },
+    {
+      "code": "3081",
+      "category": "vc",
+      "name": "HOLDER_PROOF_INVALID",
+      "description": "Holder 証明（proof）の検証失敗",
+      "related_apis": [
+        "generateProofJWT",
+        "receiveCredential"
+      ]
+    },
+    {
+      "code": "4001",
+      "category": "nonce",
+      "name": "SIOPV2_REQUEST_PARSE_FAILED",
+      "description": "SIOPv2 リクエストのパース失敗",
+      "related_apis": [
+        "processSIOPv2Request"
+      ]
+    },
+    {
+      "code": "4002",
+      "category": "nonce",
+      "name": "RP_REGISTRATION_INVALID",
+      "description": "RP 登録情報の検証失敗",
+      "related_apis": [
+        "processSIOPv2Request"
+      ]
+    },
+    {
+      "code": "4005",
+      "category": "nonce",
+      "name": "PRES_REQ_V2_SCHEMA_INVALID",
+      "description": "PresentationRequestV2 スキーマ違反（未実装 / 予約。`processPresentationRequestV2` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "4006",
+      "category": "nonce",
+      "name": "JAR_SIGNATURE_INVALID",
+      "description": "JAR 署名検証失敗（未実装 / 予約。`processPresentationRequestV2` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "4007",
+      "category": "nonce",
+      "name": "PRES_REQ_SPEC_VERSION_UNSUPPORTED",
+      "description": "未対応 spec_version（未実装 / 予約。`processPresentationRequestV2` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "4010",
+      "category": "nonce",
+      "name": "REPLAY_DETECTED",
+      "description": "nonce 再利用検知",
+      "related_apis": [
+        "verifyPresentation",
+        "verifyPresentationWithReplayGuard",
+        "verifySdJwtWithReplayGuard"
+      ],
+      "fail_safe": "FC-8"
+    },
+    {
+      "code": "4011",
+      "category": "nonce",
+      "name": "NONCE_EXPIRED",
+      "description": "nonce 期限切れ",
+      "related_apis": [
+        "verifyPresentation",
+        "verifyPresentationWithReplayGuard",
+        "verifySdJwtWithReplayGuard"
+      ]
+    },
+    {
+      "code": "4012",
+      "category": "nonce",
+      "name": "NONCE_BINDING_MISMATCH",
+      "description": "nonce バインディング不一致",
+      "related_apis": [
+        "verifyPresentation",
+        "verifyPresentationWithReplayGuard",
+        "verifySdJwtWithReplayGuard",
+        "verifyIDToken"
+      ]
+    },
+    {
+      "code": "4013",
+      "category": "nonce",
+      "name": "NONCE_MALFORMED",
+      "description": "nonce のフォーマット不正・エントロピー不足",
+      "related_apis": [
+        "NonceStore.checkAndUse",
+        "verifyPresentation",
+        "verifyPresentationWithReplayGuard",
+        "verifySdJwtWithReplayGuard",
+        "createDpopProof",
+        "buildWuaProofOfPossession"
+      ]
+    },
+    {
+      "code": "4014",
+      "category": "nonce",
+      "name": "CLOCK_SKEW_EXCEEDED",
+      "description": "時刻クレームが許容ウィンドウ外（replay-window 外 / `iat` がクロックスキュー許容値を超えて未来）",
+      "related_apis": [
+        "verifySdJwtWithReplayGuard",
+        "verifyCredential",
+        "verifyPresentation",
+        "verifyPresentationWithReplayGuard",
+        "verifySdJwt",
+        "verifyIDToken"
+      ]
+    },
+    {
+      "code": "4015",
+      "category": "nonce",
+      "name": "CLOCK_SKEW_OPTION_INVALID",
+      "description": "クロックスキュー窓のオプション（`clockSkewSeconds` / `verifyDpopProof` の `maxAgeSeconds`）が不正",
+      "related_apis": [
+        "verifyCredential",
+        "verifyPresentation",
+        "verifyPresentationWithReplayGuard",
+        "verifySdJwt",
+        "verifySdJwtWithReplayGuard",
+        "verifyDpopProof"
+      ]
+    },
+    {
+      "code": "4030",
+      "category": "nonce",
+      "name": "PAR_EXPIRED",
+      "description": "PAR request_uri 期限切れ（未実装 / 予約。`processPAREndpoint` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "4031",
+      "category": "nonce",
+      "name": "W2W_ATTESTATION_FAILED",
+      "description": "新端末 Wallet Integrity 検証失敗",
+      "related_apis": [
+        "acceptDeviceMigration",
+        "completeMigration"
+      ]
+    },
+    {
+      "code": "4032",
+      "category": "nonce",
+      "name": "W2W_PASSPHRASE_WRONG",
+      "description": "パスフレーズ復号失敗 / 弱いパスフレーズの拒否",
+      "related_apis": [
+        "importBackup",
+        "importBackupFromJweCompact",
+        "exportBackup",
+        "exportBackupAsJweCompact"
+      ]
+    },
+    {
+      "code": "4033",
+      "category": "nonce",
+      "name": "W2W_INTEGRITY_BROKEN",
+      "description": "Backup 署名検証失敗",
+      "related_apis": [
+        "importBackup"
+      ]
+    },
+    {
+      "code": "4034",
+      "category": "nonce",
+      "name": "W2W_LEND_EXPIRED",
+      "description": "Lend トークン期限切れ / 無効",
+      "related_apis": [
+        "createLend",
+        "redeemLend",
+        "revokeLend"
+      ]
+    },
+    {
+      "code": "4035",
+      "category": "nonce",
+      "name": "W2W_DOUBLE_ACTIVE",
+      "description": "旧端末の VC 無効化に失敗",
+      "related_apis": [
+        "completeMigration"
+      ]
+    },
+    {
+      "code": "4036",
+      "category": "nonce",
+      "name": "W2W_INCOMPATIBLE_VERSION",
+      "description": "バックアップバージョン非対応",
+      "related_apis": [
+        "importBackup"
+      ]
+    },
+    {
+      "code": "4050",
+      "category": "nonce",
+      "name": "CHAIN_CYCLE",
+      "description": "Credential Chain 循環参照検出",
+      "related_apis": [
+        "verifyCredentialChain"
+      ]
+    },
+    {
+      "code": "4051",
+      "category": "nonce",
+      "name": "CHAIN_TOO_DEEP",
+      "description": "Credential Chain が `maxDepth` 超過、または走査量（ノード数・訪問数・親エッジ数。VP 全体の共有 `PresentationWorkBudget` を含む）の上限超過（`reason: \"chain_too_large\"`）",
+      "related_apis": [
+        "verifyCredentialChain"
+      ]
+    },
+    {
+      "code": "4052",
+      "category": "nonce",
+      "name": "CHAIN_PARENT_UNRESOLVABLE",
+      "description": "親 VC が解決できない",
+      "related_apis": [
+        "verifyCredentialChain"
+      ]
+    },
+    {
+      "code": "4060",
+      "category": "nonce",
+      "name": "PAR_CLIENT_AUTH_FAILED",
+      "description": "PAR クライアント認証失敗（未実装 / 予約。`processPAREndpoint` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "4061",
+      "category": "nonce",
+      "name": "PAR_REDIRECT_URI_INVALID",
+      "description": "PAR redirect_uri 不正（未実装 / 予約。`processPAREndpoint` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "4062",
+      "category": "nonce",
+      "name": "PAR_REQUEST_EXPIRED",
+      "description": "(Deprecated) PAR request_uri 期限切れ",
+      "related_apis": []
+    },
+    {
+      "code": "4063",
+      "category": "nonce",
+      "name": "PAR_REUSE_DETECTED",
+      "description": "PAR request_uri の再利用検知（未実装 / 予約。`processPAREndpoint` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "4070",
+      "category": "nonce",
+      "name": "INVALID_EVM_ADDRESS",
+      "description": "EVM アドレス形式不正",
+      "related_apis": [
+        "getTokenBalance",
+        "getErc721Balance",
+        "getErc721Owner",
+        "getErc721TokenUri",
+        "ownsErc721Token",
+        "getErc1155Balance",
+        "getErc1155BalanceBatch",
+        "getErc1155Uri",
+        "getTokenDecimals",
+        "getTokenSymbol",
+        "signUserOpWithPasskey"
+      ]
+    },
+    {
+      "code": "4071",
+      "category": "nonce",
+      "name": "CHAIN_NOT_CONFIGURED",
+      "description": "対象チェーンが未設定",
+      "related_apis": [
+        "getTokenBalance",
+        "getErc721Balance",
+        "getErc721Owner",
+        "getErc721TokenUri",
+        "ownsErc721Token",
+        "getErc1155Balance",
+        "getErc1155BalanceBatch",
+        "getErc1155Uri",
+        "getTokenDecimals",
+        "getTokenSymbol"
+      ]
+    },
+    {
+      "code": "4080",
+      "category": "nonce",
+      "name": "DPOP_PROOF_MALFORMED",
+      "description": "DPoP proof JWT の形式不正",
+      "related_apis": [
+        "verifyDpopProof",
+        "createDpopProof",
+        "bindAccessTokenToDpopKey"
+      ]
+    },
+    {
+      "code": "4081",
+      "category": "nonce",
+      "name": "DPOP_SIGNATURE_INVALID",
+      "description": "DPoP proof の署名検証失敗",
+      "related_apis": [
+        "verifyDpopProof"
+      ]
+    },
+    {
+      "code": "4082",
+      "category": "nonce",
+      "name": "DPOP_PROOF_EXPIRED",
+      "description": "DPoP proof の `iat` が許容ウィンドウ外",
+      "related_apis": [
+        "verifyDpopProof"
+      ]
+    },
+    {
+      "code": "4083",
+      "category": "nonce",
+      "name": "DPOP_HTTP_BINDING_MISMATCH",
+      "description": "`htm` / `htu` がリクエストと不一致",
+      "related_apis": [
+        "verifyDpopProof"
+      ]
+    },
+    {
+      "code": "4084",
+      "category": "nonce",
+      "name": "DPOP_ATH_MISMATCH",
+      "description": "`ath` がアクセストークンのハッシュと不一致",
+      "related_apis": [
+        "verifyDpopProof"
+      ]
+    },
+    {
+      "code": "4085",
+      "category": "nonce",
+      "name": "DPOP_KEY_BINDING_MISMATCH",
+      "description": "`cnf.jkt` と proof 公開鍵のサムプリントが不一致、または `accessToken` 指定時に `expectedJkt` 未指定",
+      "related_apis": [
+        "verifyDpopProof"
+      ]
+    },
+    {
+      "code": "4086",
+      "category": "nonce",
+      "name": "DPOP_NONCE_REQUIRED",
+      "description": "`nonce` クレームが欠落または陳腐化",
+      "related_apis": [
+        "verifyDpopProof"
+      ]
+    },
+    {
+      "code": "5001",
+      "category": "trust",
+      "name": "TSL_FETCH_FAILED",
+      "description": "ETSI TSL 取得失敗",
+      "related_apis": [
+        "loadTrustedList"
+      ],
+      "fail_safe": "FO-5"
+    },
+    {
+      "code": "5002",
+      "category": "trust",
+      "name": "TSL_SIG_INVALID",
+      "description": "TSL XML 署名検証失敗",
+      "related_apis": [
+        "loadTrustedList"
+      ]
+    },
+    {
+      "code": "5010",
+      "category": "trust",
+      "name": "TRUST_CHAIN_INVALID",
+      "description": "Trust Chain 不成立",
+      "related_apis": [
+        "buildTrustChain",
+        "verifyCredential",
+        "verifySdJwt"
+      ],
+      "fail_safe": "FC-5"
+    },
+    {
+      "code": "5011",
+      "category": "trust",
+      "name": "FEDERATION_FETCH_FAILED",
+      "description": "Entity Statement 取得失敗（Entity Configuration / Subordinate Statement）",
+      "related_apis": [
+        "resolveEntityConfiguration",
+        "buildTrustChain"
+      ],
+      "fail_safe": "FO-6"
+    },
+    {
+      "code": "5012",
+      "category": "trust",
+      "name": "FEDERATION_KEY_REVOKED",
+      "description": "無効化宣言された鍵による署名",
+      "related_apis": [
+        "buildTrustChain",
+        "verifyCredential",
+        "verifySdJwt",
+        "verifyPresentation"
+      ],
+      "fail_safe": "FC-11"
+    },
+    {
+      "code": "5020",
+      "category": "trust",
+      "name": "WUA_INVALID",
+      "description": "(Deprecated) WUA 検証失敗",
+      "related_apis": []
+    },
+    {
+      "code": "5021",
+      "category": "trust",
+      "name": "WUA_EXPIRED",
+      "description": "(Deprecated) WUA 期限切れ",
+      "related_apis": []
+    },
+    {
+      "code": "5030",
+      "category": "trust",
+      "name": "RP_ACCESS_DENIED",
+      "description": "(Deprecated) RP Access Certificate 権限外",
+      "related_apis": []
+    },
+    {
+      "code": "6001",
+      "category": "storage",
+      "name": "STORAGE_INIT_FAILED",
+      "description": "Storage 初期化失敗（未実装 / 予約。Storage 初期化失敗を `createWallet` へ配線する時点で有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "6002",
+      "category": "storage",
+      "name": "STORAGE_ENCRYPT_FAILED",
+      "description": "暗号化失敗（未実装 / 予約。Web Crypto の暗号化呼び出し失敗を SDK のストレージ層へ配線する時点で有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "6003",
+      "category": "storage",
+      "name": "STORAGE_DECRYPT_FAILED",
+      "description": "復号失敗（SDK 内では未送出 / 予約。`ErrorCodes` に該当メンバは無い。SDK のストレージ層の復号失敗は 1050 `DECRYPT_FAILED` / 6005 で返る）",
+      "related_apis": []
+    },
+    {
+      "code": "6004",
+      "category": "storage",
+      "name": "STORAGE_QUOTA_EXCEEDED",
+      "description": "ストレージ上限超過（未実装 / 予約。`chrome.storage.local.getBytesInUse()` によるストレージ quota 監視を実装する時点で有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "6005",
+      "category": "storage",
+      "name": "STORAGE_RECORD_CORRUPTED",
+      "description": "非 VC レコードの破損",
+      "related_apis": [
+        "markCredentialDisputed",
+        "revokeConsent",
+        "deleteCredential",
+        "purgeDashboardLog",
+        "exportDashboardLog"
+      ]
+    },
+    {
+      "code": "7001",
+      "category": "aa",
+      "name": "USEROP_SIMULATION_FAILED",
+      "description": "Bundler 側シミュレーション失敗（未実装 / 予約。現状は Bundler の JSON-RPC エラーがすべて 7002 に正規化される）",
+      "related_apis": []
+    },
+    {
+      "code": "7002",
+      "category": "aa",
+      "name": "BUNDLER_REJECTED",
+      "description": "Bundler が拒否（シミュレーション失敗を含む、Bundler の JSON-RPC エラー応答すべて）",
+      "related_apis": [
+        "sendUserOperation"
+      ]
+    },
+    {
+      "code": "7003",
+      "category": "aa",
+      "name": "PAYMASTER_REJECTED",
+      "description": "Paymaster が拒否",
+      "related_apis": [
+        "createFetchPaymasterClient",
+        "sponsorUserOperation"
+      ]
+    },
+    {
+      "code": "7010",
+      "category": "aa",
+      "name": "VALIDATOR_NOT_FOUND",
+      "description": "Validator 未登録（SDK 未送出 / 予約。`ErrorCodes` に定数だけがあり、送出箇所は無い）",
+      "related_apis": []
+    },
+    {
+      "code": "7020",
+      "category": "aa",
+      "name": "ZK_PROOF_INVALID",
+      "description": "SSO ZK Proof 不正（SDK 未送出 / 予約。`ErrorCodes` に定数だけがあり、送出箇所は無い）",
+      "related_apis": []
+    },
+    {
+      "code": "7050",
+      "category": "aa",
+      "name": "FACTORY_CALL_FAILED",
+      "description": "ファクトリーコントラクト呼び出し失敗（SDK 未送出 / 予約。`ErrorCodes` に定数だけがあり、送出箇所は無い）",
+      "related_apis": []
+    },
+    {
+      "code": "7051",
+      "category": "aa",
+      "name": "ACCOUNT_ALREADY_DEPLOYED",
+      "description": "スマートアカウントが既にデプロイ済み（SDK 未送出 / 予約。`ErrorCodes` に定数だけがあり、送出箇所は無い）",
+      "related_apis": []
+    },
+    {
+      "code": "7101",
+      "category": "aa",
+      "name": "SIGNER_PERMISSION_DENIED",
+      "description": "署名者の追加 / 削除権限なし（SDK 未送出 / 予約。`ErrorCodes` に定数だけがあり、送出箇所は無い）",
+      "related_apis": []
+    },
+    {
+      "code": "7102",
+      "category": "aa",
+      "name": "SIGNER_ALREADY_EXISTS",
+      "description": "署名者が既に登録済み（SDK 未送出 / 予約。`ErrorCodes` に定数だけがあり、送出箇所は無い）",
+      "related_apis": []
+    },
+    {
+      "code": "7103",
+      "category": "aa",
+      "name": "LAST_SIGNER_REMOVAL_BLOCKED",
+      "description": "最後の署名者は削除不可（SDK 未送出 / 予約。`ErrorCodes` に定数だけがあり、送出箇所は無い）",
+      "related_apis": []
+    },
+    {
+      "code": "7150",
+      "category": "aa",
+      "name": "P256_SIG_INVALID",
+      "description": "WebAuthn assertion の入力形式不正（署名の暗号検証失敗ではない）",
+      "related_apis": [
+        "signUserOpWithPasskey"
+      ]
+    },
+    {
+      "code": "7201",
+      "category": "aa",
+      "name": "ZK_PROOF_GENERATION_FAILED",
+      "description": "ZK 証明生成失敗（SDK 未送出 / 予約。`ErrorCodes` に定数だけがあり、送出箇所は無い）",
+      "related_apis": []
+    },
+    {
+      "code": "7202",
+      "category": "aa",
+      "name": "ID_TOKEN_EXPIRED",
+      "description": "id_token 有効期限切れ（SDK 未送出 / 予約。`ErrorCodes` に定数だけがあり、送出箇所は無い）",
+      "related_apis": []
+    },
+    {
+      "code": "7203",
+      "category": "aa",
+      "name": "SSO_ISSUER_UNSUPPORTED",
+      "description": "issuer が未対応（Google/Apple 以外）（SDK 未送出 / 予約。`ErrorCodes` に定数だけがあり、送出箇所は無い）",
+      "related_apis": []
+    },
+    {
+      "code": "8001",
+      "category": "protocol",
+      "name": "ISSUER_META_FETCH_FAILED",
+      "description": "Issuer Metadata 取得失敗（SDK 内では未実装 / 予約。SDK の `receiveCredential` は同一事象を 3004 `ISSUER_COMMUNICATION_FAILED` で送出する。拡張は `OFFER_META_FAILED`として本コードを送出する）",
+      "related_apis": []
+    },
+    {
+      "code": "8002",
+      "category": "protocol",
+      "name": "TIL_URL_FETCH_FAILED",
+      "description": "Trusted Issuer List URL 取得失敗（未実装 / 予約。`loadTrustedIssuerList` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "8003",
+      "category": "protocol",
+      "name": "TIL_DID_FORMAT_INVALID",
+      "description": "DID フォーマット不正（未実装 / 予約。`addTrustedIssuer` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "8004",
+      "category": "protocol",
+      "name": "TIL_DUPLICATE_DID",
+      "description": "同一 DID が既に登録済み（未実装 / 予約。`addTrustedIssuer` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "8005",
+      "category": "protocol",
+      "name": "TIL_DID_NOT_FOUND",
+      "description": "指定された DID が見つからない（未実装 / 予約。`removeTrustedIssuer` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "8010",
+      "category": "protocol",
+      "name": "TOKEN_REQUEST_FAILED",
+      "description": "Token Request 失敗",
+      "related_apis": [
+        "receiveCredential",
+        "receiveCredentialViaAuthorizationCode",
+        "pushAuthorizationRequest",
+        "buildAuthorizationUrl",
+        "receivePID",
+        "receiveEAA"
+      ]
+    },
+    {
+      "code": "8020",
+      "category": "protocol",
+      "name": "CREDENTIAL_REQUEST_FAILED",
+      "description": "Credential Request 失敗",
+      "related_apis": [
+        "receiveCredential",
+        "receiveCredentialViaAuthorizationCode",
+        "receivePID",
+        "receiveEAA",
+        "buildBatchCredentialRequest"
+      ]
+    },
+    {
+      "code": "8021",
+      "category": "protocol",
+      "name": "CREDENTIAL_TYPE_UNRESOLVED",
+      "description": "受領する Credential の型を Issuer Metadata から決められない（SDK 内では未実装 / 予約。拡張は `OFFER_TYPE_UNRESOLVED` として本コードを送出する）",
+      "related_apis": []
+    },
+    {
+      "code": "8030",
+      "category": "protocol",
+      "name": "OID4VP_REQUEST_PARSE_FAILED",
+      "description": "Presentation Request パース失敗",
+      "related_apis": [
+        "createPresentation",
+        "fetchJAR",
+        "parseAuthorizationRequest",
+        "parseJarRequest",
+        "parsePresentationRequest",
+        "parseTransactionDataClaim",
+        "parseTransactionDataQueryParam",
+        "presentPID",
+        "presentEAA"
+      ]
+    },
+    {
+      "code": "8031",
+      "category": "protocol",
+      "name": "OID4VP_PAR_REQUEST_FAILED",
+      "description": "OID4VP 経路の PAR push 失敗（Verifier への push）",
+      "related_apis": [
+        "pushAuthorizationRequestForPresentation"
+      ]
+    },
+    {
+      "code": "8035",
+      "category": "protocol",
+      "name": "PRESENTATION_SUBMIT_FAILED",
+      "description": "direct_post 送信失敗 / 未対応 response_mode / VP Token 構築・提示対象の不備",
+      "related_apis": [
+        "submitPresentation",
+        "presentPID",
+        "presentEAA",
+        "buildVPToken",
+        "buildPresentationSubmission"
+      ]
+    },
+    {
+      "code": "8036",
+      "category": "protocol",
+      "name": "VP_RESPONSE_ENCRYPTION_UNSUPPORTED",
+      "description": "`direct_post.jwt` の応答暗号化パラメータを解決できない",
+      "related_apis": [
+        "submitPresentation"
+      ]
+    },
+    {
+      "code": "8037",
+      "category": "protocol",
+      "name": "VP_RESPONSE_ENCRYPTION_FAILED",
+      "description": "`direct_post.jwt` の JWE 構築失敗",
+      "related_apis": [
+        "submitPresentation"
+      ]
+    },
+    {
+      "code": "8040",
+      "category": "protocol",
+      "name": "SIOPV2_RESPONSE_FAILED",
+      "description": "SIOPv2 応答失敗（未実装 / 予約。ID Token / VP Token を `redirect_uri` へ POST 送信する応答実装時に有効化する。`processSIOPv2Request`は ID Token 生成までを担い、応答送信は対象外）",
+      "related_apis": []
+    },
+    {
+      "code": "8041",
+      "category": "protocol",
+      "name": "SIWE_MESSAGE_INVALID",
+      "description": "SIWE (EIP-4361) メッセージのパース / 検証失敗",
+      "related_apis": [
+        "generateSiweMessage",
+        "parseSiweMessage",
+        "validateSiweMessage"
+      ]
+    },
+    {
+      "code": "8050",
+      "category": "protocol",
+      "name": "FORMAT_NEGOTIATION_FAILED",
+      "description": "要求フォーマットが未対応",
+      "related_apis": [
+        "createPresentation"
+      ]
+    },
+    {
+      "code": "8060",
+      "category": "protocol",
+      "name": "TIL_FORMAT_INVALID",
+      "description": "Trusted Issuer List (TSLv1) フォーマット検証失敗（未実装 / 予約。`loadTrustedIssuerList` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "9001",
+      "category": "didcomm",
+      "name": "DIDCOMM_PACK_FAILED",
+      "description": "Authcrypt / Anoncrypt 失敗",
+      "related_apis": [
+        "sendDIDCommMessage"
+      ]
+    },
+    {
+      "code": "9002",
+      "category": "didcomm",
+      "name": "DIDCOMM_UNPACK_FAILED",
+      "description": "復号失敗",
+      "related_apis": [
+        "receiveDIDCommMessage"
+      ]
+    },
+    {
+      "code": "9003",
+      "category": "didcomm",
+      "name": "DIDCOMM_PACKING_FAILED",
+      "description": "メッセージパッキング失敗",
+      "related_apis": [
+        "sendDIDCommMessage"
+      ]
+    },
+    {
+      "code": "9004",
+      "category": "didcomm",
+      "name": "DIDCOMM_UNPACKING_FAILED",
+      "description": "メッセージアンパッキング失敗（鍵不一致等）",
+      "related_apis": [
+        "receiveDIDCommMessage",
+        "extractIssuedCredentialJwt",
+        "extractPresentationJwt"
+      ]
+    },
+    {
+      "code": "9005",
+      "category": "didcomm",
+      "name": "OOB_INVITATION_PARSE_FAILED",
+      "description": "Invitation URI のパース失敗",
+      "related_apis": [
+        "processOutOfBandInvitation",
+        "encodeOutOfBandInvitationUrl",
+        "decodeOutOfBandInvitationUrl"
+      ]
+    },
+    {
+      "code": "9010",
+      "category": "didcomm",
+      "name": "OOB_INVITATION_INVALID",
+      "description": "OOB Invitation 不正",
+      "related_apis": [
+        "processOutOfBandInvitation",
+        "decodeOutOfBandInvitationUrl"
+      ]
+    },
+    {
+      "code": "9020",
+      "category": "didcomm",
+      "name": "MEDIATOR_UNREACHABLE",
+      "description": "Mediator 到達不能（`sendDIDCommMessage` は直接送信・Mediator 経由いずれの HTTP 配送失敗もこのコードで表す）",
+      "related_apis": [
+        "sendDIDCommMessage"
+      ],
+      "fail_safe": "FO-10"
+    },
+    {
+      "code": "9030",
+      "category": "didcomm",
+      "name": "SERVICE_ENDPOINT_NOT_FOUND",
+      "description": "serviceEndpoint が見つからない",
+      "related_apis": [
+        "sendDIDCommMessage"
+      ]
+    },
+    {
+      "code": "10001",
+      "category": "eudi",
+      "name": "PID_SCHEMA_INVALID",
+      "description": "PID スキーマ違反",
+      "related_apis": [
+        "validatePIDSchema",
+        "receivePID"
+      ]
+    },
+    {
+      "code": "10002",
+      "category": "eudi",
+      "name": "PID_REQUIRED_ATTR_MISSING",
+      "description": "必須属性欠落",
+      "related_apis": [
+        "validatePIDSchema",
+        "receivePID"
+      ]
+    },
+    {
+      "code": "10003",
+      "category": "eudi",
+      "name": "EAA_CATALOGUE_NOT_FOUND",
+      "description": "(Q)EAA Catalogue 未登録",
+      "related_apis": [
+        "receiveEAA",
+        "resolveAttestationCatalogue"
+      ]
+    },
+    {
+      "code": "10010",
+      "category": "eudi",
+      "name": "PSEUDONYM_BINDING_INVALID",
+      "description": "Pseudonym Attestation バインド不一致",
+      "related_apis": [
+        "issuePseudonymAttestation"
+      ]
+    },
+    {
+      "code": "10020",
+      "category": "eudi",
+      "name": "BATCH_EXHAUSTED",
+      "description": "Batch Issuance プールが枯渇（未実装 / 予約。`consumeBatchCredential` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "10030",
+      "category": "eudi",
+      "name": "LOA_MISMATCH",
+      "description": "要求 LoA に満たない",
+      "related_apis": [
+        "createPresentation"
+      ]
+    },
+    {
+      "code": "10101",
+      "category": "eudi",
+      "name": "WUA_FETCH_FAILED",
+      "description": "WUA 取得失敗",
+      "related_apis": [
+        "obtainWalletAttestation",
+        "obtainWalletUnitAttestation",
+        "receivePID"
+      ]
+    },
+    {
+      "code": "10102",
+      "category": "eudi",
+      "name": "WUA_VERIFICATION_FAILED",
+      "description": "WUA 検証失敗",
+      "related_apis": [
+        "obtainWalletAttestation",
+        "obtainWalletUnitAttestation",
+        "parseWalletUnitAttestation",
+        "verifyWalletUnitAttestation",
+        "verifyWscdBinding",
+        "refreshWalletAttestation",
+        "buildClientAttestation",
+        "receivePID"
+      ],
+      "fail_safe": "FC-6"
+    },
+    {
+      "code": "10103",
+      "category": "eudi",
+      "name": "WUA_LIFETIME_EXPIRED",
+      "description": "WUA 期限切れ",
+      "related_apis": [
+        "obtainWalletAttestation",
+        "obtainWalletUnitAttestation",
+        "verifyWalletUnitAttestation",
+        "refreshWalletAttestation"
+      ]
+    },
+    {
+      "code": "10104",
+      "category": "eudi",
+      "name": "PASSKEY_ASSERTION_INVALID",
+      "description": "Passkey Assertion 不正",
+      "related_apis": [
+        "buildWuaProofOfPossession"
+      ]
+    },
+    {
+      "code": "10201",
+      "category": "eudi",
+      "name": "RP_IDENTIFIER_INVALID",
+      "description": "RP 識別子不正",
+      "related_apis": [
+        "derivePseudonym",
+        "generateDIDConfiguration",
+        "issuePseudonymAttestation",
+        "presentPseudonym",
+        "processSIOPv2Request"
+      ]
+    },
+    {
+      "code": "10202",
+      "category": "eudi",
+      "name": "KEY_DERIVATION_FAILED",
+      "description": "鍵派生失敗",
+      "related_apis": [
+        "derivePseudonym"
+      ]
+    },
+    {
+      "code": "10301",
+      "category": "eudi",
+      "name": "LOTL_FETCH_FAILED",
+      "description": "LOTL 取得失敗",
+      "related_apis": [
+        "loadTrustedList"
+      ],
+      "fail_safe": "FO-5"
+    },
+    {
+      "code": "10302",
+      "category": "eudi",
+      "name": "XMLDSIG_VERIFICATION_FAILED",
+      "description": "XMLDSig 検証失敗",
+      "related_apis": [
+        "loadTrustedList"
+      ]
+    },
+    {
+      "code": "10303",
+      "category": "eudi",
+      "name": "QUALIFIED_CERT_INVALID",
+      "description": "Qualified Certificate 無効",
+      "related_apis": [
+        "verifyQualifiedCertificate"
+      ]
+    },
+    {
+      "code": "10304",
+      "category": "eudi",
+      "name": "FEDERATION_TRUST_CHAIN_FAILED",
+      "description": "(Deprecated) Federation Trust Chain 構築失敗（`5010 TRUST_CHAIN_INVALID` に統合済み）",
+      "related_apis": []
+    },
+    {
+      "code": "10305",
+      "category": "eudi",
+      "name": "ARF_TRUST_ANCHOR_NOT_REGISTERED",
+      "description": "ARF Trust Anchor 未登録",
+      "related_apis": [
+        "loadArfTrustAnchor"
+      ]
+    },
+    {
+      "code": "10306",
+      "category": "eudi",
+      "name": "RP_ACCESS_CERT_SIG_INVALID",
+      "description": "RP Access Certificate 署名検証失敗 / 無効",
+      "related_apis": [
+        "verifyRpAccessCertificate"
+      ],
+      "fail_safe": "FC-7"
+    },
+    {
+      "code": "10307",
+      "category": "eudi",
+      "name": "TRUST_EVALUATION_UNTRUSTED",
+      "description": "(Deprecated) 統合信頼判定で不信任",
+      "related_apis": []
+    },
+    {
+      "code": "10308",
+      "category": "eudi",
+      "name": "RP_ACCESS_CERT_REVOKED",
+      "description": "RP Access Certificate 失効済み",
+      "related_apis": [
+        "verifyRpAccessCertificate"
+      ],
+      "fail_safe": "FC-7"
+    },
+    {
+      "code": "10309",
+      "category": "eudi",
+      "name": "RP_ACCESS_CERT_OUT_OF_VALIDITY",
+      "description": "RP Access Certificate 有効期間外",
+      "related_apis": [
+        "verifyRpAccessCertificate"
+      ],
+      "fail_safe": "FC-7"
+    },
+    {
+      "code": "10310",
+      "category": "eudi",
+      "name": "RP_ACCESS_SCOPE_VIOLATION",
+      "description": "要求属性が RP Access Certificate のスコープ外",
+      "related_apis": [
+        "verifyRpAccessCertificate"
+      ],
+      "fail_safe": "FC-7"
+    },
+    {
+      "code": "10311",
+      "category": "eudi",
+      "name": "RP_ACCESS_PURPOSE_VIOLATION",
+      "description": "要求目的 (purpose) が RP Access Certificate の Authorized Purposes 外",
+      "related_apis": [
+        "verifyRpAccessCertificate"
+      ],
+      "fail_safe": "FC-7"
+    },
+    {
+      "code": "10312",
+      "category": "eudi",
+      "name": "RP_CROSS_BORDER_WARNING",
+      "description": "RP 所在国が不明または第三国（Cross-border 転送警告）",
+      "related_apis": [
+        "verifyRpAccessCertificate"
+      ]
+    },
+    {
+      "code": "10401",
+      "category": "eudi",
+      "name": "BATCH_POOL_EXHAUSTED",
+      "description": "Batch プール枯渇（未実装 / 予約。`consumeBatchCredential` 実装時に有効化する）",
+      "related_apis": []
+    },
+    {
+      "code": "10402",
+      "category": "eudi",
+      "name": "TRANSACTION_DATA_HASH_MISMATCH",
+      "description": "Transaction Data ハッシュ不一致",
+      "related_apis": [
+        "addKeyBindingWithTransactionData",
+        "verifyTransactionDataHashes",
+        "computeTransactionDataHashesWithAlg"
+      ],
+      "fail_safe": "FC-10"
+    },
+    {
+      "code": "10501",
+      "category": "eudi",
+      "name": "PIN_INCORRECT",
+      "description": "PIN 誤り。拡張は本コードを使用し、PIN 認証の失敗を表示する。SDK の `unlockWalletWithPinAndBiometric` は未実装",
+      "related_apis": []
+    },
+    {
+      "code": "10502",
+      "category": "eudi",
+      "name": "BIOMETRIC_AUTH_FAILED",
+      "description": "生体認証失敗。拡張は本コードを使用し、生体認証の失敗を表示する。SDK の `unlockWalletWithPinAndBiometric` は未実装",
+      "related_apis": []
+    },
+    {
+      "code": "10503",
+      "category": "eudi",
+      "name": "AUTH_LOCKED",
+      "description": "連続失敗によるロック中。拡張は本コードを使用し、ソフトロック・ハードロック・完全ロックの状態を表示する。SDK の `unlockWalletWithPinAndBiometric` は未実装",
+      "related_apis": []
+    },
+    {
+      "code": "10504",
+      "category": "eudi",
+      "name": "SESSION_TIMEOUT",
+      "description": "セッションタイムアウト。拡張は本コードを使用し、セッション失効のバナーを表示し、再解錠を求める。SDK の `enforceSessionTimeout` は未実装",
+      "related_apis": []
+    },
+    {
+      "code": "10601",
+      "category": "eudi",
+      "name": "GDPR_SPECIAL_CATEGORY_ON_CHAIN",
+      "description": "特別カテゴリ属性のオンチェーン投下",
+      "related_apis": [
+        "updateDID",
+        "createDidWebVh",
+        "updateDidWebVh",
+        "assertNoSpecialCategoryOnChain"
+      ]
+    },
+    {
+      "code": "10602",
+      "category": "eudi",
+      "name": "GDPR_LEGAL_OBLIGATION",
+      "description": "法的義務による削除拒否（Art.17(3)(b) 該当）",
+      "related_apis": [
+        "deleteCredential"
+      ]
+    },
+    {
+      "code": "10603",
+      "category": "eudi",
+      "name": "GDPR_CONSENT_NOT_FOUND",
+      "description": "該当スコープの同意が存在しない",
+      "related_apis": [
+        "revokeConsent"
+      ]
+    },
+    {
+      "code": "10604",
+      "category": "eudi",
+      "name": "GDPR_DASHBOARD_LOG_NOT_EMPTY",
+      "description": "インポート先の Dashboard ログが空でない",
+      "related_apis": [
+        "importDashboardLog"
+      ]
+    },
+    {
+      "code": "10605",
+      "category": "eudi",
+      "name": "GDPR_DISCOVERY_FETCH_FAILED",
+      "description": "DSR / DPO の .well-known 発見メタデータの取得に失敗",
+      "related_apis": [
+        "discoverDsrEndpoint",
+        "discoverDpoContact"
+      ]
+    },
+    {
+      "code": "10606",
+      "category": "eudi",
+      "name": "GDPR_DISCOVERY_INVALID",
+      "description": "DSR / DPO の .well-known 発見メタデータが不正",
+      "related_apis": [
+        "discoverDsrEndpoint",
+        "discoverDpoContact"
+      ]
+    },
+    {
+      "code": "10607",
+      "category": "eudi",
+      "name": "GDPR_SPECIAL_CATEGORY_ISSUANCE",
+      "description": "特別カテゴリ属性の VC 発行",
+      "related_apis": [
+        "IssuerModule.issueVC",
+        "issueCredential",
+        "issueCredentialAsync",
+        "createSdJwt",
+        "createSdJwtAsync",
+        "Wallet.issueCredential",
+        "Wallet.issueSdJwt",
+        "buildDerivedCredential",
+        "runInteropPair",
+        "runInteropTxPair"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "version": 1,
+  "runtime": "node",
+  "renamedCases": [
+    {
+      "file": "test/interop/__tests__/did-resolution/runner.test.mjs",
+      "classname": "",
+      "name": "ランナーは公開 matrix 契約のペアをちょうど 18 件（matrix の総数）返す"
+    },
+    {
+      "file": "test/interop/__tests__/run-peer-matrix.native-format.test.mjs",
+      "classname": "",
+      "name": "4 ペアは pairs.json の knownIncompatible に公開ペアIDで登録され、理由が原因を区別できる文言になっている"
+    }
+  ],
+  "originalCases": {
+    "test/interop/__tests__/adapter-issue-jwt.veramo.test.mjs": {
+      "": [
+        "実 Veramo adapter: 発行した JWT-VC の JWS ヘッダ kid が発行者 DID Document の検証メソッド id と一致する"
+      ]
+    },
+    "test/interop/__tests__/did-resolution/ethr-versions.test.mjs": {
+      "": [
+        "1 版でも解決に失敗したら fail になり、失敗した版の識別子と理由が載る（成功した版では pass にしない）",
+        "一部の版だけ fixture 未整備なら skipped ではなく fail になる（未検証の版を黙って飛ばさない）",
+        "全 EIP-1056 版が解決できたときだけ pass になり、全版の DID が実際に要求される",
+        "全版が fixture 未整備なら skipped になり、版ごとの理由が載る",
+        "新しい版だけを解決して古い版を叩かない実装は pass にならない（複数版対応の形骸化を検知）",
+        "版が 1 つも定義されていない設定は pass にならず fail になる"
+      ]
+    },
+    "test/interop/__tests__/did-resolution/fail-closed.test.mjs": {
+      "": [
+        "2xx でも JSON オブジェクトでなければ fail になる",
+        "2xx でも didDocument.id が要求した DID と違えば fail になり、両方の id が理由に載る",
+        "5xx の HTML 応答は fail になる（プロキシのエラーページを解決結果と見なさない）",
+        "DID Document 単体（Resolution Result で包まれない応答）も同じ検査を通れば pass になる",
+        "did:key で要求した DID の鍵でない検証鍵は fail になる（id だけ合う解決器を通さない）",
+        "did:key の正しい検証鍵は表現が違っても pass になる（multibase / base58 / JWK）",
+        "didResolutionMetadata.error があれば fail になり、その値が理由に残る",
+        "fixture の期待公開鍵と一致する検証鍵が無ければ fail になる（別の鍵を返す解決器を通さない）",
+        "タイムアウト（AbortSignal.timeout）は pass にならず fail になり、タイムアウトと分かる理由が残る",
+        "ピア未起動（fetch が ECONNREFUSED で例外）は pass にならず fail になり、接続先と原因が理由に残る",
+        "実駆動する fixture（did:key / did:jwk）は照合に足りる期待鍵を持つ",
+        "期待鍵の JWK が空なら一致と見なさない（任意の鍵を通す fail-open に戻さない）",
+        "検証鍵を取り出せない DID Document（verificationMethod の欠落・空・鍵マテリアル欠落・type 欠落）は fail になる"
+      ]
+    },
+    "test/interop/__tests__/did-resolution/matrix-count.test.mjs": {
+      "": ["pairs.json の全ペアがランナーの結果にちょうど 1 回ずつ現れる"]
+    },
+    "test/interop/__tests__/did-resolution/peer-accept.test.mjs": {
+      "": [
+        "Success ラッパーを 2xx で返されても pass にしない（didkit が同じ形へ戻れば fail で気づく）",
+        "didkit は did:key を解決できる（Resolution Result profile では Success ラッパーを返すピア）",
+        "pairs.json の didkit ピアは Accept を DID Document 表現に上書きしている",
+        "resolveAccept を持たないピアには既定の Resolution Result profile を送り続ける",
+        "ピアが Accept を受理しなければ（406）pass にならず fail になる"
+      ]
+    },
+    "test/interop/__tests__/did-resolution/runner.test.mjs": {
+      "": [
+        "EBSI のペアは EBSI_SANDBOX_BASE_URL 未設定なら prerequisite-missing で skipped になる",
+        "EBSI_SANDBOX_BASE_URL が設定されると prerequisite-missing では止まらず、次の判定（fixture-missing）へ進む",
+        "fixture 未整備のメソッド（did:web / did:ethr / did:ebsi）は fixture-missing で skipped になる",
+        "walt.id のペアは resolver-unavailable の理由付きで skipped になる",
+        "ランナーは公開 matrix 契約のペアをちょうど 18 件（matrix の総数）返す",
+        "解決に成功したペアだけが pass になり、skipped のペアは解決要求を出さない"
+      ]
+    },
+    "test/interop/__tests__/generate-report.test.mjs": {
+      "buildReport": [
+        "regression: タイトルに generatedAt の日付部分を使う",
+        "regression: 各ペアの行がテーブルに含まれる",
+        "regression: 結果が0件でもテーブルヘッダーは維持する",
+        "regression: 集計行に正しい件数を埋め込む"
+      ],
+      "buildRows": [
+        "regression: fail を pass の絵文字で誤表示しない",
+        "regression: pass 行には✅を表示する",
+        "regression: reason 省略時は空欄で埋める",
+        "regression: 未知の status はそのまま表示する"
+      ],
+      "buildRows: peer 由来 reason のエスケープ": [
+        "regression: |・改行・HTML を含む reason でも 1 行・4 パイプ区切り（3 列）のまま",
+        "regression: バックスラッシュ直後の | もエスケープされた列区切りにならない"
+      ],
+      "countByStatus": [
+        "known-incompatible は fail にも skipped にも数えず、専用の件数にする",
+        "regression: pass/fail/skipped を取り違えずに件数集計する",
+        "regression: 空配列では全ステータス0件"
+      ],
+      "reportDate": ["regression: ISO8601文字列の先頭10文字を日付として返す"]
+    },
+    "test/interop/__tests__/host-ports/compose-ports.test.mjs": {
+      "": [
+        "compose のコンテナ内ポートは変えない（walt.id の baseUrl と公開ホスト検査が依存する）",
+        "compose は ports にホスト側の固定ポートを書かない（Docker が run ごとに割り当てる）",
+        "pairs.json の service / containerPort が compose の公開と一致する",
+        "ホスト経由のピアは固定 baseUrl を持たない（実ポートへフォールバックさせない）"
+      ]
+    },
+    "test/interop/__tests__/host-ports/runner-ports.test.mjs": {
+      "": [
+        "DID 解決で実ポートを引けないピアは skipped ではなく fail にする",
+        "DID 解決マトリクスのピアも実ポートを宛先にする",
+        "VC マトリクスのピアは docker compose port が返した実ポートを宛先にする",
+        "walt.id プロトコル層の baseUrl は compose 内部アドレスのまま書き換えない",
+        "外部前提ピアの実ポートを引けないときは smoke を fail にする",
+        "実ポートを引けないピアは既定ポートへ戻さず、そのペアを fail にする"
+      ]
+    },
+    "test/interop/__tests__/known-incompatible.test.mjs": {
+      "": [
+        "pairs.json の knownIncompatible は全件が有効な形式で、実在するペアだけを指す",
+        "walt.id: 2 ペアとも登録外（失敗は fail のまま）",
+        "不正な登録（空の reasonIncludes / issue が正の整数でない / 二重登録）は例外にする",
+        "入力の結果配列を変更しない",
+        "登録が無い / 省略のときは何も変えない",
+        "登録ペアが pass すると fail（unexpected-pass）になる — 非互換の解消を黙って見逃さない",
+        "登録ペアが登録と別の理由で fail すると fail のまま（新しい壊れ方を既知の非互換に隠さない）",
+        "登録ペアが登録どおりの理由で fail すると known-incompatible になり、Issue 番号と元の理由を残す",
+        "登録ペアの reason が無い fail も known-incompatible にはならない",
+        "登録ペアの skipped は変えない",
+        "登録外のペアは結果を変えない（新しく落ちたペアは fail のまま）"
+      ]
+    },
+    "test/interop/__tests__/report/fallback-pairs.test.mjs": {
+      "buildNoResultsOutput（ドライバが結果 JSON を残せなかった場合の合成）": [
+        "合成結果の理由から「新版候補の起動に失敗した」と分かる",
+        "合成結果はそのままレポート・Issue 起票の入力形式になる",
+        "渡したペアをすべて fail として合成する（skipped にはしない。起票対象は fail のみ）"
+      ],
+      "loadResults / parseFallbackPairs（合成へ倒す条件と CLI 引数）": [
+        "--fallback-pairs はカンマ区切りで読み、指定が無ければ空（従来どおり読み込み失敗で落とす）",
+        "results が 1 件以上あればそのまま返す（合成しない）",
+        "ファイルが無い / JSON が壊れている / results が空 のどれも undefined（合成へ倒す）"
+      ]
+    },
+    "test/interop/__tests__/report/report-naming.test.mjs": {
+      "buildReport の生成元表示": [
+        "generator が無い結果では従来の run-peer-matrix.mjs を表示する",
+        "generator を持つ結果ではそのランナー名を表示する"
+      ],
+      "reportFileName": [
+        "prefix を変えるとランナーごとに別ファイルへ書き分けられる",
+        "prefix 省略時は従来どおり matrix-<date>.md を返す"
+      ]
+    },
+    "test/interop/__tests__/run-peer-matrix.native-format.test.mjs": {
+      "": [
+        "4 ペアは pairs.json の knownIncompatible に公開ペアIDで登録され、理由が原因を区別できる文言になっている",
+        "native ピアの発行が失敗したときも 4 ペアは fail で出る（known-incompatible に畳まれない）",
+        "別原因の失敗は known-incompatible に畳まれず fail のまま残る（reasonIncludes が原因を区別できる）",
+        "登録どおりの理由（アダプタの入口検査の 400）で落ちた 4 ペアは known-incompatible になる",
+        "登録ペアが通ってしまったら unexpected-pass の fail にする（アダプタが LD-Proof を受理し始めた合図）"
+      ]
+    },
+    "test/interop/__tests__/run-peer-matrix.native-verify.test.mjs": {
+      "": [
+        "regression: native ピアの検証が 4xx/5xx・非 JSON・checks 欠落の応答を返した場合は pass にせず fail にする",
+        "regression: native 自己ペアは発行した VC を同ピアで検証し、その結果を pass/fail にマップする"
+      ]
+    },
+    "test/interop/__tests__/run-peer-matrix.robustness.test.mjs": {
+      "": [
+        "regression: 後段 native の通信例外は当該ペアだけ fail にし、前段 native の pass を二重記録しない",
+        "regression: walt.id 子プロセスの results が欠落・非配列・空・不正要素なら両ペア fail（TypeError で中断しない）",
+        "regression: walt.id 子プロセスは timeout 付きで起動し、timeout 超過（proc.error）は両ペア fail にする",
+        "regression: 子プロセスを実駆動できず両ペアを同じ理由で fail にする経路でも、verifier を issuer の巻き添えとして畳む",
+        "walt.id の一方だけが skipped でも（もう一方が実駆動された）そのまま報告する",
+        "walt.id の全ペアが skipped（公開ホスト検査へ退行し実駆動されない）なら、両ペアを fail に倒して Nightly に検知させる"
+      ]
+    },
+    "test/interop/__tests__/run-peer-matrix.test.mjs": {
+      "": [
+        "native ピアの検証が errors 配列（トップレベル配列 / { errors } の両形）を返した場合、fail かつ理由が結合される",
+        "native ピアの発行が失敗すると自己ペアも uniform 2 ペアも fail で出す（known-incompatible に畳まず、黙って落とさない）",
+        "uniform ピアの発行失敗は、その issuer から全 verifier への pair を fail にする（すべて pass と誤判定しない）",
+        "uniform 検証が verified=false を返すと fail、reason に検証エラーが伝播する",
+        "uniform 検証呼び出しが例外を投げると fail になり、reason に例外内容が入る（すべて pass と誤判定しない）",
+        "walt.id サブプロセスの起動失敗・出力なし・JSON 解釈不能は、いずれも両ペアを fail として報告する（サイレントに pass 扱いしない）",
+        "walt.id ドライバは compose ネットワーク内の one-off サービスとして実行し、管理系 baseUrl を -e で渡す",
+        "全ピアが正常応答すると uniform×uniform / uniform→native / native 発行 / walt.id / 外部前提が期待どおりに写像される（native×uniform も実際に試行する）",
+        "外部前提の環境変数はあるがピアが応答しない場合は fail（すべて pass と誤判定しない）",
+        "外部前提（EBSI 等）は要求する環境変数が未設定なら skipped、外部前提ピアへの HTTP 呼び出しを一切行わない",
+        "登録ペアが想定外に通ると fail になる（非互換の解消を検知する）",
+        "登録ペアが登録どおりの理由で落ちると known-incompatible になり、他の pass は変わらない",
+        "登録外のペアが落ちると、登録があっても fail のまま（新しく落ちたペアを検知する）"
+      ]
+    },
+    "test/interop/__tests__/skipped-gate/runner-strict-mode.test.mjs": {
+      "": [
+        "--fail-on-skipped が無ければ EBSI の prerequisite-missing でも終了コード 0（Nightly の呼び出し）",
+        "DID 解決マトリクスは --fail-on-skipped が無ければ実設定でも終了コード 0",
+        "DID 解決マトリクスは EBSI_SANDBOX_BASE_URL が未設定なら EBSI の 2 ペアを理由違いで違反にする",
+        "DID 解決マトリクスは EBSI_SANDBOX_BASE_URL を登録すれば厳格モードでも違反 0 件で通る",
+        "Job Summary は GITHUB_STEP_SUMMARY が無ければ何も書かない",
+        "Job Summary は件数の内訳と pass 以外のペア名・理由を出す",
+        "厳格モードで 4 ペアのうち 1 つが fail なら終了コードは非 0（unexpected-pass / 別原因）",
+        "厳格モードでも fail が無ければ known-incompatible は終了コードを変えない",
+        "厳格モードでも native × uniform の 4 ペアが known-incompatible なら終了コード 0",
+        "厳格モードは 4 ペアが skipped に戻ったら失敗にする（許可リストを持たない）",
+        "厳格モードは EBSI の prerequisite-missing を失敗にする",
+        "厳格モードは walt.id の想定外の skip も失敗にする（許可リストに無い）"
+      ]
+    },
+    "test/interop/__tests__/skipped-gate/structural-skips.test.mjs": {
+      "": [
+        "DID 解決の EBSI 2 ペアは fixture-missing で登録する（変数未設定なら理由違いで違反になる）",
+        "VC マトリクスの EBSI 前提確認ペアは許可リストに入れない（変数未登録ならゲートで失敗させる）",
+        "VC マトリクスは構造的な skipped の許可リストを持たない（4 ペアは試行して knownIncompatible で扱う）",
+        "pairs.json の didResolution.structuralSkips は 13 件ちょうどで、全ペアが matrix の実在ペア",
+        "厳格モードでも known-incompatible は終了コード 0 のまま",
+        "厳格モードは許可リスト外の skipped で終了コードを 1 にする",
+        "登録の形式が不正・二重登録なら例外にする（黙って無視しない）",
+        "許可リストのペアが pass / fail に変わったら違反になる（想定外の変化）",
+        "許可リストのペアが登録どおりの理由で skipped なら違反にしない",
+        "許可リストのペアが登録外の理由で skipped なら違反になる",
+        "許可リストのペアが結果から消えたら違反になる（ペアの暗黙の除外を検知）",
+        "許可リスト外の skipped は 1 件でも違反になる",
+        "通常モードは skipped / known-incompatible で終了コード 0、fail だけが 1"
+      ]
+    },
+    "test/interop/__tests__/wait-peers-healthy.test.mjs": {
+      "": [
+        "NDJSON と JSON 配列の両方の docker compose ps 出力を解釈する",
+        "regression: CLI は空入力・不健全で exit 1、全 healthy で exit 0",
+        "regression: starting / unhealthy / healthcheck 無し（Health 空）は不健全",
+        "regression: コンテナが 1 つも列挙されない（全 peer が一覧から消えた）場合は不健全",
+        "regression: 停止・クラッシュした peer（State=exited）は healthy 扱いにしない",
+        "regression: 全 peer が running かつ healthy なら不健全 0 件",
+        "regression: 外部前提 peer（ebsi-proxy）は停止していても待機対象にしない"
+      ]
+    }
+  },
+  "additionalCases": {
+    "test/interop/__tests__/known-incompatible.test.mjs": {
+      "": [
+        "公開7登録はissue無しでpair参照と元の理由を保持する",
+        "公開登録のunexpected-pass・理由不一致・理由欠落・skippedを従来どおり検知する",
+        "明示された不正なlegacy issueをpair参照へfallbackしない",
+        "公開defaultはprivate資料識別子やprivate mappingを前提にしない"
+      ]
+    },
+    "test/interop/__tests__/did-resolution/matrix-count.test.mjs": {
+      "": [
+        "公開 matrix 契約は 18 セルを持ち、pairs.json の DID 解決ペア数と一致する",
+        "pairs.json の DID 解決ペアと厳格モードの条件は公開 matrix 契約と一致する"
+      ]
+    },
+    "test/interop/__tests__/host-ports/runner-ports.test.mjs": {
+      "": ["EBSI の疎通確認は実ポートの DID Registry の応答で判定する"]
+    }
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "runtime": "bun",
+  "renamedCases": [
+    {
+      "file": "test/interop/__tests__/sd-jwt/run-waltid-sdjwt.test.mjs",
+      "classname": "run: SD-JWT の Offer→Receive→Present の成否振り分け",
+      "name": "提示検証が verified: false なら 2 ペア目だけ理由付きで fail（提示側の非互換を検知する）"
+    }
+  ],
+  "originalCases": {
+    "test/interop/__tests__/adapter-issue-jwt.test.mjs": {
+      "": [
+        "veramo adapter: createVerifiableCredential に header.kid=<did>#<fragment> を渡す",
+        "veramo adapter: didKeyVerificationMethod は did:key 以外を拒否する",
+        "vericerts adapter: JWT-VC の JWS ヘッダに kid=<did>#<fragment> を載せる",
+        "vericerts adapter: kid 付き JWT-VC も SDK の verifyCredential で検証できる"
+      ]
+    },
+    "test/interop/__tests__/run-internal-loop.test.mjs": {
+      "": [
+        "end-to-end: 実 SDK 関数（スタブ無し）で発行 -> 検証ラウンドトリップが成功する",
+        "reportAndExit: ok:false では message を error に出し、非0（1）で終了する（判定ロジックが常に成功扱いする退行を検出）",
+        "reportAndExit: ok:true では exit を呼ばず message を log する",
+        "引数解釈: createPrivateKeySigner にシードと EdDSA アルゴリズムが渡る",
+        "引数解釈: issueCredential に issuer 付き VC と nowSeconds（now から算出）が渡る",
+        "引数解釈: verifyCredential に発行した jwt と signer の publicKeyJwk が渡る",
+        "正常系: 発行した VC の issuer と検証結果の iss が一致すると ok:true を返す",
+        "異常系: 検証結果の iss が発行時の issuer と異なると ok:false になり、両方の値を報告する"
+      ]
+    },
+    "test/interop/__tests__/run-waltid-protocol.presentation.test.mjs": {
+      "fetchPresentationDefinition": [
+        "presentation_definition_uri が無い要求では取得せず undefined",
+        "非 2xx / id の無い応答は失敗にする"
+      ],
+      "run: walt.id verifier への提示": [
+        "VP の署名鍵に kid（holder DID の検証メソッド id）を持たせる",
+        "presentation_definition_uri の定義を取得し、request.presentationDefinition に載せて送信する"
+      ]
+    },
+    "test/interop/__tests__/run-waltid-protocol.public-host.test.mjs": {
+      "SDK の公開ホスト検査が localhost の offer を実ピア接続前に拒否する（skip 判定の前提）": [
+        "実 receiveCredential に localhost の offer_uri を渡すと 3004 で、fetch は 1 度も呼ばれない"
+      ],
+      "SDK の公開ホスト検査が localhost の response_uri を拒否する（skip 判定の前提）": [
+        "parseAuthorizationRequest は non_public_response_uri で失敗する"
+      ],
+      "publicHostGuardSkipReason / offerPeerUrl": [
+        "offer の by-reference URI と by-value の credential_issuer の双方から取得先を取り出す",
+        "ループバック・localhost は理由を返し、公開ホストと URL 無し（判定不能）は undefined"
+      ],
+      "run: 公開ホスト検査で拒否されるピア URL は skipped として報告する": [
+        "Receive は通るが response_uri が localhost なら Present だけ skipped（submit しない）",
+        "localhost の offer は両ペアを skipped にし、Receive も Present も呼ばない",
+        "公開ホストの offer は skip せず Receive を駆動する（ピアが公開名になれば実駆動へ戻る）"
+      ]
+    },
+    "test/interop/__tests__/run-waltid-protocol.submit-status.test.mjs": {
+      "run: VP Token 送信失敗の reason に HTTP ステータスを添える": [
+        "送信が非 2xx で失敗したら reason に HTTP ステータスを添える",
+        "通信失敗（応答が無い）はステータスを添えない"
+      ]
+    },
+    "test/interop/__tests__/run-waltid-protocol.test.mjs": {
+      "createIssuerOffer: レスポンス解釈の分岐": [
+        "openid-credential-offer:// で始まる文字列を返したら成功として offerUri と issuer 公開鍵を返す",
+        "プレフィックスの合わない文字列は投げる",
+        "非 ok レスポンスは投げる"
+      ],
+      "createVerifierRequest: レスポンス解釈の分岐": [
+        "JSON オブジェクトが返る（walt.id が文字列でなく構造化エラーを返す既知の形）と投げる",
+        "openid4vp:// で始まる文字列を返したら成功として request URI を返す",
+        "プレフィックスの合わない文字列は投げる（walt.id 側のレスポンス形式変化を検知する）",
+        "非 ok レスポンスは投げる"
+      ],
+      "fetchJson: レスポンス解釈": [
+        "JSON としてパースできないボディはテキストのまま返す（walt.id の offer/request URI はプレーン文字列で返る）",
+        "JSON ボディはパースして返す",
+        "非 2xx はボディ解釈と独立して ok: false を返す"
+      ],
+      "pollVerifierSession: リトライ・タイムアウト・レスポンス解釈": [
+        "maxAttempts 回リトライしても確定しなければタイムアウト理由で verified: false を返す",
+        "verificationResult: false は理由付きで verified: false を返す",
+        "verificationResult: true を返した時点で即座に verified: true を返す（リトライしない）",
+        "保留中（verificationResult 未確定）の応答は maxAttempts に達するまでリトライする"
+      ],
+      "run: Offer→Receive→Present の成否振り分け": [
+        "Offer 発行が失敗したら Offer→Receive を fail、Present を skipped 理由で fail にし Present 系依存を一切呼ばない",
+        "Offer→Receive が成功し検証が verified: true の場合は両ペアとも pass",
+        "Present フェーズで例外（submitPresentation の通信失敗等）が起きたら Offer→Receive は pass のまま Present だけ fail",
+        "Present 検証が verified: false の場合は理由付きで fail"
+      ],
+      "管理 API のベース URL は env 必須（既定の localhost:8093 / 8094 を持たない）": [
+        "createIssuerOffer は WALTID_ISSUER_ADMIN_BASE_URL が \"   \" なら、どこにも送らず明示的に投げる",
+        "createIssuerOffer は WALTID_ISSUER_ADMIN_BASE_URL が \"\" なら、どこにも送らず明示的に投げる",
+        "createIssuerOffer は WALTID_ISSUER_ADMIN_BASE_URL が 未設定 なら、どこにも送らず明示的に投げる",
+        "createIssuerOffer は WALTID_ISSUER_ADMIN_BASE_URL の値へ送る",
+        "createVerifierRequest は WALTID_VERIFIER_ADMIN_BASE_URL が \"   \" なら、どこにも送らず明示的に投げる",
+        "createVerifierRequest は WALTID_VERIFIER_ADMIN_BASE_URL が \"\" なら、どこにも送らず明示的に投げる",
+        "createVerifierRequest は WALTID_VERIFIER_ADMIN_BASE_URL が 未設定 なら、どこにも送らず明示的に投げる",
+        "createVerifierRequest は WALTID_VERIFIER_ADMIN_BASE_URL の値へ送る",
+        "pollVerifierSession は WALTID_VERIFIER_ADMIN_BASE_URL が \"   \" なら、どこにも送らず明示的に投げる",
+        "pollVerifierSession は WALTID_VERIFIER_ADMIN_BASE_URL が \"\" なら、どこにも送らず明示的に投げる",
+        "pollVerifierSession は WALTID_VERIFIER_ADMIN_BASE_URL が 未設定 なら、どこにも送らず明示的に投げる",
+        "pollVerifierSession は WALTID_VERIFIER_ADMIN_BASE_URL の値へ送る"
+      ]
+    },
+    "test/interop/__tests__/sd-jwt/run-waltid-sdjwt.all-skipped.test.mjs": {
+      "run: 全ペア skipped は「実駆動されていない」合図として fail に倒す": [
+        "offer が公開ホスト検査で拒否され 2 ペアとも skipped になったら両ペアを fail に倒す",
+        "regression: fail へ倒しても causedBy を落とさない（同根が 2 件起票されない）",
+        "skipped が 1 件も無い fail は理由を塗り潰されない（本来の失敗理由が消えない）",
+        "一部だけ skipped（もう一方が pass）なら倒さない",
+        "倒した fail のペア名には接尾辞が付く（新版検知 job の結果が pinned 側と混ざらない）"
+      ]
+    },
+    "test/interop/__tests__/sd-jwt/run-waltid-sdjwt.test.mjs": {
+      "run: SD-JWT の Offer→Receive→Present の成否振り分け": [
+        "Offer 発行が失敗したら 1 ペア目は fail、2 ペア目も「提示する VC が無い」fail にし、Present 系依存を呼ばない",
+        "Receive も提示検証も成功したら両ペアとも pass",
+        "verified: false に理由が無くても fail の理由を必ず付ける",
+        "受領した SD-JWT の検証（verifySdJwt）が失敗したら 1 ペア目は fail（受け取れただけでは pass にしない）",
+        "提示の送信が失敗したら 1 ペア目は pass のまま 2 ペア目だけ fail（HTTP ステータスを理由に添える）",
+        "提示検証が verified: false なら 2 ペア目だけ理由付きで fail（提示側の非互換を検知する）"
+      ],
+      "run: SD-JWT の受領は dc+sd-jwt と告知 vct で要求する": [
+        "format は新識別子 dc+sd-jwt（旧 vc+sd-jwt は walt.id の format 突合で 400 になる）",
+        "受領後の照合は walt.id が告知した vct で行う（pairs.json の固定値ではない）"
+      ],
+      "run: knownIncompatible の分類は他のランナーと同じ規則を通る": [
+        "登録どおりの理由で fail したペアは known-incompatible になる",
+        "登録ペアが pass したら unexpected-pass の fail にする",
+        "登録外の理由で fail したペアは fail のまま"
+      ],
+      "run: walt.id 未起動・タイムアウトは pass にも skipped にもしない": [
+        "issuer が未起動（接続拒否）なら fail で、skipped にはしない",
+        "verifier がセッション結果を返さないまま時間切れになったら fail",
+        "提示の送信がタイムアウト（AbortError）しても fail で、pass・skipped にはならない"
+      ],
+      "run: ペア名の接尾辞（新版検知 job が pinned 側と結果を混ぜないための仕組み）": [
+        "pairSuffix を渡すと両ペア名の末尾に付く",
+        "接尾辞は失敗経路（Offer 発行の失敗）でも付く"
+      ],
+      "run: 公開ホスト検査で拒否された場合だけ skipped": [
+        "response_uri が公開ホスト検査で拒否されたら 2 ペア目だけ skipped（1 ペア目は pass のまま）"
+      ]
+    },
+    "test/interop/__tests__/sd-jwt/waltid-sdjwt-requests.test.mjs": {
+      "createSdJwtIssuerOffer: pairs.json の設定が発行要求の本文に載る": [
+        "Offer URI 以外が返ったら投げる（walt.id のレスポンス形式の変化を検知する）",
+        "SD-JWT 用エンドポイント・credential configuration・vct・クレーム・選択的開示を送る",
+        "選択的開示の対象が空の設定は設定ミスとして拒否する（選択的開示の無い SD-JWT を黙って発行しない）"
+      ],
+      "createSdJwtVerifierRequest: 提示要求に JSONPath が載る（§5 の非互換が出る経路）": [
+        "Authorization Request URI 以外が返ったら投げる",
+        "format / vct / input_descriptor の JSONPath・limit_disclosure を送る",
+        "要求クレームが空の設定は拒否する（JSONPath の要求が成立しないため）"
+      ],
+      "run: ドライバが実際に設定どおりの発行要求・提示要求を出す": [
+        "issuer / verifier の両方へ pairs.json の設定を載せ、提示は disclosedClaims と submission を伴う"
+      ],
+      "sdJwtPresentationSubmission: SD-JWT 提示用の descriptor_map": [
+        "取得した定義の input_descriptor id で、format vc+sd-jwt / path $ の 1 件を組む",
+        "定義から descriptor id を読めなければ要求時に指定した id へ落とす",
+        "定義が取得できなければ submission を送らない（undefined）"
+      ],
+      "管理 API のベース URL は env 必須（既定の localhost:8093 / 8094 を持たない）": [
+        "createSdJwtIssuerOffer は WALTID_ISSUER_ADMIN_BASE_URL が \"   \" なら、どこにも送らず明示的に投げる",
+        "createSdJwtIssuerOffer は WALTID_ISSUER_ADMIN_BASE_URL が \"\" なら、どこにも送らず明示的に投げる",
+        "createSdJwtIssuerOffer は WALTID_ISSUER_ADMIN_BASE_URL が 未設定 なら、どこにも送らず明示的に投げる",
+        "createSdJwtIssuerOffer は WALTID_ISSUER_ADMIN_BASE_URL の値へ送る",
+        "createSdJwtVerifierRequest は WALTID_VERIFIER_ADMIN_BASE_URL が \"   \" なら、どこにも送らず明示的に投げる",
+        "createSdJwtVerifierRequest は WALTID_VERIFIER_ADMIN_BASE_URL が \"\" なら、どこにも送らず明示的に投げる",
+        "createSdJwtVerifierRequest は WALTID_VERIFIER_ADMIN_BASE_URL が 未設定 なら、どこにも送らず明示的に投げる",
+        "createSdJwtVerifierRequest は WALTID_VERIFIER_ADMIN_BASE_URL の値へ送る"
+      ]
+    },
+    "test/interop/__tests__/waltid-public-host-config.test.mjs": {
+      "baseUrl の FQDN を compose の DNS・nginx・証明書が揃って解決・終端する": [
+        "compose の waltid-tls-proxy が全 FQDN を network alias として持つ",
+        "nginx の server_name が各ポートの FQDN に一致する",
+        "サーバ証明書が全 FQDN を SAN に持ち、同梱の CA で署名され、有効期間内"
+      ],
+      "同梱の walt.id baseUrl は SDK の公開ホスト検査を通る": [
+        "issuer: baseUrl は公開ホスト宛の HTTPS で、TLS プロキシのポートを指す",
+        "verifier: baseUrl は公開ホスト宛の HTTPS で、TLS プロキシのポートを指す"
+      ]
+    }
+  },
+  "additionalCases": {
+    "test/interop/__tests__/run-waltid-protocol.public-host.test.mjs": {
+      "": ["公開 receiveCredential は一度だけ stderr に警告し、結果 JSON を stdout に保つ"]
+    },
+    "test/interop/__tests__/adapter-issue-jwt.test.mjs": {
+      "": ["vericerts adapter: 公開 DID API で Ed25519 発行者鍵を解決し、不正な鍵を拒否する"]
+    }
+  }
+}

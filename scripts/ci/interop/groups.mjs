@@ -1,0 +1,61 @@
+export const interopGroups = [
+  {
+    id: '01-internal-loop',
+    runtime: 'bun',
+    targets: ['test/interop/__tests__/run-internal-loop.test.mjs'],
+  },
+  {
+    id: '02-waltid-driver',
+    runtime: 'bun',
+    targets: [
+      'test/interop/__tests__/run-waltid-protocol.test.mjs',
+      'test/interop/__tests__/run-waltid-protocol.submit-status.test.mjs',
+      'test/interop/__tests__/run-waltid-protocol.presentation.test.mjs',
+      'test/interop/__tests__/run-waltid-protocol.public-host.test.mjs',
+      'test/interop/__tests__/waltid-public-host-config.test.mjs',
+      'test/interop/__tests__/sd-jwt/run-waltid-sdjwt.test.mjs',
+      'test/interop/__tests__/sd-jwt/run-waltid-sdjwt.all-skipped.test.mjs',
+      'test/interop/__tests__/sd-jwt/waltid-sdjwt-requests.test.mjs',
+    ],
+  },
+  {
+    id: '03-adapter-kid',
+    runtime: 'bun',
+    targets: ['test/interop/__tests__/adapter-issue-jwt.test.mjs'],
+  },
+  {
+    id: '04-real-veramo-kid',
+    runtime: 'node',
+    targets: ['test/interop/__tests__/adapter-issue-jwt.veramo.test.mjs'],
+  },
+  {
+    id: '05-structural',
+    runtime: 'node',
+    targets: [
+      'test/interop/__tests__/run-peer-matrix.test.mjs',
+      'test/interop/__tests__/generate-report.test.mjs',
+    ],
+  },
+  {
+    id: '06-fail-closed',
+    runtime: 'node',
+    targets: [
+      'test/interop/__tests__/run-peer-matrix.native-verify.test.mjs',
+      'test/interop/__tests__/run-peer-matrix.robustness.test.mjs',
+      'test/interop/__tests__/wait-peers-healthy.test.mjs',
+      'test/interop/__tests__/known-incompatible.test.mjs',
+      'test/interop/__tests__/did-resolution/matrix-count.test.mjs',
+      'test/interop/__tests__/did-resolution/runner.test.mjs',
+      'test/interop/__tests__/did-resolution/fail-closed.test.mjs',
+      'test/interop/__tests__/did-resolution/peer-accept.test.mjs',
+      'test/interop/__tests__/did-resolution/ethr-versions.test.mjs',
+      'test/interop/__tests__/report/report-naming.test.mjs',
+      'test/interop/__tests__/report/fallback-pairs.test.mjs',
+      'test/interop/__tests__/host-ports/runner-ports.test.mjs',
+      'test/interop/__tests__/host-ports/compose-ports.test.mjs',
+      'test/interop/__tests__/skipped-gate/structural-skips.test.mjs',
+      'test/interop/__tests__/skipped-gate/runner-strict-mode.test.mjs',
+      'test/interop/__tests__/run-peer-matrix.native-format.test.mjs',
+    ],
+  },
+];

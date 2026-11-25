@@ -1,0 +1,1051 @@
+{
+  "generatedFrom": "vericerts-wallet-sdk@0.1.0",
+  "cases": [
+    {
+      "id": "did-jwk-create-resolve-roundtrip-P-256",
+      "category": "did-resolve",
+      "description": "did:jwk create+resolve roundtrip (P-256)",
+      "input": {
+        "did": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9"
+      },
+      "expected": {
+        "ok": true,
+        "document": {
+          "@context": [
+            "https://www.w3.org/ns/did/v1",
+            "https://w3id.org/security/suites/jws-2020/v1"
+          ],
+          "id": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9",
+          "verificationMethod": [
+            {
+              "id": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0",
+              "type": "JsonWebKey2020",
+              "controller": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9",
+              "publicKeyJwk": {
+                "kty": "EC",
+                "crv": "P-256",
+                "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+              }
+            }
+          ],
+          "authentication": [
+            "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+          ],
+          "assertionMethod": [
+            "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+          ],
+          "capabilityInvocation": [
+            "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+          ],
+          "capabilityDelegation": [
+            "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+          ],
+          "keyAgreement": [
+            "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+          ]
+        }
+      }
+    },
+    {
+      "id": "did-jwk-create-resolve-roundtrip-Ed25519",
+      "category": "did-resolve",
+      "description": "did:jwk create+resolve roundtrip (Ed25519)",
+      "input": {
+        "did": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwieCI6ImthS0tDM1E0RlpPazJVYVZlU0NKSnFfSXJZTElnNXQyUkRXYm5ycWFTem8ifQ"
+      },
+      "expected": {
+        "ok": true,
+        "document": {
+          "@context": [
+            "https://www.w3.org/ns/did/v1",
+            "https://w3id.org/security/suites/jws-2020/v1"
+          ],
+          "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwieCI6ImthS0tDM1E0RlpPazJVYVZlU0NKSnFfSXJZTElnNXQyUkRXYm5ycWFTem8ifQ",
+          "verificationMethod": [
+            {
+              "id": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwieCI6ImthS0tDM1E0RlpPazJVYVZlU0NKSnFfSXJZTElnNXQyUkRXYm5ycWFTem8ifQ#0",
+              "type": "JsonWebKey2020",
+              "controller": "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwieCI6ImthS0tDM1E0RlpPazJVYVZlU0NKSnFfSXJZTElnNXQyUkRXYm5ycWFTem8ifQ",
+              "publicKeyJwk": {
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "x": "kaKKC3Q4FZOk2UaVeSCJJq_IrYLIg5t2RDWbnrqaSzo"
+              }
+            }
+          ],
+          "authentication": [
+            "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwieCI6ImthS0tDM1E0RlpPazJVYVZlU0NKSnFfSXJZTElnNXQyUkRXYm5ycWFTem8ifQ#0"
+          ],
+          "assertionMethod": [
+            "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwieCI6ImthS0tDM1E0RlpPazJVYVZlU0NKSnFfSXJZTElnNXQyUkRXYm5ycWFTem8ifQ#0"
+          ],
+          "capabilityInvocation": [
+            "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwieCI6ImthS0tDM1E0RlpPazJVYVZlU0NKSnFfSXJZTElnNXQyUkRXYm5ycWFTem8ifQ#0"
+          ],
+          "capabilityDelegation": [
+            "did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwieCI6ImthS0tDM1E0RlpPazJVYVZlU0NKSnFfSXJZTElnNXQyUkRXYm5ycWFTem8ifQ#0"
+          ]
+        }
+      }
+    },
+    {
+      "id": "did-jwk-invalid-prefix",
+      "category": "did-resolve",
+      "description": "did:jwk resolve rejects a non-did:jwk string",
+      "input": {
+        "did": "did:web:example.com"
+      },
+      "expected": {
+        "ok": false,
+        "errorCode": "2001"
+      }
+    },
+    {
+      "id": "did-jwk-invalid-base64url",
+      "category": "did-resolve",
+      "description": "did:jwk resolve rejects invalid base64url payload",
+      "input": {
+        "did": "did:jwk:not-valid-base64url!!!"
+      },
+      "expected": {
+        "ok": false,
+        "errorCode": "2001"
+      }
+    },
+    {
+      "id": "jwt-vc-verify-valid-es256",
+      "category": "vc-verify",
+      "description": "JWT-VC (ES256) verifies successfully within validity window",
+      "input": {
+        "format": "jwt-vc",
+        "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaWQ6andrOnRlc3QtaXNzdWVyIiwibmJmIjoxNzY0NTQ3MjAwLCJpYXQiOjE3NjcyMjQ2MDAsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy9ucy9jcmVkZW50aWFscy92MiJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIl0sImlzc3VlciI6ImRpZDpqd2s6dGVzdC1pc3N1ZXIiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDpqd2s6dGVzdC1zdWJqZWN0IiwibmFtZSI6IkNvbmZvcm1hbmNlIFRlc3QifSwiaXNzdWFuY2VEYXRlIjoiMjAyNS0xMi0wMVQwMDowMDowMFoiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjctMDEtMDFUMDA6MDA6MDBaIn0sInN1YiI6ImRpZDpqd2s6dGVzdC1zdWJqZWN0IiwiZXhwIjoxNzk4NzYxNjAwfQ.1KDatiaovKB75lu5iTpPne_f9XVpM-LmKCqJF53GXgZqNl_2Ks_m0jtDndpHczXQMhaDkfjLHkadJ4yLQZkoSQ",
+        "issuerPublicKeyJwk": {
+          "kty": "EC",
+          "crv": "P-256",
+          "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+          "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+        },
+        "nowSeconds": 1767225600
+      },
+      "expected": {
+        "ok": true
+      }
+    },
+    {
+      "id": "jwt-vc-verify-expired",
+      "category": "vc-verify",
+      "description": "JWT-VC rejects a credential past its expirationDate",
+      "input": {
+        "format": "jwt-vc",
+        "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaWQ6andrOnRlc3QtaXNzdWVyIiwibmJmIjoxNzY0NTQ3MjAwLCJpYXQiOjE3NjcyMjM2MDAsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy9ucy9jcmVkZW50aWFscy92MiJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIl0sImlzc3VlciI6ImRpZDpqd2s6dGVzdC1pc3N1ZXIiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDpqd2s6dGVzdC1zdWJqZWN0IiwibmFtZSI6IkNvbmZvcm1hbmNlIFRlc3QifSwiaXNzdWFuY2VEYXRlIjoiMjAyNS0xMi0wMVQwMDowMDowMFoiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjUtMTItMTVUMDA6MDA6MDBaIn0sInN1YiI6ImRpZDpqd2s6dGVzdC1zdWJqZWN0IiwiZXhwIjoxNzY1NzU2ODAwfQ.omzqqV4TSUlIRmSKPl-NJd2XXHGJCrIgffIxpIhhT1Fn1M24woytswnaEo58yjxiF0M3CoQ3_ghwJE41ctc8Fg",
+        "issuerPublicKeyJwk": {
+          "kty": "EC",
+          "crv": "P-256",
+          "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+          "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+        },
+        "nowSeconds": 1767225600
+      },
+      "expected": {
+        "ok": false,
+        "errorCode": "3024"
+      }
+    },
+    {
+      "id": "jwt-vc-verify-not-yet-valid",
+      "category": "vc-verify",
+      "description": "JWT-VC rejects a credential before its issuanceDate (nbf)",
+      "input": {
+        "format": "jwt-vc",
+        "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaWQ6andrOnRlc3QtaXNzdWVyIiwibmJmIjoxNzgwMjcyMDAwLCJpYXQiOjE3NjcyMjQ2MDAsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy9ucy9jcmVkZW50aWFscy92MiJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIl0sImlzc3VlciI6ImRpZDpqd2s6dGVzdC1pc3N1ZXIiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDpqd2s6dGVzdC1zdWJqZWN0IiwibmFtZSI6IkNvbmZvcm1hbmNlIFRlc3QifSwiaXNzdWFuY2VEYXRlIjoiMjAyNi0wNi0wMVQwMDowMDowMFoiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjctMDEtMDFUMDA6MDA6MDBaIn0sInN1YiI6ImRpZDpqd2s6dGVzdC1zdWJqZWN0IiwiZXhwIjoxNzk4NzYxNjAwfQ.o0tB_adCV0pHC93ZWdKpYMwHUhk2N1L2WGwsgVsr2mICyMb3AvImw7zqcz7waVvhIVmw5HniTgJrVu28_5-iHA",
+        "issuerPublicKeyJwk": {
+          "kty": "EC",
+          "crv": "P-256",
+          "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+          "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+        },
+        "nowSeconds": 1767225600
+      },
+      "expected": {
+        "ok": false,
+        "errorCode": "3025"
+      }
+    },
+    {
+      "id": "jwt-vc-verify-tampered-signature",
+      "category": "vc-verify",
+      "description": "JWT-VC rejects a tampered signature",
+      "input": {
+        "format": "jwt-vc",
+        "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaWQ6andrOnRlc3QtaXNzdWVyIiwibmJmIjoxNzY0NTQ3MjAwLCJpYXQiOjE3NjcyMjQ2MDAsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy9ucy9jcmVkZW50aWFscy92MiJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIl0sImlzc3VlciI6ImRpZDpqd2s6dGVzdC1pc3N1ZXIiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDpqd2s6dGVzdC1zdWJqZWN0IiwibmFtZSI6IkNvbmZvcm1hbmNlIFRlc3QifSwiaXNzdWFuY2VEYXRlIjoiMjAyNS0xMi0wMVQwMDowMDowMFoiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjctMDEtMDFUMDA6MDA6MDBaIn0sInN1YiI6ImRpZDpqd2s6dGVzdC1zdWJqZWN0IiwiZXhwIjoxNzk4NzYxNjAwfQ.K6DatiaovKB75lu5iTpPne_f9XVpM-LmKCqJF53GXgZqNl_2Ks_m0jtDndpHczXQMhaDkfjLHkadJ4yLQZkoSQ",
+        "issuerPublicKeyJwk": {
+          "kty": "EC",
+          "crv": "P-256",
+          "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+          "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+        },
+        "nowSeconds": 1767225600
+      },
+      "expected": {
+        "ok": false,
+        "errorCode": "3010"
+      }
+    },
+    {
+      "id": "jwt-vc-verify-alg-none-rejected",
+      "category": "vc-verify",
+      "description": "JWT-VC rejects alg=none",
+      "input": {
+        "format": "jwt-vc",
+        "token": "eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJpc3MiOiJkaWQ6andrOnRlc3QtaXNzdWVyIiwibmJmIjoxNzY0NTQ3MjAwLCJpYXQiOjE3NjcyMjQ2MDAsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy9ucy9jcmVkZW50aWFscy92MiJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIl0sImlzc3VlciI6ImRpZDpqd2s6dGVzdC1pc3N1ZXIiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDpqd2s6dGVzdC1zdWJqZWN0IiwibmFtZSI6IkNvbmZvcm1hbmNlIFRlc3QifSwiaXNzdWFuY2VEYXRlIjoiMjAyNS0xMi0wMVQwMDowMDowMFoiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjctMDEtMDFUMDA6MDA6MDBaIn0sInN1YiI6ImRpZDpqd2s6dGVzdC1zdWJqZWN0IiwiZXhwIjoxNzk4NzYxNjAwfQ.1KDatiaovKB75lu5iTpPne_f9XVpM-LmKCqJF53GXgZqNl_2Ks_m0jtDndpHczXQMhaDkfjLHkadJ4yLQZkoSQ",
+        "issuerPublicKeyJwk": {
+          "kty": "EC",
+          "crv": "P-256",
+          "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+          "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+        },
+        "nowSeconds": 1767225600
+      },
+      "expected": {
+        "ok": false,
+        "errorCode": "3011"
+      }
+    },
+    {
+      "id": "sd-jwt-vc-verify-valid-with-disclosures",
+      "category": "vc-verify",
+      "description": "SD-JWT VC (EdDSA) verifies successfully and recovers disclosed claims",
+      "input": {
+        "format": "sd-jwt-vc",
+        "token": "eyJhbGciOiJFZERTQSIsInR5cCI6ImRjK3NkLWp3dCJ9.eyJyb2xlIjoidGVzdGVyIiwidmN0IjoiaHR0cHM6Ly9leGFtcGxlLmNvbS9jcmVkZW50aWFscy9jb25mb3JtYW5jZSIsIl9zZCI6WyJxSk13dVdaTzU3ZzJxamRwdzlKTk9JWnNKNlV5ckV1czJXMkhXcXI0WjVNIiwiQVh3dG5yamoxOTI5U3V0UFdUNktPNHVCaTlHZzlXVE9lOHNwS1NYSm4tUSJdLCJfc2RfYWxnIjoic2hhLTI1NiIsImlhdCI6MTc2NzIyNDYwMH0.DD8O-cz-jDJFlIZ-PXojqVibYlllPoO8Wa3C-27ZgKj7h6HxxMWLxBEYjUJULqslSWtQtNfw-kq7tpkQQeoOAw~WyJBQUFBQUFBQUFBQUFBQUFBQUFBQUFBIiwibmFtZSIsIkNvbmZvcm1hbmNlIFRlc3QiXQ~WyJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCIiwiZW1haWwiLCJ0ZXN0QGV4YW1wbGUuY29tIl0~",
+        "issuerPublicKeyJwk": {
+          "kty": "OKP",
+          "crv": "Ed25519",
+          "x": "kaKKC3Q4FZOk2UaVeSCJJq_IrYLIg5t2RDWbnrqaSzo"
+        },
+        "nowSeconds": 1767225600
+      },
+      "expected": {
+        "ok": true,
+        "claims": {
+          "name": "Conformance Test",
+          "email": "test@example.com",
+          "role": "tester"
+        }
+      }
+    },
+    {
+      "id": "sd-jwt-vc-verify-expired",
+      "category": "vc-verify",
+      "description": "SD-JWT VC rejects a credential past its exp",
+      "input": {
+        "format": "sd-jwt-vc",
+        "token": "eyJhbGciOiJFZERTQSIsInR5cCI6ImRjK3NkLWp3dCJ9.eyJleHAiOjE3NjU3NTY4MDAsInZjdCI6Imh0dHBzOi8vZXhhbXBsZS5jb20vY3JlZGVudGlhbHMvY29uZm9ybWFuY2UiLCJfc2QiOlsidEZKekNQSVJmR2hRYzZYeHZBdGRkc0RIeHBqSFBobjl4TXZRWXFOQzc1RSJdLCJfc2RfYWxnIjoic2hhLTI1NiIsImlhdCI6MTc2NzIyMzYwMH0.0b6i4IMZdijpu7v_j8lexd99ERii8tauyQACKTjgr-KW5ermata1JdrCHmD4W7qRKelhERKndYweNUBOeme5Dg~WyJDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDIiwibmFtZSIsIkNvbmZvcm1hbmNlIFRlc3QiXQ~",
+        "issuerPublicKeyJwk": {
+          "kty": "OKP",
+          "crv": "Ed25519",
+          "x": "kaKKC3Q4FZOk2UaVeSCJJq_IrYLIg5t2RDWbnrqaSzo"
+        },
+        "nowSeconds": 1767225600
+      },
+      "expected": {
+        "ok": false,
+        "errorCode": "3024"
+      }
+    },
+    {
+      "id": "delegated-vc-verify-embedded-assertion-method",
+      "category": "vc-verify-did",
+      "description": "VC signed as the corporate DID verifies via a key embedded in its assertionMethod (iss = D, kid = D#agent-1)",
+      "input": {
+        "format": "jwt-vc",
+        "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImRpZDp3ZWI6Y29ycC5leGFtcGxlI2FnZW50LTEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsIm5iZiI6MTc2NDU0NzIwMCwiaWF0IjoxNzY3MjI0NjAwLCJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmp3azpjb25mb3JtYW5jZS1tZW1iZXIiLCJuYW1lIjoiQ29uZm9ybWFuY2UgTWVtYmVyIn0sImlzc3VhbmNlRGF0ZSI6IjIwMjUtMTItMDFUMDA6MDA6MDBaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDI3LTAxLTAxVDAwOjAwOjAwWiJ9LCJzdWIiOiJkaWQ6andrOmNvbmZvcm1hbmNlLW1lbWJlciIsImV4cCI6MTc5ODc2MTYwMH0.hT6b8zPLO6g-Z75b8s_bfBCBRfQCgedAppsW8d1DvVtMTi4IvakZ8XZmimwLXZwbW7OfN1qsS67hLjsjwVLZJQ",
+        "didDocuments": {
+          "did:web:corp.example": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1"
+            ],
+            "id": "did:web:corp.example",
+            "controller": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9"
+            ],
+            "verificationMethod": [
+              {
+                "id": "did:web:corp.example#agent-1",
+                "type": "JsonWebKey2020",
+                "controller": "did:web:corp.example",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                  "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+                }
+              }
+            ],
+            "authentication": [
+              "did:web:corp.example#agent-1"
+            ],
+            "assertionMethod": [
+              "did:web:corp.example#agent-1"
+            ]
+          }
+        },
+        "nowSeconds": 1767225600
+      },
+      "expected": {
+        "ok": true,
+        "iss": "did:web:corp.example",
+        "kid": "did:web:corp.example#agent-1"
+      }
+    },
+    {
+      "id": "delegated-vc-verify-referenced-assertion-method",
+      "category": "vc-verify-did",
+      "description": "VC verifies when D.assertionMethod references the persona's verification method by DID URL (the referenced DID is resolved)",
+      "input": {
+        "format": "jwt-vc",
+        "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImRpZDpqd2s6ZXlKcmRIa2lPaUpGUXlJc0ltTnlkaUk2SWxBdE1qVTJJaXdpZUNJNklrbEtkM2hsTWs0MVRtUXdPVzlqVmxCWk1HeGtMWHBJTldaVGF6azRTVlo0UVhsQ1dsaEtjWE4xUkRnaUxDSjVJam9pTTJWVVIyNDRSalpFU0ZSRFJFMWhVMXBwT0VWdFNrczJUalpUTmxJNVRFaEVUbWx3YlZsWk5VZzFjeUo5IzAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsIm5iZiI6MTc2NDU0NzIwMCwiaWF0IjoxNzY3MjI0NjAwLCJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmp3azpjb25mb3JtYW5jZS1tZW1iZXIiLCJuYW1lIjoiQ29uZm9ybWFuY2UgTWVtYmVyIn0sImlzc3VhbmNlRGF0ZSI6IjIwMjUtMTItMDFUMDA6MDA6MDBaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDI3LTAxLTAxVDAwOjAwOjAwWiJ9LCJzdWIiOiJkaWQ6andrOmNvbmZvcm1hbmNlLW1lbWJlciIsImV4cCI6MTc5ODc2MTYwMH0.T4f0_ERgtZR43QP1WFu5t0xQK4WVfSmiUZ8KGoLV2xo6KEqZubSPO8BRbwvrSUcSF9Xf6u0SzWihA46D-SDRog",
+        "didDocuments": {
+          "did:web:corp.example": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1"
+            ],
+            "id": "did:web:corp.example",
+            "controller": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9"
+            ],
+            "verificationMethod": [],
+            "authentication": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ],
+            "assertionMethod": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ]
+          },
+          "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1",
+              "https://w3id.org/security/suites/jws-2020/v1"
+            ],
+            "id": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9",
+            "verificationMethod": [
+              {
+                "id": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0",
+                "type": "JsonWebKey2020",
+                "controller": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                  "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+                }
+              }
+            ],
+            "authentication": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ],
+            "assertionMethod": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ],
+            "capabilityInvocation": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ],
+            "capabilityDelegation": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ],
+            "keyAgreement": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ]
+          }
+        },
+        "nowSeconds": 1767225600
+      },
+      "expected": {
+        "ok": true,
+        "iss": "did:web:corp.example",
+        "kid": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+      }
+    },
+    {
+      "id": "delegated-vc-verify-ignores-controller",
+      "category": "vc-verify-did",
+      "description": "Verification reads only assertionMethod and kid: D without any controller still verifies",
+      "input": {
+        "format": "jwt-vc",
+        "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImRpZDp3ZWI6Y29ycC5leGFtcGxlI2FnZW50LTEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsIm5iZiI6MTc2NDU0NzIwMCwiaWF0IjoxNzY3MjI0NjAwLCJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmp3azpjb25mb3JtYW5jZS1tZW1iZXIiLCJuYW1lIjoiQ29uZm9ybWFuY2UgTWVtYmVyIn0sImlzc3VhbmNlRGF0ZSI6IjIwMjUtMTItMDFUMDA6MDA6MDBaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDI3LTAxLTAxVDAwOjAwOjAwWiJ9LCJzdWIiOiJkaWQ6andrOmNvbmZvcm1hbmNlLW1lbWJlciIsImV4cCI6MTc5ODc2MTYwMH0.hT6b8zPLO6g-Z75b8s_bfBCBRfQCgedAppsW8d1DvVtMTi4IvakZ8XZmimwLXZwbW7OfN1qsS67hLjsjwVLZJQ",
+        "didDocuments": {
+          "did:web:corp.example": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1"
+            ],
+            "id": "did:web:corp.example",
+            "controller": [],
+            "verificationMethod": [
+              {
+                "id": "did:web:corp.example#agent-1",
+                "type": "JsonWebKey2020",
+                "controller": "did:web:corp.example",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                  "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+                }
+              }
+            ],
+            "authentication": [
+              "did:web:corp.example#agent-1"
+            ],
+            "assertionMethod": [
+              "did:web:corp.example#agent-1"
+            ]
+          }
+        },
+        "nowSeconds": 1767225600
+      },
+      "expected": {
+        "ok": true,
+        "iss": "did:web:corp.example",
+        "kid": "did:web:corp.example#agent-1"
+      }
+    },
+    {
+      "id": "delegated-vc-verify-authentication-only-rejected",
+      "category": "vc-verify-did",
+      "description": "A key listed only in authentication is not an assertionMethod key: rejected (2010)",
+      "input": {
+        "format": "jwt-vc",
+        "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImRpZDp3ZWI6Y29ycC5leGFtcGxlI2FnZW50LTEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsIm5iZiI6MTc2NDU0NzIwMCwiaWF0IjoxNzY3MjI0NjAwLCJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmp3azpjb25mb3JtYW5jZS1tZW1iZXIiLCJuYW1lIjoiQ29uZm9ybWFuY2UgTWVtYmVyIn0sImlzc3VhbmNlRGF0ZSI6IjIwMjUtMTItMDFUMDA6MDA6MDBaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDI3LTAxLTAxVDAwOjAwOjAwWiJ9LCJzdWIiOiJkaWQ6andrOmNvbmZvcm1hbmNlLW1lbWJlciIsImV4cCI6MTc5ODc2MTYwMH0.hT6b8zPLO6g-Z75b8s_bfBCBRfQCgedAppsW8d1DvVtMTi4IvakZ8XZmimwLXZwbW7OfN1qsS67hLjsjwVLZJQ",
+        "didDocuments": {
+          "did:web:corp.example": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1"
+            ],
+            "id": "did:web:corp.example",
+            "controller": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9"
+            ],
+            "verificationMethod": [
+              {
+                "id": "did:web:corp.example#agent-1",
+                "type": "JsonWebKey2020",
+                "controller": "did:web:corp.example",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                  "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+                }
+              }
+            ],
+            "authentication": [
+              "did:web:corp.example#agent-1"
+            ],
+            "assertionMethod": []
+          }
+        },
+        "nowSeconds": 1767225600
+      },
+      "expected": {
+        "ok": false,
+        "errorCode": "2010"
+      }
+    },
+    {
+      "id": "delegated-vc-verify-kid-outside-assertion-method",
+      "category": "vc-verify-did",
+      "description": "kid naming a verification method that is not in assertionMethod is rejected (2010), even if another assertionMethod key exists",
+      "input": {
+        "format": "jwt-vc",
+        "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImRpZDp3ZWI6Y29ycC5leGFtcGxlI290aGVyLTEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsIm5iZiI6MTc2NDU0NzIwMCwiaWF0IjoxNzY3MjI0NjAwLCJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmp3azpjb25mb3JtYW5jZS1tZW1iZXIiLCJuYW1lIjoiQ29uZm9ybWFuY2UgTWVtYmVyIn0sImlzc3VhbmNlRGF0ZSI6IjIwMjUtMTItMDFUMDA6MDA6MDBaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDI3LTAxLTAxVDAwOjAwOjAwWiJ9LCJzdWIiOiJkaWQ6andrOmNvbmZvcm1hbmNlLW1lbWJlciIsImV4cCI6MTc5ODc2MTYwMH0.g1B-cEH1s6BZmXbpBYdAHXN5XqbBdAtTeob-Qxk3XYQ483Egp2Crl8fUG15JlwjcCIn8AEkOmENgUUpX7IuLYg",
+        "didDocuments": {
+          "did:web:corp.example": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1"
+            ],
+            "id": "did:web:corp.example",
+            "controller": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9"
+            ],
+            "verificationMethod": [
+              {
+                "id": "did:web:corp.example#agent-1",
+                "type": "JsonWebKey2020",
+                "controller": "did:web:corp.example",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "AhfmF_C2RDkoJ4-WmZ5pojpPLBUr321s32bluAKC1O0",
+                  "y": "GUp968uXcS0t2jyoWqh2Wlb0X8dYWZZS8ol8ZTBuV5Q"
+                }
+              },
+              {
+                "id": "did:web:corp.example#other-1",
+                "type": "JsonWebKey2020",
+                "controller": "did:web:corp.example",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                  "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+                }
+              }
+            ],
+            "authentication": [
+              "did:web:corp.example#agent-1",
+              "did:web:corp.example#other-1"
+            ],
+            "assertionMethod": [
+              "did:web:corp.example#agent-1"
+            ]
+          }
+        },
+        "nowSeconds": 1767225600
+      },
+      "expected": {
+        "ok": false,
+        "errorCode": "2010"
+      }
+    },
+    {
+      "id": "delegated-vc-verify-key-mismatch",
+      "category": "vc-verify-did",
+      "description": "Signature by a key that is not the one listed under kid is rejected (3010)",
+      "input": {
+        "format": "jwt-vc",
+        "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImRpZDp3ZWI6Y29ycC5leGFtcGxlI2FnZW50LTEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsIm5iZiI6MTc2NDU0NzIwMCwiaWF0IjoxNzY3MjI0NjAwLCJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmp3azpjb25mb3JtYW5jZS1tZW1iZXIiLCJuYW1lIjoiQ29uZm9ybWFuY2UgTWVtYmVyIn0sImlzc3VhbmNlRGF0ZSI6IjIwMjUtMTItMDFUMDA6MDA6MDBaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDI3LTAxLTAxVDAwOjAwOjAwWiJ9LCJzdWIiOiJkaWQ6andrOmNvbmZvcm1hbmNlLW1lbWJlciIsImV4cCI6MTc5ODc2MTYwMH0.hnTkXEgz1wCm3udYoVr9hfHmizwaA3r3rhbnv7ljcUQeFMmNZtpk7na8cVjyQde4spFzbMk0ECqKJio5Z64tlQ",
+        "didDocuments": {
+          "did:web:corp.example": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1"
+            ],
+            "id": "did:web:corp.example",
+            "controller": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9"
+            ],
+            "verificationMethod": [
+              {
+                "id": "did:web:corp.example#agent-1",
+                "type": "JsonWebKey2020",
+                "controller": "did:web:corp.example",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                  "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+                }
+              }
+            ],
+            "authentication": [
+              "did:web:corp.example#agent-1"
+            ],
+            "assertionMethod": [
+              "did:web:corp.example#agent-1"
+            ]
+          }
+        },
+        "nowSeconds": 1767225600
+      },
+      "expected": {
+        "ok": false,
+        "errorCode": "3010"
+      }
+    },
+    {
+      "id": "delegated-vc-verify-deactivated-delegated-did",
+      "category": "vc-verify-did",
+      "description": "A deactivated D has no usable keys: rejected (2010)",
+      "input": {
+        "format": "jwt-vc",
+        "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImRpZDp3ZWI6Y29ycC5leGFtcGxlI2FnZW50LTEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsIm5iZiI6MTc2NDU0NzIwMCwiaWF0IjoxNzY3MjI0NjAwLCJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmp3azpjb25mb3JtYW5jZS1tZW1iZXIiLCJuYW1lIjoiQ29uZm9ybWFuY2UgTWVtYmVyIn0sImlzc3VhbmNlRGF0ZSI6IjIwMjUtMTItMDFUMDA6MDA6MDBaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDI3LTAxLTAxVDAwOjAwOjAwWiJ9LCJzdWIiOiJkaWQ6andrOmNvbmZvcm1hbmNlLW1lbWJlciIsImV4cCI6MTc5ODc2MTYwMH0.hT6b8zPLO6g-Z75b8s_bfBCBRfQCgedAppsW8d1DvVtMTi4IvakZ8XZmimwLXZwbW7OfN1qsS67hLjsjwVLZJQ",
+        "didDocuments": {
+          "did:web:corp.example": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1"
+            ],
+            "id": "did:web:corp.example",
+            "controller": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9"
+            ],
+            "verificationMethod": [
+              {
+                "id": "did:web:corp.example#agent-1",
+                "type": "JsonWebKey2020",
+                "controller": "did:web:corp.example",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                  "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+                }
+              }
+            ],
+            "authentication": [
+              "did:web:corp.example#agent-1"
+            ],
+            "assertionMethod": [
+              "did:web:corp.example#agent-1"
+            ],
+            "deactivated": true
+          }
+        },
+        "nowSeconds": 1767225600
+      },
+      "expected": {
+        "ok": false,
+        "errorCode": "2010"
+      }
+    },
+    {
+      "id": "delegated-vc-verify-reference-unresolvable",
+      "category": "vc-verify-did",
+      "description": "D.assertionMethod references the persona DID but its document cannot be resolved: rejected (2003)",
+      "input": {
+        "format": "jwt-vc",
+        "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImRpZDpqd2s6ZXlKcmRIa2lPaUpGUXlJc0ltTnlkaUk2SWxBdE1qVTJJaXdpZUNJNklrbEtkM2hsTWs0MVRtUXdPVzlqVmxCWk1HeGtMWHBJTldaVGF6azRTVlo0UVhsQ1dsaEtjWE4xUkRnaUxDSjVJam9pTTJWVVIyNDRSalpFU0ZSRFJFMWhVMXBwT0VWdFNrczJUalpUTmxJNVRFaEVUbWx3YlZsWk5VZzFjeUo5IzAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsIm5iZiI6MTc2NDU0NzIwMCwiaWF0IjoxNzY3MjI0NjAwLCJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmp3azpjb25mb3JtYW5jZS1tZW1iZXIiLCJuYW1lIjoiQ29uZm9ybWFuY2UgTWVtYmVyIn0sImlzc3VhbmNlRGF0ZSI6IjIwMjUtMTItMDFUMDA6MDA6MDBaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDI3LTAxLTAxVDAwOjAwOjAwWiJ9LCJzdWIiOiJkaWQ6andrOmNvbmZvcm1hbmNlLW1lbWJlciIsImV4cCI6MTc5ODc2MTYwMH0.T4f0_ERgtZR43QP1WFu5t0xQK4WVfSmiUZ8KGoLV2xo6KEqZubSPO8BRbwvrSUcSF9Xf6u0SzWihA46D-SDRog",
+        "didDocuments": {
+          "did:web:corp.example": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1"
+            ],
+            "id": "did:web:corp.example",
+            "controller": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9"
+            ],
+            "verificationMethod": [],
+            "authentication": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ],
+            "assertionMethod": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ]
+          }
+        },
+        "nowSeconds": 1767225600
+      },
+      "expected": {
+        "ok": false,
+        "errorCode": "2003"
+      }
+    },
+    {
+      "id": "delegated-vc-verify-reference-controller-mismatch",
+      "category": "vc-verify-did",
+      "description": "A referenced verification method whose controller is neither itself nor its DID is rejected (2010)",
+      "input": {
+        "format": "jwt-vc",
+        "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImRpZDpqd2s6ZXlKcmRIa2lPaUpGUXlJc0ltTnlkaUk2SWxBdE1qVTJJaXdpZUNJNklrbEtkM2hsTWs0MVRtUXdPVzlqVmxCWk1HeGtMWHBJTldaVGF6azRTVlo0UVhsQ1dsaEtjWE4xUkRnaUxDSjVJam9pTTJWVVIyNDRSalpFU0ZSRFJFMWhVMXBwT0VWdFNrczJUalpUTmxJNVRFaEVUbWx3YlZsWk5VZzFjeUo5IzAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsIm5iZiI6MTc2NDU0NzIwMCwiaWF0IjoxNzY3MjI0NjAwLCJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvbnMvY3JlZGVudGlhbHMvdjIiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOiJkaWQ6d2ViOmNvcnAuZXhhbXBsZSIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmp3azpjb25mb3JtYW5jZS1tZW1iZXIiLCJuYW1lIjoiQ29uZm9ybWFuY2UgTWVtYmVyIn0sImlzc3VhbmNlRGF0ZSI6IjIwMjUtMTItMDFUMDA6MDA6MDBaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDI3LTAxLTAxVDAwOjAwOjAwWiJ9LCJzdWIiOiJkaWQ6andrOmNvbmZvcm1hbmNlLW1lbWJlciIsImV4cCI6MTc5ODc2MTYwMH0.T4f0_ERgtZR43QP1WFu5t0xQK4WVfSmiUZ8KGoLV2xo6KEqZubSPO8BRbwvrSUcSF9Xf6u0SzWihA46D-SDRog",
+        "didDocuments": {
+          "did:web:corp.example": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1"
+            ],
+            "id": "did:web:corp.example",
+            "controller": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9"
+            ],
+            "verificationMethod": [],
+            "authentication": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ],
+            "assertionMethod": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ]
+          },
+          "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1",
+              "https://w3id.org/security/suites/jws-2020/v1"
+            ],
+            "id": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9",
+            "verificationMethod": [
+              {
+                "id": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0",
+                "type": "JsonWebKey2020",
+                "controller": "did:web:attacker.example",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                  "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+                }
+              }
+            ],
+            "authentication": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ],
+            "assertionMethod": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ],
+            "capabilityInvocation": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ],
+            "capabilityDelegation": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ],
+            "keyAgreement": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ]
+          }
+        },
+        "nowSeconds": 1767225600
+      },
+      "expected": {
+        "ok": false,
+        "errorCode": "2010"
+      }
+    },
+    {
+      "id": "delegated-key-select-embedded-assertion-method",
+      "category": "delegated-key-select",
+      "description": "controller lists the persona and K is in assertionMethod: kid = the embedded D#agent-1, basis controller",
+      "input": {
+        "delegatedDid": "did:web:corp.example",
+        "controllerDid": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9",
+        "relationship": "assertionMethod",
+        "publicKeyJwk": {
+          "kty": "EC",
+          "crv": "P-256",
+          "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+          "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+        },
+        "didDocuments": {
+          "did:web:corp.example": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1"
+            ],
+            "id": "did:web:corp.example",
+            "controller": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9"
+            ],
+            "verificationMethod": [
+              {
+                "id": "did:web:corp.example#agent-1",
+                "type": "JsonWebKey2020",
+                "controller": "did:web:corp.example",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                  "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+                }
+              }
+            ],
+            "authentication": [
+              "did:web:corp.example#agent-1"
+            ],
+            "assertionMethod": [
+              "did:web:corp.example#agent-1"
+            ]
+          }
+        }
+      },
+      "expected": {
+        "ok": true,
+        "kid": "did:web:corp.example#agent-1",
+        "alg": "ES256",
+        "basis": "controller"
+      }
+    },
+    {
+      "id": "delegated-key-select-referenced-assertion-method",
+      "category": "delegated-key-select",
+      "description": "D.assertionMethod references the persona's method by DID URL: kid is that DID URL",
+      "input": {
+        "delegatedDid": "did:web:corp.example",
+        "controllerDid": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9",
+        "relationship": "assertionMethod",
+        "kid": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0",
+        "publicKeyJwk": {
+          "kty": "EC",
+          "crv": "P-256",
+          "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+          "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+        },
+        "didDocuments": {
+          "did:web:corp.example": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1"
+            ],
+            "id": "did:web:corp.example",
+            "controller": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9"
+            ],
+            "verificationMethod": [],
+            "authentication": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ],
+            "assertionMethod": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ]
+          },
+          "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1",
+              "https://w3id.org/security/suites/jws-2020/v1"
+            ],
+            "id": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9",
+            "verificationMethod": [
+              {
+                "id": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0",
+                "type": "JsonWebKey2020",
+                "controller": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                  "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+                }
+              }
+            ],
+            "authentication": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ],
+            "assertionMethod": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ],
+            "capabilityInvocation": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ],
+            "capabilityDelegation": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ],
+            "keyAgreement": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0"
+            ]
+          }
+        }
+      },
+      "expected": {
+        "ok": true,
+        "kid": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9#0",
+        "alg": "ES256",
+        "basis": "controller"
+      }
+    },
+    {
+      "id": "delegated-key-select-capability-delegation",
+      "category": "delegated-key-select",
+      "description": "persona is a controller through capabilityDelegation instead of controller: basis capabilityDelegation",
+      "input": {
+        "delegatedDid": "did:web:corp.example",
+        "controllerDid": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9",
+        "relationship": "assertionMethod",
+        "publicKeyJwk": {
+          "kty": "EC",
+          "crv": "P-256",
+          "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+          "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+        },
+        "didDocuments": {
+          "did:web:corp.example": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1"
+            ],
+            "id": "did:web:corp.example",
+            "controller": [],
+            "verificationMethod": [
+              {
+                "id": "did:web:corp.example#agent-1",
+                "type": "JsonWebKey2020",
+                "controller": "did:web:corp.example",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                  "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+                }
+              }
+            ],
+            "authentication": [
+              "did:web:corp.example#agent-1"
+            ],
+            "assertionMethod": [
+              "did:web:corp.example#agent-1"
+            ],
+            "capabilityDelegation": [
+              {
+                "id": "did:web:corp.example#delegate-1",
+                "type": "JsonWebKey2020",
+                "controller": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                  "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "expected": {
+        "ok": true,
+        "kid": "did:web:corp.example#agent-1",
+        "alg": "ES256",
+        "basis": "capabilityDelegation"
+      }
+    },
+    {
+      "id": "delegated-key-select-authentication-only-rejected",
+      "category": "delegated-key-select",
+      "description": "K only in authentication is not enough to sign a VC as D: rejected (2017)",
+      "input": {
+        "delegatedDid": "did:web:corp.example",
+        "controllerDid": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9",
+        "relationship": "assertionMethod",
+        "publicKeyJwk": {
+          "kty": "EC",
+          "crv": "P-256",
+          "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+          "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+        },
+        "didDocuments": {
+          "did:web:corp.example": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1"
+            ],
+            "id": "did:web:corp.example",
+            "controller": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9"
+            ],
+            "verificationMethod": [
+              {
+                "id": "did:web:corp.example#agent-1",
+                "type": "JsonWebKey2020",
+                "controller": "did:web:corp.example",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                  "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+                }
+              }
+            ],
+            "authentication": [
+              "did:web:corp.example#agent-1"
+            ],
+            "assertionMethod": []
+          }
+        }
+      },
+      "expected": {
+        "ok": false,
+        "errorCode": "2017"
+      }
+    },
+    {
+      "id": "delegated-key-select-not-a-controller",
+      "category": "delegated-key-select",
+      "description": "K is in assertionMethod but the persona is not a controller of D: rejected (2006)",
+      "input": {
+        "delegatedDid": "did:web:corp.example",
+        "controllerDid": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9",
+        "relationship": "assertionMethod",
+        "publicKeyJwk": {
+          "kty": "EC",
+          "crv": "P-256",
+          "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+          "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+        },
+        "didDocuments": {
+          "did:web:corp.example": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1"
+            ],
+            "id": "did:web:corp.example",
+            "controller": [],
+            "verificationMethod": [
+              {
+                "id": "did:web:corp.example#agent-1",
+                "type": "JsonWebKey2020",
+                "controller": "did:web:corp.example",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                  "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+                }
+              }
+            ],
+            "authentication": [
+              "did:web:corp.example#agent-1"
+            ],
+            "assertionMethod": [
+              "did:web:corp.example#agent-1"
+            ]
+          }
+        }
+      },
+      "expected": {
+        "ok": false,
+        "errorCode": "2006"
+      }
+    },
+    {
+      "id": "delegated-key-select-prefers-method-in-both-relationships",
+      "category": "delegated-key-select",
+      "description": "two methods carry K: the one in both authentication and assertionMethod is chosen over an earlier assertionMethod-only one",
+      "input": {
+        "delegatedDid": "did:web:corp.example",
+        "controllerDid": "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9",
+        "relationship": "assertionMethod",
+        "publicKeyJwk": {
+          "kty": "EC",
+          "crv": "P-256",
+          "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+          "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+        },
+        "didDocuments": {
+          "did:web:corp.example": {
+            "@context": [
+              "https://www.w3.org/ns/did/v1"
+            ],
+            "id": "did:web:corp.example",
+            "controller": [
+              "did:jwk:eyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IklKd3hlMk41TmQwOW9jVlBZMGxkLXpINWZTazk4SVZ4QXlCWlhKcXN1RDgiLCJ5IjoiM2VUR244RjZESFRDRE1hU1ppOEVtSks2TjZTNlI5TEhETmlwbVlZNUg1cyJ9"
+            ],
+            "verificationMethod": [
+              {
+                "id": "did:web:corp.example#other-1",
+                "type": "JsonWebKey2020",
+                "controller": "did:web:corp.example",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                  "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+                }
+              },
+              {
+                "id": "did:web:corp.example#agent-1",
+                "type": "JsonWebKey2020",
+                "controller": "did:web:corp.example",
+                "publicKeyJwk": {
+                  "kty": "EC",
+                  "crv": "P-256",
+                  "x": "IJwxe2N5Nd09ocVPY0ld-zH5fSk98IVxAyBZXJqsuD8",
+                  "y": "3eTGn8F6DHTCDMaSZi8EmJK6N6S6R9LHDNipmYY5H5s"
+                }
+              }
+            ],
+            "authentication": [
+              "did:web:corp.example#agent-1"
+            ],
+            "assertionMethod": [
+              "did:web:corp.example#other-1",
+              "did:web:corp.example#agent-1"
+            ]
+          }
+        }
+      },
+      "expected": {
+        "ok": true,
+        "kid": "did:web:corp.example#agent-1",
+        "alg": "ES256",
+        "basis": "controller"
+      }
+    }
+  ]
+}
