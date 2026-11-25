@@ -8,6 +8,7 @@ bun install --frozen-lockfile
 bun run ci:profile --profile=static
 bun run ci:profile --profile=unit
 bun run ci:profile --profile=conformance
+bun run ci:profile --profile=node
 ```
 
 `static` checks formatting, types, all three generated schemas, source module
