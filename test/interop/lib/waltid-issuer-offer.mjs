@@ -4,7 +4,7 @@
 // `run-waltid-protocol.mjs` を Linterly の 1 ファイル 300 行上限に収めるため切り出した。
 
 import { readFileSync } from 'node:fs';
-import { createPrivateKeySigner } from 'vericerts-wallet-sdk/credential';
+import { createPrivateKeySigner } from '@vericerts/vericerts-wallet-sdk/credential';
 import { CREDENTIAL_TYPE, fetchJson, issuerAdminBaseUrl } from './waltid-admin-api.mjs';
 
 const CREDENTIAL_CONFIGURATION_ID = 'OpenBadgeCredential_jwt_vc_json';

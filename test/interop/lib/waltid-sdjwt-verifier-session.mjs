@@ -11,7 +11,7 @@
 // 呼び出しなので、`waltid-verifier-session.mjs` の実装をそのまま再 export して共有する（複製すると
 // walt.id のレスポンス形式が変わったときに片方だけ直す事故が起きる）。
 
-import { FORMAT_SD_JWT_VC } from 'vericerts-wallet-sdk/oid4vp';
+import { FORMAT_SD_JWT_VC } from '@vericerts/vericerts-wallet-sdk/oid4vp';
 import { fetchJson, verifierAdminBaseUrl } from './waltid-admin-api.mjs';
 import { fetchPresentationDefinition, pollVerifierSession } from './waltid-verifier-session.mjs';
 

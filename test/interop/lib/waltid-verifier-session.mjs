@@ -3,7 +3,7 @@
 // walt.id verifier-api への Authorization Request 発行要求とセッション状態のポーリング（→ Present）。
 // `run-waltid-protocol.mjs` を Linterly の 1 ファイル 300 行上限に収めるため切り出した。
 
-import { FORMAT_JWT_VC } from 'vericerts-wallet-sdk';
+import { FORMAT_JWT_VC } from '@vericerts/vericerts-wallet-sdk';
 import { CREDENTIAL_TYPE, fetchJson, verifierAdminBaseUrl } from './waltid-admin-api.mjs';
 
 /** walt.id verifier-api に Authorization Request 発行を要求する（管理系呼び出し。§3.2 手順 3）。 */

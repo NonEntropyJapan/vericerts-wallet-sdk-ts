@@ -49,7 +49,10 @@ const FACTORY_PROBES = new Map([
   ['scripts/packed-consumer/preflight.mjs', new Set(['file'])],
   ['scripts/packed-consumer/boundary-node.mjs', new Set(['this.filename'])],
   ['test/test-support/run-consumer.mjs', new Set(["join(root,'package.json')"])],
-  ['test/browser-consumer/run.mjs', new Set(["import.meta.resolve('vericerts-wallet-sdk')"])],
+  [
+    'test/browser-consumer/run.mjs',
+    new Set(["import.meta.resolve('@vericerts/vericerts-wallet-sdk')"]),
+  ],
 ]);
 const GENERATED_MATERIALS = new Set(['./tools/did-fixtures.mjs', './tools/inherited-reads.mjs']);
 

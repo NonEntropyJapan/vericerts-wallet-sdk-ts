@@ -36,9 +36,9 @@ if (missing.length > 0) {
 // `@experimental` はメインバレルに載せず、サブパス経由でのみ公開する。
 // 相対パスではなくパッケージ名で import し、exports マップの `./experimental` が
 // Node の ESM 解決で実際に引けることまで確かめる（自己参照解決）。
-const experimental = await import('vericerts-wallet-sdk/experimental');
-const experimentalEudi = await import('vericerts-wallet-sdk/experimental/eudi');
-const experimentalOid4vci = await import('vericerts-wallet-sdk/experimental/oid4vci');
+const experimental = await import('@vericerts/vericerts-wallet-sdk/experimental');
+const experimentalEudi = await import('@vericerts/vericerts-wallet-sdk/experimental/eudi');
+const experimentalOid4vci = await import('@vericerts/vericerts-wallet-sdk/experimental/oid4vci');
 
 for (const name of [
   'presentEAACredential',
@@ -144,7 +144,7 @@ const PURPOSE_ENTRY_FAILURES = {
   trust: (m) => m.entityConfigurationUrl('x'),
 };
 for (const name of PURPOSE_ENTRIES) {
-  const entry = await import(`vericerts-wallet-sdk/${name}`);
+  const entry = await import(`@vericerts/vericerts-wallet-sdk/${name}`);
   for (const symbol of PURPOSE_ENTRY_SYMBOLS[name]) {
     if (entry[symbol] === undefined || entry[symbol] !== sdk[symbol]) {
       console.error(
@@ -174,7 +174,7 @@ for (const name of PURPOSE_ENTRIES) {
 await checkAssetWarning(sdk, 'esm');
 
 // サブパス専用の ./aa。公開値が引けて、メインバレルへ流れていないこと。
-const aaEntry = await import('vericerts-wallet-sdk/aa');
+const aaEntry = await import('@vericerts/vericerts-wallet-sdk/aa');
 assert.equal(typeof aaEntry.signUserOpWithPasskey, 'function');
 assert.equal(aaEntry.ENTRY_POINT_V07_ADDRESS, '0x0000000071727De22E5E9d8BAf0edAc6f37da032');
 for (const name of ['ENTRY_POINT_V07_ADDRESS', 'signUserOpWithPasskey']) {
@@ -212,8 +212,8 @@ const aaHeavyInputs = [...aaReachable].flatMap((file) =>
 assert.deepEqual(aaHeavyInputs, [], 'smoke failed: ./aa chunks include viem / permissionless');
 
 // 配布 ESM の追加公開値と共有 DCQL 予算を確認する。
-const credentialEntry = await import('vericerts-wallet-sdk/credential');
-const oid4vpEntry = await import('vericerts-wallet-sdk/oid4vp');
+const credentialEntry = await import('@vericerts/vericerts-wallet-sdk/credential');
+const oid4vpEntry = await import('@vericerts/vericerts-wallet-sdk/oid4vp');
 for (const name of [
   'assertVerifiableCredentialV2Members',
   'assertTimeClaims',
@@ -241,7 +241,7 @@ assert.equal(budget.exhausted, true);
 
 // `./otel` サブパスの解決と公開シンボル。`@opentelemetry/*` は optional peer のため
 // external 化されていること（バンドルへインライン展開されていないこと）も実成果物で確かめる。
-const otel = await import('vericerts-wallet-sdk/otel');
+const otel = await import('@vericerts/vericerts-wallet-sdk/otel');
 const requiredOtelExports = ['createOtelLogger', 'createOtelMetrics', 'createOtelTracer'];
 const missingOtel = requiredOtelExports.filter((name) => typeof otel[name] !== 'function');
 if (missingOtel.length > 0) {

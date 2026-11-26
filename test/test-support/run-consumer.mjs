@@ -39,7 +39,7 @@ try {
   ]);
   const require = createRequire(join(root, 'package.json'));
   const pkg = JSON.parse(
-    readFileSync(require.resolve('vericerts-wallet-sdk/package.json'), 'utf8'),
+    readFileSync(require.resolve('@vericerts/vericerts-wallet-sdk/package.json'), 'utf8'),
   );
   assert.equal(`${pkg.name}@${pkg.version}`, manifest.generatedFrom);
   run(process.execPath, ['materials/consumer.mjs']);

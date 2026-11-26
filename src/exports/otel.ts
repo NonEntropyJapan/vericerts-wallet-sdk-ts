@@ -1,5 +1,5 @@
 /**
- * `vericerts-wallet-sdk/otel` は OpenTelemetry の Logger、Meter、Tracer を
+ * `@vericerts/vericerts-wallet-sdk/otel` は OpenTelemetry の Logger、Meter、Tracer を
  * SDK のロガー、メトリクス、トレーサーとして使うためのアダプターを提供する。
  *
  * このサブパスを使う場合は `@opentelemetry/api` と `@opentelemetry/api-logs` をインストールする。

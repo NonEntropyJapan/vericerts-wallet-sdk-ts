@@ -5,7 +5,7 @@ import { dirname, join } from 'node:path';
 import { runInNewContext } from 'node:vm';
 
 const require = createRequire(import.meta.url);
-const manifestPath = require.resolve('vericerts-wallet-sdk/package.json');
+const manifestPath = require.resolve('@vericerts/vericerts-wallet-sdk/package.json');
 const pkg = JSON.parse(readFileSync(manifestPath, 'utf8'));
 const cjs = process.argv[2] === 'cjs';
 const withOtel = process.argv[3] === 'otel';
@@ -51,8 +51,9 @@ assert.equal(
 // Node and Bun can share the same installed consumer, so their physical copies must be distinct.
 const installedSdk = dirname(manifestPath);
 const runtime = process.versions.bun ? 'bun' : 'node';
-const foreignName = `${pkg.name}-foreign-${runtime}-${cjs ? 'cjs' : 'esm'}-${withOtel ? 'otel' : 'plain'}`;
-const foreignSdk = join(dirname(installedSdk), foreignName);
+const copySuffix = `-foreign-${runtime}-${cjs ? 'cjs' : 'esm'}-${withOtel ? 'otel' : 'plain'}`;
+const foreignName = pkg.name + copySuffix;
+const foreignSdk = installedSdk + copySuffix;
 cpSync(installedSdk, foreignSdk, { recursive: true, errorOnExist: true, force: false });
 assert.equal(existsSync(join(installedSdk, 'src')), false);
 assert.equal(existsSync(join(foreignSdk, 'src')), false);

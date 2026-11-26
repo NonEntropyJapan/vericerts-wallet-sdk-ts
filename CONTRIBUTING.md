@@ -24,7 +24,7 @@ Sign off commits with `git commit -s` to certify the [Developer Certificate of O
   set -eu
   repo=NonEntropyJapan/vericerts-wallet-sdk-ts
   registry=https://registry.npmjs.org
-  tarball="./vericerts-wallet-sdk-${VERSION:?}.tgz"
+  tarball="./vericerts-vericerts-wallet-sdk-${VERSION:?}.tgz"
   gh attestation verify "$tarball" --bundle provenance.json --digest-alg sha512 \
     --repo "$repo" --source-ref refs/heads/main --source-digest "${REVISION:?}" \
     --signer-workflow "$repo/.github/workflows/npm-provenance.yml" --deny-self-hosted-runners
@@ -34,4 +34,4 @@ Sign off commits with `git commit -s` to certify the [Developer Certificate of O
 )
 ```
 
-After publishing, check `dist.integrity` and `dist.attestations` with `npm view vericerts-wallet-sdk@"$VERSION" dist --json`. Install that exact version in a clean project and run `npm audit signatures` to verify the registry signatures and provenance.
+After publishing, check `dist.integrity` and `dist.attestations` with `npm view @vericerts/vericerts-wallet-sdk@"$VERSION" dist --json`. Install that exact version in a clean project and run `npm audit signatures` to verify the registry signatures and provenance.

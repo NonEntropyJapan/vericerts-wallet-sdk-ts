@@ -13,7 +13,7 @@ export function fixture() {
   mkdirSync(join(packageRoot, 'dist'), { recursive: true });
   mkdirSync(join(packageRoot, 'sbom'));
   const pkg = {
-    name: 'vericerts-wallet-sdk',
+    name: '@vericerts/vericerts-wallet-sdk',
     version: '0.0.0',
     type: 'module',
     license: 'Apache-2.0',
@@ -39,7 +39,9 @@ export function fixture() {
     join(packageRoot, 'sbom/sdk.cdx.json'),
     JSON.stringify({
       bomFormat: 'CycloneDX',
-      metadata: { component: { name: pkg.name, version: pkg.version } },
+      metadata: {
+        component: { group: '@vericerts', name: 'vericerts-wallet-sdk', version: pkg.version },
+      },
       components: [{ name: 'fixture-dependency', version: '1.0.0' }],
       dependencies: [{ ref: pkg.name }],
     }),

@@ -37,7 +37,7 @@ import type { Hex, UserOperationV07 } from './types.js';
  *
  * `clientDataJSON` / `signature` はブラウザの `AuthenticatorAssertionResponse` が返す生バイト列
  * そのもの（`signature` は ASN.1 DER エンコードの P-256 (secp256r1) ECDSA 署名）。
- * `vericerts-wallet-sdk/aa` から公開する契約。
+ * `@vericerts/vericerts-wallet-sdk/aa` から公開する契約。
  */
 export interface WebAuthnAssertion {
   readonly authenticatorData: Uint8Array;

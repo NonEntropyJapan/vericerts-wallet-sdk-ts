@@ -69,7 +69,7 @@ export function fixture() {
   write(
     'package.json',
     JSON.stringify({
-      name: 'vericerts-wallet-sdk',
+      name: '@vericerts/vericerts-wallet-sdk',
       type: 'module',
       devDependencies: {
         typescript: '5.9.3',

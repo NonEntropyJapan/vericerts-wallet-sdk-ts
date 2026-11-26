@@ -7,9 +7,12 @@
 // 発行鍵は test/interop/fixtures/vericerts-issuer.json 固定（相互運用テスト専用、本番鍵ではない）。
 
 import { readFileSync } from 'node:fs';
-import { VericertsError } from 'vericerts-wallet-sdk/common';
-import { didDocumentToVerifierKey, verifyCredential } from 'vericerts-wallet-sdk/credential';
-import { resolveDidKey } from 'vericerts-wallet-sdk/identity';
+import { VericertsError } from '@vericerts/vericerts-wallet-sdk/common';
+import {
+  didDocumentToVerifierKey,
+  verifyCredential,
+} from '@vericerts/vericerts-wallet-sdk/credential';
+import { resolveDidKey } from '@vericerts/vericerts-wallet-sdk/identity';
 import { createIssuerSigner, issueJwtVc } from './issue-jwt.mjs';
 
 const FIXTURE = JSON.parse(

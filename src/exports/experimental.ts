@@ -1,5 +1,5 @@
 /**
- * `@experimental` 公開 API のサブパスバレル（`vericerts-wallet-sdk/experimental`）。
+ * `@experimental` 公開 API のサブパスバレル（`@vericerts/vericerts-wallet-sdk/experimental`）。
  *
  * このサブパスの API は minor リリースで挙動やシグネチャが変わり得る。
  * メインエントリからは再エクスポートしない。型と定数は利用時に警告を出せないため、

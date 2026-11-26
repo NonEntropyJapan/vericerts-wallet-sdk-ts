@@ -10,7 +10,7 @@
 import { describe, expect, it } from 'bun:test';
 import { X509Certificate } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { isPublicHttpsUrl } from 'vericerts-wallet-sdk/common';
+import { isPublicHttpsUrl } from '@vericerts/vericerts-wallet-sdk/common';
 
 const read = (relative) => readFileSync(new URL(`../${relative}`, import.meta.url), 'utf8');
 

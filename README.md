@@ -7,13 +7,13 @@ TypeScript SDK for decentralized identifiers, verifiable credentials, and OpenID
 The SDK requires Node.js 20.19.0 or later. The npm install command is available after the first npm release.
 
 ```sh
-npm install vericerts-wallet-sdk
+npm install @vericerts/vericerts-wallet-sdk
 ```
 
 The package exposes typed entry points for common utilities, identity, credentials, issuance, and presentation. Import from an entry point listed in `package.json` under `exports`.
 
 ```ts
-import { ErrorCodes } from 'vericerts-wallet-sdk/common';
+import { ErrorCodes } from '@vericerts/vericerts-wallet-sdk/common';
 ```
 
 ## Develop

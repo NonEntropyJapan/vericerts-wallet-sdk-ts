@@ -49,7 +49,7 @@ export function createStaticValue({ source, file, symbol, values, capability, un
       }
       if (
         node.expression.getText(source) === 'import.meta.resolve' &&
-        ['vericerts-wallet-sdk', 'typescript'].includes(args[0])
+        ['@vericerts/vericerts-wallet-sdk', 'typescript'].includes(args[0])
       )
         return undefined;
     }

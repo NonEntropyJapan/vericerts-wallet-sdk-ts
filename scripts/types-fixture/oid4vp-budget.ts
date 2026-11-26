@@ -4,7 +4,7 @@ import {
   type DcqlWorkBudget,
   evaluateDcql,
   findMatchingCredentialIndexes,
-} from 'vericerts-wallet-sdk/oid4vp';
+} from '@vericerts/vericerts-wallet-sdk/oid4vp';
 
 const budget: DcqlWorkBudget = createDcqlWorkBudget();
 const fromFactory: ReturnType<typeof createDcqlWorkBudget> = budget;

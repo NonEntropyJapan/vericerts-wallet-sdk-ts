@@ -28,7 +28,7 @@ export function verifyMaterials(root = dirname(fileURLToPath(import.meta.url))) 
   if (
     manifest.schemaVersion !== 1 ||
     manifest.materialVersion !== '1.0.0' ||
-    !/^vericerts-wallet-sdk@\d+\.\d+\.\d+(?:[-+][\w.-]+)?$/.test(manifest.generatedFrom)
+    !/^@vericerts\/vericerts-wallet-sdk@\d+\.\d+\.\d+(?:[-+][\w.-]+)?$/.test(manifest.generatedFrom)
   ) {
     throw new Error('Invalid material manifest version');
   }

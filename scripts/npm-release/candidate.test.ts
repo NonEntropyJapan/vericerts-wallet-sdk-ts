@@ -72,7 +72,7 @@ sample.repack();
 const directory = join(sample.root, 'candidate');
 mkdirSync(directory);
 const { artifact } = inspectArtifact(sample.tarball);
-const filename = `${manifest.name}-${manifest.version}.tgz`;
+const filename = 'vericerts-vericerts-wallet-sdk-0.0.0.tgz';
 copyFileSync(sample.tarball, join(directory, filename));
 sample.receipt.artifact = { ...artifact, filename };
 writeFileSync(join(directory, 'receipt.json'), JSON.stringify(sample.receipt));
@@ -92,7 +92,7 @@ const options = { sha256: artifact.sha256, tree: revision.tree, manifest, reposi
 test('uses the npm package URL and SHA-512 of the tested bytes as its single subject', () => {
   expect(releaseSubject(directory, producer, options)).toEqual({
     filename,
-    purl: `pkg:npm/${manifest.name}@${manifest.version}`,
+    purl: 'pkg:npm/%40vericerts/vericerts-wallet-sdk@0.0.0',
     sha512: createHash('sha512').update(readFileSync(sample.tarball)).digest('hex'),
   });
 });

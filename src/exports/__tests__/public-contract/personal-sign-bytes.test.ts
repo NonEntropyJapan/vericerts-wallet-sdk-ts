@@ -1,5 +1,5 @@
 /**
- * `personal_sign` のバイト列正規化の公開契約。`vericerts-wallet-sdk/asset` から引いた
+ * `personal_sign` のバイト列正規化の公開契約。`@vericerts/vericerts-wallet-sdk/asset` から引いた
  * 公開面だけで、署名・承認前ガード・表示の 3 経路が同じバイト列を読むことを固定する。
  * 内部パス経由では「公開したつもりの面」が通っているかを確かめられないので `../../asset.js` を使う。
  */
@@ -53,7 +53,7 @@ const outcome = (run: () => unknown) => {
   }
 };
 
-describe('公開契約: personalSignMessageBytes（vericerts-wallet-sdk/asset）', () => {
+describe('公開契約: personalSignMessageBytes（@vericerts/vericerts-wallet-sdk/asset）', () => {
   test.each(CASES)('%s', (_name, data, expected) => {
     expect([...personalSignMessageBytes(data)]).toEqual([...expected]);
   });

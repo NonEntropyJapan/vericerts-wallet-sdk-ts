@@ -21,7 +21,7 @@ import type { DashboardLogEntry } from './types.js';
 
 /**
  * Dashboard ログの `presentation` エントリ種別。
- * `vericerts-wallet-sdk/gdpr` から公開する契約。値を変えると利用側の保存データ／出力と食い違う。
+ * `@vericerts/vericerts-wallet-sdk/gdpr` から公開する契約。値を変えると利用側の保存データ／出力と食い違う。
  */
 export const PRESENTATION_LOG_TYPE = 'presentation' as const;
 

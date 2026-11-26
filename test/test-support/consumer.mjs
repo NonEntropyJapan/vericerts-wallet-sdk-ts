@@ -10,7 +10,7 @@ import {
   resolveDidWebVh,
   verifyCredential,
   verifyPresentation,
-} from 'vericerts-wallet-sdk';
+} from '@vericerts/vericerts-wallet-sdk';
 import { verifyMaterials } from './verify.mjs';
 
 verifyMaterials();

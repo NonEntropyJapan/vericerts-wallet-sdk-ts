@@ -1,7 +1,7 @@
 /**
  * Wallet ファサードの `receiveCredential`統合テスト。
  *
- * `receiveCredential` は v1.0 で experimental モジュール関数（`vericerts-wallet-sdk/experimental`）
+ * `receiveCredential` は v1.0 で experimental モジュール関数（`@vericerts/vericerts-wallet-sdk/experimental`）
  * から昇格した `Wallet` メソッドで、`signer` / `holderDid` / `keyId` をアクティブペルソナから
  * 自動解決する点が兄弟の `receivePID(offerURI, opts?)` と同じパターンである。
  *

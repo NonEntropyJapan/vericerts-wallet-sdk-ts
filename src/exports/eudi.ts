@@ -1,6 +1,6 @@
 /**
  * `Wallet.presentPID` の第 3 引数に渡すオプション。メソッドと同じく試験提供中（`@experimental`）。
- * `PresentOptions` は `vericerts-wallet-sdk` と `vericerts-wallet-sdk/eudi` のどちらからも
+ * `PresentOptions` は `@vericerts/vericerts-wallet-sdk` と `@vericerts/vericerts-wallet-sdk/eudi` のどちらからも
  * `import type` できる。
  */
 export type { PresentOptions } from '../internal/auth/eudi/presentation/index.js';

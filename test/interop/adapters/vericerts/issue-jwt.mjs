@@ -7,7 +7,10 @@
 // ヘッダの `kid` からのみ解決し、`kid` が無いと `missing public key`（HTTP 400）で拒否する。
 // VCDM 1.1 §6.3.1 では `kid` は MAY のため、`kid` を省くこと自体は規格違反ではない。
 
-import { createPrivateKeySigner, issueCredential } from 'vericerts-wallet-sdk/credential';
+import {
+  createPrivateKeySigner,
+  issueCredential,
+} from '@vericerts/vericerts-wallet-sdk/credential';
 
 /**
  * フィクスチャの固定鍵から、`kid` 付きの `CredentialSigner` を生成する。

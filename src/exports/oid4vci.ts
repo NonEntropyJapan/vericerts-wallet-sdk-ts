@@ -1,5 +1,5 @@
 /**
- * 用途別 entry `vericerts-wallet-sdk/oid4vci`。
+ * 用途別 entry `@vericerts/vericerts-wallet-sdk/oid4vci`。
  *
  * - サブパス専用バレル。`index.ts` には載せない（メインバレルの公開面を変えないため）。
  * - `reuse` 定義と OID4VCI 受領用 `add` 定義・付随型を公開する。

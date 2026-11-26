@@ -1,5 +1,5 @@
 /**
- * Passkey による UserOperation 署名の公開契約。`vericerts-wallet-sdk/aa` から引いた公開面だけで、
+ * Passkey による UserOperation 署名の公開契約。`@vericerts/vericerts-wallet-sdk/aa` から引いた公開面だけで、
  * 組込先が UserOperation と WebAuthn assertion を組み立てて署名 envelope を得られることを固定する。
  * 内部パス経由では「公開したつもりの面」が通っているかを確かめられないので `../../aa.js` を使う。
  * ABI の参照実装とのバイト一致・往復・DER の各種異常は内部テスト（`internal/aa/__tests__/webauthn-signature.test.ts`）
@@ -83,7 +83,7 @@ function codeOf(run: () => unknown): string | undefined {
   throw new Error('例外が発生しなかった');
 }
 
-describe('vericerts-wallet-sdk/aa: Passkey UserOperation 署名の公開契約', () => {
+describe('@vericerts/vericerts-wallet-sdk/aa: Passkey UserOperation 署名の公開契約', () => {
   test('ENTRY_POINT_V07_ADDRESS は EntryPoint v0.7 の決定論的アドレスである', () => {
     expect(ENTRY_POINT_V07_ADDRESS).toBe('0x0000000071727De22E5E9d8BAf0edAc6f37da032');
   });

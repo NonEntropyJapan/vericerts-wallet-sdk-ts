@@ -1,5 +1,5 @@
 {
-  "name": "vericerts-wallet-sdk",
+  "name": "@vericerts/vericerts-wallet-sdk",
   "version": "0.1.0",
   "type": "module",
   "description": "VeriCerts Wallet SDK — did:key/did:ethr, VC/VP (SD-JWT / JWT-VC), OID4VCI/OID4VP を扱うウォレット SDK",

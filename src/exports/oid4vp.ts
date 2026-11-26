@@ -1,5 +1,5 @@
 /**
- * 用途別 entry `vericerts-wallet-sdk/oid4vp`。
+ * 用途別 entry `@vericerts/vericerts-wallet-sdk/oid4vp`。
  *
  * サブパス専用バレル。利用契約レジストリでこの entry に割り当てられた定義だけを公開する。
  * `createPresentation` は解析済み要求を受け取る関数で、root の `Wallet.createPresentation`

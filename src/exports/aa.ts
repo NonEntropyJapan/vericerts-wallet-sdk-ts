@@ -1,5 +1,5 @@
 /**
- * 用途別 entry `vericerts-wallet-sdk/aa`。
+ * 用途別 entry `@vericerts/vericerts-wallet-sdk/aa`。
  *
  * サブパス専用バレル。利用契約レジストリでこの entry に割り当てられた、Passkey による
  * UserOperation 署名の面だけを公開する。`index.ts` には本バレルを載せない。

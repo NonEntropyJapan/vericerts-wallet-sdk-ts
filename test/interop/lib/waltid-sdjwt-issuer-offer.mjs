@@ -8,7 +8,7 @@
 // `run-waltid-sdjwt.mjs` を Linterly の 1 ファイル 300 行上限に収めるために分けている。
 
 import { readFileSync } from 'node:fs';
-import { createPrivateKeySigner } from 'vericerts-wallet-sdk/credential';
+import { createPrivateKeySigner } from '@vericerts/vericerts-wallet-sdk/credential';
 import { fetchJson, issuerAdminBaseUrl } from './waltid-admin-api.mjs';
 
 const ISSUER_FIXTURE = JSON.parse(

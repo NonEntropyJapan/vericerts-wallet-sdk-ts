@@ -1,7 +1,7 @@
 /**
  * Credential の発行・提示・検証に使う公開 API。
- * `vericerts-wallet-sdk` と `vericerts-wallet-sdk/credential` から import できる。
- * 試験提供中の Credential API は `vericerts-wallet-sdk/experimental` から利用できる。
+ * `@vericerts/vericerts-wallet-sdk` と `@vericerts/vericerts-wallet-sdk/credential` から import できる。
+ * 試験提供中の Credential API は `@vericerts/vericerts-wallet-sdk/experimental` から利用できる。
  */
 
 export type {

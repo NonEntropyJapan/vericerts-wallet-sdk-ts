@@ -100,7 +100,7 @@ for (const binary of ['node', 'bun']) {
     rmSync(copy, { recursive: true, force: true });
     cpSync(f.sdk, copy, { recursive: true });
     f.runtime(
-      `import {createRequire} from 'node:module';import 'node:fs';import 'dep';const req=createRequire(import.meta.url);if(req('dep').value!==1)throw new Error('wrong CJS value');if(req('./sdk-copy/dist/index.cjs').value!==1)throw new Error('wrong copy');await import('vericerts-wallet-sdk');`,
+      `import {createRequire} from 'node:module';import 'node:fs';import 'dep';const req=createRequire(import.meta.url);if(req('dep').value!==1)throw new Error('wrong CJS value');if(req('./sdk-copy/dist/index.cjs').value!==1)throw new Error('wrong copy');await import('@vericerts/vericerts-wallet-sdk');`,
     );
     expect(() =>
       run(binary, [binary === 'bun' ? 'runtime-bun.mjs' : 'runtime-node.mjs'], f.consumer),
@@ -158,7 +158,7 @@ for (const binary of ['node', 'bun']) {
 
 test('publisher metadata normalizes npm10 object/npm11 map/array and rejects wrong or extra artifacts', () => {
   const artifact = {
-    name: 'vericerts-wallet-sdk',
+    name: '@vericerts/vericerts-wallet-sdk',
     version: '0.1.0',
     integrity: 'sha512-abc',
     bytes: 123,

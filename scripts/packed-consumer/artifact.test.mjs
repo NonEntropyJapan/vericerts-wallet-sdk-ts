@@ -112,7 +112,7 @@ test('actual npm dry-run uses the verified tgz without executing build/publish l
   const f = setup();
   const before = readFileSync(f.tarball);
   const output = JSON.parse(dryRunRelease(f.options));
-  expect(output['vericerts-wallet-sdk'].name).toBe('vericerts-wallet-sdk');
+  expect(output['@vericerts/vericerts-wallet-sdk'].name).toBe('@vericerts/vericerts-wallet-sdk');
   expect(readFileSync(f.tarball)).toEqual(before);
 });
 
@@ -152,7 +152,7 @@ test('dry-run CLI works without a producer package, dependencies, Git or produce
     { NODE_PATH: '/producer/node_modules', NODE_OPTIONS: '--require=/producer/private.cjs' },
   );
   expect(output).toContain('private validation only');
-  expect(output).toContain('vericerts-wallet-sdk@0.0.0');
+  expect(output).toContain('@vericerts/vericerts-wallet-sdk@0.0.0');
   expect(output).toContain('Planned Git tag v0.0.0');
   expect(output).toContain(`tarball SHA-256 ${f.receipt.artifact.sha256}`);
 });
