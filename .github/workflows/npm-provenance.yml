@@ -1,0 +1,109 @@
+name: Sign npm release candidate
+on:
+  workflow_dispatch:
+    inputs:
+      artifact_id:
+        description: Validated candidate artifact ID from SDK validation on main
+        required: true
+        type: string
+      tarball_sha256:
+        description: SHA-256 of the tarball approved in downstream consumer tests
+        required: true
+        type: string
+
+permissions: {}
+
+jobs:
+  verify:
+    if: github.repository_id == '1471489610' && github.ref == 'refs/heads/main' && github.ref_protected
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+    outputs:
+      run: ${{ steps.producer.outputs.run }}
+      filename: ${{ steps.subject.outputs.filename }}
+      purl: ${{ steps.subject.outputs.purl }}
+      sha512: ${{ steps.subject.outputs.sha512 }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+      - id: producer
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CANDIDATE_ID: ${{ inputs.artifact_id }}
+        run: node scripts/npm-release/candidate.mjs producer
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ steps.producer.outputs.run }}
+          artifact-ids: ${{ inputs.artifact_id }}
+          merge-multiple: true
+          path: ${{ runner.temp }}/candidate
+      - id: subject
+        env:
+          REVIEWED_SHA256: ${{ inputs.tarball_sha256 }}
+        run: node scripts/npm-release/candidate.mjs subject
+
+  sign:
+    needs: verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ needs.verify.outputs.run }}
+          artifact-ids: ${{ inputs.artifact_id }}
+          merge-multiple: true
+          path: ${{ runner.temp }}/candidate
+      - name: Prepare the exact tarball for signing
+        env:
+          FILENAME: ${{ needs.verify.outputs.filename }}
+          SHA512: ${{ needs.verify.outputs.sha512 }}
+        run: |
+          mkdir "$RUNNER_TEMP/npm-release"
+          cp "$RUNNER_TEMP/candidate/$FILENAME" "$RUNNER_TEMP/npm-release/$FILENAME"
+          cd "$RUNNER_TEMP/npm-release"
+          printf '%s  %s\n' "$SHA512" "$FILENAME" | sha512sum --check --strict
+      - id: attest
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-name: ${{ needs.verify.outputs.purl }}
+          subject-digest: sha512:${{ needs.verify.outputs.sha512 }}
+          create-storage-record: false
+      - name: Verify signer, source and tarball
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FILENAME: ${{ needs.verify.outputs.filename }}
+          BUNDLE: ${{ steps.attest.outputs.bundle-path }}
+          CI_RUN: ${{ needs.verify.outputs.run }}
+          ARTIFACT_ID: ${{ inputs.artifact_id }}
+          REVIEWED_SHA256: ${{ inputs.tarball_sha256 }}
+        run: |
+          cd "$RUNNER_TEMP/npm-release"
+          cp "$BUNDLE" provenance.json
+          gh attestation verify "$FILENAME" --bundle provenance.json --digest-alg sha512 \
+            --repo "$GITHUB_REPOSITORY" --source-ref refs/heads/main --source-digest "$GITHUB_SHA" \
+            --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/npm-provenance.yml" \
+            --deny-self-hosted-runners
+          printf 'Signed `%s` from [CI run %s](%s/%s/actions/runs/%s), artifact `%s`. SHA-256 `%s`.\n' \
+            "$FILENAME" "$CI_RUN" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" \
+            "$CI_RUN" "$ARTIFACT_ID" "$REVIEWED_SHA256" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: npm-release-${{ github.sha }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/npm-release/
+          if-no-files-found: error
+          retention-days: 7
