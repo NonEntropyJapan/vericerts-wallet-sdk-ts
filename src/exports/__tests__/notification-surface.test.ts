@@ -5,7 +5,7 @@
  * ProcessCredentialNotification（Issuer 側）は `internal/credential/notification/` に実装済みで、
  * 内部バレル `internal/credential/index.ts` からも再エクスポートされていた。しかし
  * `src/exports/*.ts` のどの公開バレルにも載っていなかったため、SDK 利用者は
- * `import { subscribeCredentialNotification } from 'vericerts-wallet-sdk'` すらできず、
+ * `import { subscribeCredentialNotification } from '@vericerts/vericerts-wallet-sdk'` すらできず、
  * 実装があるのに到達不能という状態だった。
  *
  * これらのソースは `@experimental` / `@stable` / `@internal` のいずれの印も持たない。

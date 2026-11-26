@@ -41,7 +41,7 @@ export type { ReceivedVerifiableCredential };
 /**
  * `Wallet.receiveCredential` のオプション。
  *
- * モジュール関数版 `receiveCredential`（`vericerts-wallet-sdk/experimental`。`@deprecated`）が使う
+ * モジュール関数版 `receiveCredential`（`@vericerts/vericerts-wallet-sdk/experimental`。`@deprecated`）が使う
  * `ReceiveCredentialDeps` から、アクティブペルソナで解決できる `signer` / `holderDid` / `keyId` を
  * 除いたもの。`receivePID(offerURI, opts?)` と同様に、これらの値は Wallet が提供する。
  * `authorize` / `clientId` / `redirectUri` は従来どおり `authorization_code` grant の Offer でのみ

@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "vericerts-wallet-sdk",
+      "name": "@vericerts/vericerts-wallet-sdk",
       "dependencies": {
         "@noble/curves": "^2.2.0",
         "@noble/hashes": "^2.2.0",

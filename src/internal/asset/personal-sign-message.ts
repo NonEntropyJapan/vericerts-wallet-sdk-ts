@@ -7,7 +7,7 @@
  * - 拡張の承認前の SIWE 判定
  * - 拡張の承認ダイアログでのメッセージ表示
  *
- * `vericerts-wallet-sdk/asset` はこの実装を警告付きの公開 API としてラップする。SDK 内部と、現状
+ * `@vericerts/vericerts-wallet-sdk/asset` はこの実装を警告付きの公開 API としてラップする。SDK 内部と、現状
  * `vericerts-wallet-sdk/asset-personal-sign-message` の alias を使う extension は素の実装を参照する（公開 entry への移行は）。
  *
  * 依存は `evm-format.ts`（hex 形式判定）と `hex-codec.ts` のみ（ethers / viem を引かない）。

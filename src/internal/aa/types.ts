@@ -11,11 +11,11 @@
 
 /**
  * ERC-4337 EntryPoint v0.7 のコントラクトアドレス（全チェーン共通の決定論的アドレス）。
- * `vericerts-wallet-sdk/aa` から公開する契約。
+ * `@vericerts/vericerts-wallet-sdk/aa` から公開する契約。
  */
 export const ENTRY_POINT_V07_ADDRESS = '0x0000000071727De22E5E9d8BAf0edAc6f37da032' as const;
 
-/** `0x` プレフィックス付き hex 文字列。`vericerts-wallet-sdk/aa` から公開する契約。 */
+/** `0x` プレフィックス付き hex 文字列。`@vericerts/vericerts-wallet-sdk/aa` から公開する契約。 */
 export type Hex = `0x${string}`;
 
 /**
@@ -25,7 +25,7 @@ export type Hex = `0x${string}`;
  * `accountGasLimits` / `gasFees` にパックするが、SDK 上は可読性のため unpacked で保持する。UserOpHash
  * 計算は viem が内部で packed 表現へ変換して行い（user-operation.ts）、Bundler JSON-RPC 送信は
  * unpacked v0.7 スキーマの hex 表現で行う（bundler.ts）。
- * `vericerts-wallet-sdk/aa` から公開する契約。
+ * `@vericerts/vericerts-wallet-sdk/aa` から公開する契約。
  * SDK が任意の paymaster 系フィールドを読むときは、このオブジェクト自身のプロパティを使う。
  * 継承したプロパティは getter も含めて未指定として扱う。
  */

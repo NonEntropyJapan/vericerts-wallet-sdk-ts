@@ -1,5 +1,5 @@
 /**
- * Dashboard ログの保存 layout とエクスポート MIME の公開契約。`vericerts-wallet-sdk/gdpr` から
+ * Dashboard ログの保存 layout とエクスポート MIME の公開契約。`@vericerts/vericerts-wallet-sdk/gdpr` から
  * 引いた公開面だけで、組込先が `DashboardLogStorage` の保存先を直接読み書きするときに頼るキーの形を固定する。
  * 内部パス経由では「公開したつもりの面」が通っているかを確かめられないので `../../gdpr.js` を使う。
  */

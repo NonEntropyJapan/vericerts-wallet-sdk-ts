@@ -12,9 +12,9 @@ import {
   resolveClockSkewSeconds,
   type VerifiableCredential,
   verifyWithJwk,
-} from 'vericerts-wallet-sdk/credential';
-import type { PresentationRequestOptions } from 'vericerts-wallet-sdk/experimental';
-import type { PublicKeyJwk } from 'vericerts-wallet-sdk/identity';
+} from '@vericerts/vericerts-wallet-sdk/credential';
+import type { PresentationRequestOptions } from '@vericerts/vericerts-wallet-sdk/experimental';
+import type { PublicKeyJwk } from '@vericerts/vericerts-wallet-sdk/identity';
 import {
   type CreatedPresentation,
   type CreatePresentationOptions,
@@ -28,7 +28,7 @@ import {
   type PresentationMetadata,
   type PresentationRequest,
   type QueryableCredential,
-} from 'vericerts-wallet-sdk/oid4vp';
+} from '@vericerts/vericerts-wallet-sdk/oid4vp';
 
 const claim: DcqlClaim = { path: ['credentialSubject', 'name'], values: ['Bob'] };
 const meta: DcqlMeta = { type_values: [['VerifiableCredential']] };

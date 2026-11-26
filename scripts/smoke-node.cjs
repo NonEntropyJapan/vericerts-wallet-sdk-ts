@@ -32,9 +32,9 @@ if (missing.length > 0) {
 // `@experimental` はメインバレルに載せず、サブパス経由でのみ公開する。
 // 相対パスではなくパッケージ名で require し、exports マップの `./experimental` が
 // Node の CJS 解決で実際に引けることまで確かめる（自己参照解決）。
-const experimental = require('vericerts-wallet-sdk/experimental');
-const experimentalEudi = require('vericerts-wallet-sdk/experimental/eudi');
-const experimentalOid4vci = require('vericerts-wallet-sdk/experimental/oid4vci');
+const experimental = require('@vericerts/vericerts-wallet-sdk/experimental');
+const experimentalEudi = require('@vericerts/vericerts-wallet-sdk/experimental/eudi');
+const experimentalOid4vci = require('@vericerts/vericerts-wallet-sdk/experimental/oid4vci');
 
 for (const name of [
   'presentEAACredential',
@@ -118,7 +118,7 @@ if (thrown.constructor !== sdk.VericertsError) {
 // `./otel` サブパスの解決と公開シンボル。`@opentelemetry/*` は optional peer のため、
 // 共有バンドル（メインの `require` が読む）にインライン展開されておらず、`./otel` 側は裸 `require`
 // で peer を引くこと。
-const otel = require('vericerts-wallet-sdk/otel');
+const otel = require('@vericerts/vericerts-wallet-sdk/otel');
 const requiredOtelExports = ['createOtelLogger', 'createOtelMetrics', 'createOtelTracer'];
 const missingOtel = requiredOtelExports.filter((name) => typeof otel[name] !== 'function');
 if (missingOtel.length > 0) {
@@ -215,7 +215,7 @@ const PURPOSE_ENTRY_FAILURES = {
 
 async function checkPurposeEntries() {
   for (const name of PURPOSE_ENTRIES) {
-    const entry = require(`vericerts-wallet-sdk/${name}`);
+    const entry = require(`@vericerts/vericerts-wallet-sdk/${name}`);
     for (const symbol of PURPOSE_ENTRY_SYMBOLS[name]) {
       assert.ok(
         entry[symbol] !== undefined && entry[symbol] === sdk[symbol],
@@ -237,7 +237,7 @@ async function checkPurposeEntries() {
 }
 
 // サブパス専用の ./aa。公開値が引けて、メインバレルへ流れていないこと。
-const aaEntry = require('vericerts-wallet-sdk/aa');
+const aaEntry = require('@vericerts/vericerts-wallet-sdk/aa');
 assert.equal(typeof aaEntry.signUserOpWithPasskey, 'function');
 assert.equal(aaEntry.ENTRY_POINT_V07_ADDRESS, '0x0000000071727De22E5E9d8BAf0edAc6f37da032');
 for (const name of ['ENTRY_POINT_V07_ADDRESS', 'signUserOpWithPasskey']) {
@@ -246,8 +246,8 @@ for (const name of ['ENTRY_POINT_V07_ADDRESS', 'signUserOpWithPasskey']) {
 
 // 配布 CJS の追加公開値と共有 DCQL 予算を確認する。
 function checkVcOid4vp() {
-  const credentialEntry = require('vericerts-wallet-sdk/credential');
-  const oid4vpEntry = require('vericerts-wallet-sdk/oid4vp');
+  const credentialEntry = require('@vericerts/vericerts-wallet-sdk/credential');
+  const oid4vpEntry = require('@vericerts/vericerts-wallet-sdk/oid4vp');
   for (const name of [
     'assertVerifiableCredentialV2Members',
     'assertTimeClaims',

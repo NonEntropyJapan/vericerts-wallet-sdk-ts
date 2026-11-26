@@ -76,7 +76,7 @@ export function runPackageInterop({
       flag: 'wx',
     });
     execute('npm', [...installArgs, artifact.tarball], consumer, { stdio: 'inherit' });
-    const sdk = path.join(consumer, 'node_modules/vericerts-wallet-sdk');
+    const sdk = path.join(consumer, 'node_modules/@vericerts/vericerts-wallet-sdk');
     assert.equal(realpathSync(sdk), sdk, 'Interop installed SDK is linked outside the consumer');
     assert.equal(existsSync(path.join(sdk, 'src')), false, 'Interop requires the packaged SDK');
     execute(

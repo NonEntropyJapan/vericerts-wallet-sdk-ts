@@ -61,7 +61,7 @@ describe('npm package contract', () => {
   });
 
   test('declares publish metadata required by the npm registry', () => {
-    expect(pkg.name).toBe('vericerts-wallet-sdk');
+    expect(pkg.name).toBe('@vericerts/vericerts-wallet-sdk');
     expect(pkg.repository).toBeTruthy();
     expect(pkg.publishConfig.access).toBe('public');
   });
@@ -85,7 +85,7 @@ describe('npm package contract', () => {
 });
 
 /**
- * `@experimental` サブパス（`vericerts-wallet-sdk/experimental`）の契約を固定する回帰テスト。
+ * `@experimental` サブパス（`@vericerts/vericerts-wallet-sdk/experimental`）の契約を固定する回帰テスト。
  *
  * 明示的な `@experimental` 宣言は専用サブパスで公開する。
  * メインバレルへ再び載せる変更（`src/index.ts` への `export *` 追加など）をここで落とす。

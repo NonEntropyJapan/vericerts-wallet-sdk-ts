@@ -1,5 +1,5 @@
 /**
- * 用途別 entry `vericerts-wallet-sdk/common`。
+ * 用途別 entry `@vericerts/vericerts-wallet-sdk/common`。
  *
  * - サブパス専用バレル。`index.ts` には載せない（メインバレルの公開面を変えないため）。
  * - 横断 API は experimental としてこのサブパスに限って公開する。

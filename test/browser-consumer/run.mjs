@@ -8,7 +8,7 @@ import { browserBoundary } from './boundary.mjs';
 import { checkBrowserBoundary } from './boundary-regression.mjs';
 
 const withOtel = process.argv.includes('--otel');
-const sdkRequire = createRequire(import.meta.resolve('vericerts-wallet-sdk'));
+const sdkRequire = createRequire(import.meta.resolve('@vericerts/vericerts-wallet-sdk'));
 for (const peer of ['@opentelemetry/api', '@opentelemetry/api-logs']) {
   if (withOtel) {
     sdkRequire.resolve(peer);

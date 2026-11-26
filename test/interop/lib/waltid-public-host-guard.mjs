@@ -5,7 +5,7 @@
 // `skipped` にするための判定（同梱構成は FQDN を使うため、通常は該当しない）。
 // 経緯は `run-waltid-protocol.mjs` の冒頭コメント。
 
-import { isPublicHttpsUrl } from 'vericerts-wallet-sdk/common';
+import { isPublicHttpsUrl } from '@vericerts/vericerts-wallet-sdk/common';
 
 /** `parseAuthorizationRequest` が非公開 `response_uri` を拒否するときの `VericertsError.context.reason`。 */
 export const NON_PUBLIC_RESPONSE_URI_REASON = 'non_public_response_uri';

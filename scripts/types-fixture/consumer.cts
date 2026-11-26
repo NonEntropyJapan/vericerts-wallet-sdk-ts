@@ -1,16 +1,16 @@
 // CommonJS 利用者の tsc が exports マップの `types` 条件で型を解決できることを確かめるフィクスチャ。
 // scripts/smoke-types.mjs が Node16 / NodeNext / bundler の適用可能な組合せで型検査する。パッケージ名で import するため
 // 自己参照解決（package.json の exports）を通る。entry を増やしたらここにも足すこと。
-import * as main from 'vericerts-wallet-sdk';
-import * as aa from 'vericerts-wallet-sdk/aa';
+import * as main from '@vericerts/vericerts-wallet-sdk';
+import * as aa from '@vericerts/vericerts-wallet-sdk/aa';
 import {
   ENTRY_POINT_V07_ADDRESS,
   type Hex,
   signUserOpWithPasskey,
   type UserOperationV07,
   type WebAuthnAssertion,
-} from 'vericerts-wallet-sdk/aa';
-import * as asset from 'vericerts-wallet-sdk/asset';
+} from '@vericerts/vericerts-wallet-sdk/aa';
+import * as asset from '@vericerts/vericerts-wallet-sdk/asset';
 import {
   assertPersonalSignAllowed,
   isHexString,
@@ -19,32 +19,32 @@ import {
   personalSignMessageBytes,
   type StrictSiweFields,
   signSIWE,
-} from 'vericerts-wallet-sdk/asset';
-import type { NonceStore, WellKnownJsonFailure } from 'vericerts-wallet-sdk/common';
-import * as common from 'vericerts-wallet-sdk/common';
-import * as credential from 'vericerts-wallet-sdk/credential';
-import type { ReceivedIssuerTrust } from 'vericerts-wallet-sdk/eudi';
-import * as eudi from 'vericerts-wallet-sdk/eudi';
-import * as experimental from 'vericerts-wallet-sdk/experimental';
-import type { PresentDeps, ReceiveDeps } from 'vericerts-wallet-sdk/experimental/eudi';
-import * as experimentalEudi from 'vericerts-wallet-sdk/experimental/eudi';
-import type { IssuerEndpoints } from 'vericerts-wallet-sdk/experimental/oid4vci';
-import * as experimentalOid4vci from 'vericerts-wallet-sdk/experimental/oid4vci';
-import * as gdpr from 'vericerts-wallet-sdk/gdpr';
+} from '@vericerts/vericerts-wallet-sdk/asset';
+import type { NonceStore, WellKnownJsonFailure } from '@vericerts/vericerts-wallet-sdk/common';
+import * as common from '@vericerts/vericerts-wallet-sdk/common';
+import * as credential from '@vericerts/vericerts-wallet-sdk/credential';
+import type { ReceivedIssuerTrust } from '@vericerts/vericerts-wallet-sdk/eudi';
+import * as eudi from '@vericerts/vericerts-wallet-sdk/eudi';
+import * as experimental from '@vericerts/vericerts-wallet-sdk/experimental';
+import type { PresentDeps, ReceiveDeps } from '@vericerts/vericerts-wallet-sdk/experimental/eudi';
+import * as experimentalEudi from '@vericerts/vericerts-wallet-sdk/experimental/eudi';
+import type { IssuerEndpoints } from '@vericerts/vericerts-wallet-sdk/experimental/oid4vci';
+import * as experimentalOid4vci from '@vericerts/vericerts-wallet-sdk/experimental/oid4vci';
+import * as gdpr from '@vericerts/vericerts-wallet-sdk/gdpr';
 import {
   DASHBOARD_LOG_EXPORT_MIME,
   DASHBOARD_LOG_KEY_PREFIX,
   DASHBOARD_LOG_TAIL_ANCHOR_KEY,
   PRESENTATION_LOG_TYPE,
-} from 'vericerts-wallet-sdk/gdpr';
+} from '@vericerts/vericerts-wallet-sdk/gdpr';
 import type {
   DelegatedSigner,
   DidResolverLike,
   PrivateKeyJwk,
-} from 'vericerts-wallet-sdk/identity';
-import * as identity from 'vericerts-wallet-sdk/identity';
-import type { Storage } from 'vericerts-wallet-sdk/keymanager';
-import * as keymanager from 'vericerts-wallet-sdk/keymanager';
+} from '@vericerts/vericerts-wallet-sdk/identity';
+import * as identity from '@vericerts/vericerts-wallet-sdk/identity';
+import type { Storage } from '@vericerts/vericerts-wallet-sdk/keymanager';
+import * as keymanager from '@vericerts/vericerts-wallet-sdk/keymanager';
 import type {
   AuthorizationCodeGrant,
   CredentialAlg,
@@ -71,14 +71,14 @@ import type {
   ResolvedTokenEndpoint,
   TokenResponse,
   TxCode,
-} from 'vericerts-wallet-sdk/oid4vci';
-import * as oid4vci from 'vericerts-wallet-sdk/oid4vci';
-import type { DcqlQuery } from 'vericerts-wallet-sdk/oid4vp';
-import * as oid4vp from 'vericerts-wallet-sdk/oid4vp';
-import * as otel from 'vericerts-wallet-sdk/otel';
-import type { PersonaStorage } from 'vericerts-wallet-sdk/persona';
-import * as persona from 'vericerts-wallet-sdk/persona';
-import * as trust from 'vericerts-wallet-sdk/trust';
+} from '@vericerts/vericerts-wallet-sdk/oid4vci';
+import * as oid4vci from '@vericerts/vericerts-wallet-sdk/oid4vci';
+import type { DcqlQuery } from '@vericerts/vericerts-wallet-sdk/oid4vp';
+import * as oid4vp from '@vericerts/vericerts-wallet-sdk/oid4vp';
+import * as otel from '@vericerts/vericerts-wallet-sdk/otel';
+import type { PersonaStorage } from '@vericerts/vericerts-wallet-sdk/persona';
+import * as persona from '@vericerts/vericerts-wallet-sdk/persona';
+import * as trust from '@vericerts/vericerts-wallet-sdk/trust';
 
 // 型のみのシンボルが d.ts に載り、サブパスから解決できること（実行時に消えるため import type で検査する）。
 export type ProtocolEntryTypes = [

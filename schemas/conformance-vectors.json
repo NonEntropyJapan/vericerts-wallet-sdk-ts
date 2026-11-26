@@ -1,5 +1,5 @@
 {
-  "generatedFrom": "vericerts-wallet-sdk@0.1.0",
+  "generatedFrom": "@vericerts/vericerts-wallet-sdk@0.1.0",
   "cases": [
     {
       "id": "did-jwk-create-resolve-roundtrip-P-256",

@@ -1,6 +1,6 @@
 /**
  * PAR の関数 pushAuthorizationRequest と入力・応答型は実験的な API として
- * vericerts-wallet-sdk/experimental から公開する。公開入口から型を参照し、関数を実際に呼び出す。
+ * @vericerts/vericerts-wallet-sdk/experimental から公開する。公開入口から型を参照し、関数を実際に呼び出す。
  */
 
 import { describe, expect, test } from 'bun:test';

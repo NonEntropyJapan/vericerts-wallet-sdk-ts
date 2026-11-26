@@ -52,7 +52,7 @@ consumer_dir=$(mktemp -d)
 cp -R /path/to/received-sdk-test-support "$consumer_dir/materials"
 cd "$consumer_dir"
 npm init -y
-npm install --omit=peer --ignore-scripts /path/to/vericerts-wallet-sdk-0.1.0.tgz typescript@5.9.3
+npm install --omit=peer --ignore-scripts /path/to/vericerts-vericerts-wallet-sdk-0.1.0.tgz typescript@5.9.3
 node materials/verify.mjs
 node materials/consumer.mjs
 node materials/tools-consumer.mjs

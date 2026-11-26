@@ -6,8 +6,8 @@ import {
   issuerSigner,
   VCT,
   verifySdJwt,
-} from 'vericerts-wallet-sdk';
-import { ChainVerificationCache } from 'vericerts-wallet-sdk/experimental';
+} from '@vericerts/vericerts-wallet-sdk';
+import { ChainVerificationCache } from '@vericerts/vericerts-wallet-sdk/experimental';
 
 // Expected JWK coordinates and signature captured before the browser fix.
 const issuer = [

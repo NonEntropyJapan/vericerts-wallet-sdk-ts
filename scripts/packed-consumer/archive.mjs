@@ -33,7 +33,7 @@ function targets(value) {
 }
 
 function checkFiles(root, pkg, files) {
-  assert.equal(pkg.name, 'vericerts-wallet-sdk', 'Unexpected artifact package');
+  assert.equal(pkg.name, '@vericerts/vericerts-wallet-sdk', 'Unexpected artifact package');
   assert.equal(pkg.license, 'Apache-2.0');
   assert.match(pkg.version, /^\d+\.\d+\.\d+(?:-[\w.-]+)?$/);
   assert.equal(pkg.engines?.node, '>=20.19.0');
@@ -48,7 +48,8 @@ function checkFiles(root, pkg, files) {
   assert.ok(readFileSync(join(root, 'NOTICE'), 'utf8').trim().length > 0, 'Empty NOTICE');
   const bom = JSON.parse(readFileSync(join(root, 'sbom/sdk.cdx.json'), 'utf8'));
   assert.equal(bom.bomFormat, 'CycloneDX');
-  assert.equal(bom.metadata?.component?.name, pkg.name);
+  const component = bom.metadata?.component;
+  assert.equal([component?.group, component?.name].filter(Boolean).join('/'), pkg.name);
   assert.equal(bom.metadata?.component?.version, pkg.version);
   assert.ok(bom.components?.length && bom.dependencies?.length, 'Incomplete SBOM');
   assert.ok(pkg.exports && Object.keys(pkg.exports).length > 1, 'Missing exports');

@@ -12,7 +12,7 @@ import {
   createPrivateKeySigner as defaultCreatePrivateKeySigner,
   issueCredential as defaultIssueCredential,
   verifyCredential as defaultVerifyCredential,
-} from 'vericerts-wallet-sdk/credential';
+} from '@vericerts/vericerts-wallet-sdk/credential';
 import { isMainModule } from '../../scripts/lib/is-main-module.mjs';
 
 /**

@@ -1,9 +1,9 @@
 // SDK が名前を公開しない RPC 契約の 3 型（レジストリの `derive` 分類）を、公開済みの
 // `EvmCallSource` から導出できること、導出結果が extension の使う構造型と一致することを検査する consumer。
-// 公開 entry（`vericerts-wallet-sdk/asset`）以外は import しない。
+// 公開 entry（`@vericerts/vericerts-wallet-sdk/asset`）以外は import しない。
 //   (a) 元型の構造を literal で書き下し、導出型と双方向に代入する（SDK 側で構造が変われば落ちる）。
 //   (b) 導出が any / never に潰れると (a) は素通りするので、潰れていないことを別に固定する。
-import type { EvmCallSource } from 'vericerts-wallet-sdk/asset';
+import type { EvmCallSource } from '@vericerts/vericerts-wallet-sdk/asset';
 
 type EvmSendRequest = Parameters<EvmCallSource['send']>[0];
 type EvmTxEstimate = Parameters<EvmCallSource['fetchTxParams']>[2];

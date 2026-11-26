@@ -37,7 +37,7 @@ import { trimTrailingSlashes } from '../../primitives/trim-trailing-slashes.js';
 
 /**
  * well-known JSON 取得の失敗理由を呼び出し側のエラーコードへ正規化するファクトリ。
- * `vericerts-wallet-sdk/common` の公開型。pre-1.0 は entry 単位で experimental と扱う。
+ * `@vericerts/vericerts-wallet-sdk/common` の公開型。pre-1.0 は entry 単位で experimental と扱う。
  */
 export type WellKnownJsonFailure = (reason: string) => VericertsError;
 

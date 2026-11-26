@@ -5,7 +5,7 @@
  * `evidence` / `termsOfUse` / Credential Chain の型と関数は公開されていなかった。
  * `VerifiableCredential` 型がこれらのフィールドを公開しているのに解釈する API が無い、という
  * 非対称を解消したことを固定する。これらは `@experimental` のため サブパスバレル
- * `src/exports/experimental.ts`（`vericerts-wallet-sdk/experimental`）へ移した。メインバレル
+ * `src/exports/experimental.ts`（`@vericerts/vericerts-wallet-sdk/experimental`）へ移した。メインバレル
  * （`src/index.ts`）に載っていないことも併せて固定する。
  */
 

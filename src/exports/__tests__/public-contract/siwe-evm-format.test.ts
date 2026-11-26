@@ -30,7 +30,7 @@ const SIWE = [
 ].join('\n');
 const toHex = (text: string) => `0x${Buffer.from(text).toString('hex')}`;
 
-describe('公開契約: SIWE（vericerts-wallet-sdk/asset）', () => {
+describe('公開契約: SIWE（@vericerts/vericerts-wallet-sdk/asset）', () => {
   test('parseSiweStrict は承認前の経路（hex 入力）でも素の SIWE と同じフィールドを返す', () => {
     const plain = parseSiweStrict(SIWE);
     expect(plain?.address).toBe(ADDRESS);
@@ -89,7 +89,7 @@ describe('公開契約: SIWE（vericerts-wallet-sdk/asset）', () => {
   });
 });
 
-describe('公開契約: EVM 形式検証（vericerts-wallet-sdk/asset）', () => {
+describe('公開契約: EVM 形式検証（@vericerts/vericerts-wallet-sdk/asset）', () => {
   test('isHexString は 0x のみ・奇数桁・0X・allowEmpty の切替を区別する', () => {
     expect(isHexString('0x')).toBe(false);
     expect(isHexString('0x', { allowEmpty: true })).toBe(true);

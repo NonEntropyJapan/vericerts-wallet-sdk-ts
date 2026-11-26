@@ -15,8 +15,11 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
-import { didDocumentToVerifierKey, verifyCredential } from 'vericerts-wallet-sdk/credential';
-import { createDidKey, resolveDidKey } from 'vericerts-wallet-sdk/identity';
+import {
+  didDocumentToVerifierKey,
+  verifyCredential,
+} from '@vericerts/vericerts-wallet-sdk/credential';
+import { createDidKey, resolveDidKey } from '@vericerts/vericerts-wallet-sdk/identity';
 import {
   didKeyVerificationMethod,
   issueJwtVc as issueVeramoJwtVc,

@@ -10,7 +10,7 @@
  * `@opentelemetry/api` / `@opentelemetry/api-logs` は `peerDependencies`（`optional: true`）であり、
  * 本モジュールを import しない限り SDK のコア（メインバレル）はこれらを一切要求しない。
  * 公開経路をメインバレルから分け
- * `vericerts-wallet-sdk/otel` サブパスに置くのはこのためである（`exports/otel.ts`）。
+ * `@vericerts/vericerts-wallet-sdk/otel` サブパスに置くのはこのためである（`exports/otel.ts`）。
  *
  * ## Opt-in ゲート（`TelemetryConsent`）
  *

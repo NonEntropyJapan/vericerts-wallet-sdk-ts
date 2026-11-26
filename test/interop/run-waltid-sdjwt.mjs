@@ -21,11 +21,15 @@
 // （`generate-report.mjs` の入力形式）。
 
 import { readFileSync } from 'node:fs';
-import { buildVPToken, parseAuthorizationRequest, submitPresentation } from 'vericerts-wallet-sdk';
-import { createPrivateKeySigner, verifySdJwt } from 'vericerts-wallet-sdk/credential';
-import { receiveCredential } from 'vericerts-wallet-sdk/experimental';
-import { createDidKey } from 'vericerts-wallet-sdk/identity';
-import { FORMAT_SD_JWT_VC, FORMAT_SD_JWT_VC_DC } from 'vericerts-wallet-sdk/oid4vp';
+import {
+  buildVPToken,
+  parseAuthorizationRequest,
+  submitPresentation,
+} from '@vericerts/vericerts-wallet-sdk';
+import { createPrivateKeySigner, verifySdJwt } from '@vericerts/vericerts-wallet-sdk/credential';
+import { receiveCredential } from '@vericerts/vericerts-wallet-sdk/experimental';
+import { createDidKey } from '@vericerts/vericerts-wallet-sdk/identity';
+import { FORMAT_SD_JWT_VC, FORMAT_SD_JWT_VC_DC } from '@vericerts/vericerts-wallet-sdk/oid4vp';
 import { applyKnownIncompatible } from './lib/known-incompatible.mjs';
 import {
   NON_PUBLIC_RESPONSE_URI_REASON,

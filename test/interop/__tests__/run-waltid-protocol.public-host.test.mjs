@@ -8,8 +8,8 @@
 import { describe, expect, it } from 'bun:test';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { FORMAT_JWT_VC, parseAuthorizationRequest } from 'vericerts-wallet-sdk';
-import { receiveCredential } from 'vericerts-wallet-sdk/experimental';
+import { FORMAT_JWT_VC, parseAuthorizationRequest } from '@vericerts/vericerts-wallet-sdk';
+import { receiveCredential } from '@vericerts/vericerts-wallet-sdk/experimental';
 import {
   NON_PUBLIC_RESPONSE_URI_REASON,
   offerPeerUrl,

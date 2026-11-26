@@ -1,7 +1,7 @@
 /**
  * UserOperation の任意 paymaster フィールドの `Object.prototype` 汚染耐性テスト。
  *
- * `UserOperationV07` は `vericerts-wallet-sdk/aa` から公開され、呼び出し側が組み立てた値をそのまま
+ * `UserOperationV07` は `@vericerts/vericerts-wallet-sdk/aa` から公開され、呼び出し側が組み立てた値をそのまま
  * 受け取る。任意フィールド（`paymaster` / `paymasterData` / paymaster のガス上限）をプロトタイプ鎖で
  * 読むと、それらを**省略した**正当な UserOperation でも汚染値が Bundler へ送る表現・予算検査・
  * 署名対象へ入る。

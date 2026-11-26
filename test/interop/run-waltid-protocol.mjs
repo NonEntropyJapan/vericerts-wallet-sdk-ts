@@ -34,10 +34,13 @@ import {
   FORMAT_JWT_VC,
   parseAuthorizationRequest,
   submitPresentation,
-} from 'vericerts-wallet-sdk';
-import { createPrivateKeySigner, verifyCredential } from 'vericerts-wallet-sdk/credential';
-import { receiveCredential } from 'vericerts-wallet-sdk/experimental';
-import { createDidKey } from 'vericerts-wallet-sdk/identity';
+} from '@vericerts/vericerts-wallet-sdk';
+import {
+  createPrivateKeySigner,
+  verifyCredential,
+} from '@vericerts/vericerts-wallet-sdk/credential';
+import { receiveCredential } from '@vericerts/vericerts-wallet-sdk/experimental';
+import { createDidKey } from '@vericerts/vericerts-wallet-sdk/identity';
 import { fetchJson } from './lib/waltid-admin-api.mjs';
 import { createIssuerOffer } from './lib/waltid-issuer-offer.mjs';
 import {

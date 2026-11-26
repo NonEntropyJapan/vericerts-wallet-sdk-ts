@@ -1,8 +1,8 @@
 const assert = require('node:assert/strict');
 
 const suppressionEnv = 'VERICERTS_WALLET_SDK_SUPPRESS_EXPERIMENTAL_WARNINGS';
-const importAsset = () => import('vericerts-wallet-sdk/asset');
-const requireAsset = () => require('vericerts-wallet-sdk/asset');
+const importAsset = () => import('@vericerts/vericerts-wallet-sdk/asset');
+const requireAsset = () => require('@vericerts/vericerts-wallet-sdk/asset');
 
 module.exports = async function checkAssetWarning(sdk, firstFormat, suppressFirst = false) {
   assert.ok(

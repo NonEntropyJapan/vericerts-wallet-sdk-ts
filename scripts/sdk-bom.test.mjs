@@ -62,3 +62,18 @@ test('rejects a missing locked peer even when another peer version exists', () =
     /Missing locked peer/,
   );
 });
+
+test('requires the expected npm scope and package name in the CycloneDX root', () => {
+  const bom = generatedBom();
+  const scoped = { ...pkg, name: '@vericerts/example-sdk' };
+  bom.metadata.component.group = '@vericerts';
+  assert.equal(
+    prepareSdkBom(JSON.stringify(bom), scoped, locked, lockPath).metadata.component.group,
+    '@vericerts',
+  );
+  bom.metadata.component.group = '@other';
+  assert.throws(
+    () => prepareSdkBom(JSON.stringify(bom), scoped, locked, lockPath),
+    /Incomplete SDK SBOM/,
+  );
+});

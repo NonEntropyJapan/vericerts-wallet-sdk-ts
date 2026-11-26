@@ -14,7 +14,7 @@ import type { DashboardLogEntry } from '../types.js';
 
 /**
  * storage 上でユーザー制御 Dashboard ログエントリを保存するキーの prefix。
- * `vericerts-wallet-sdk/gdpr` から公開する契約。値を変えると利用側の保存データ／出力と食い違う。
+ * `@vericerts/vericerts-wallet-sdk/gdpr` から公開する契約。値を変えると利用側の保存データ／出力と食い違う。
  */
 export const DASHBOARD_LOG_KEY_PREFIX = 'dashboard-log/';
 
@@ -30,7 +30,7 @@ export const DELETION_LOG_KEY_PREFIX = 'deletion-log/';
  * ユーザー制御 Dashboard ログの**末尾アンカー**（最終エントリの連番 + signing-input ハッシュ）を保存する
  * storage キー。`dashboard-log/` / `deletion-log/` のどちらの prefix にも一致させない（`list(prefix)` に
  * エントリとして混ざらない）。実体は `log-integrity/tail-anchor.ts`。
- * `vericerts-wallet-sdk/gdpr` から公開する契約。値を変えると利用側の保存データ／出力と食い違う。
+ * `@vericerts/vericerts-wallet-sdk/gdpr` から公開する契約。値を変えると利用側の保存データ／出力と食い違う。
  */
 export const DASHBOARD_LOG_TAIL_ANCHOR_KEY = 'anchor/dashboard-log';
 

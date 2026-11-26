@@ -9,7 +9,7 @@ import { assertReceiptArtifact, readReceipt } from '../packed-consumer/receipt.m
 import { plannedReleaseTag } from '../packed-consumer/release.mjs';
 
 const workflowPath = '.github/workflows/ci.yml';
-const packageName = 'vericerts-wallet-sdk';
+const packageName = '@vericerts/vericerts-wallet-sdk';
 const json = (file) => JSON.parse(readFileSync(file, 'utf8'));
 
 function positiveId(value) {
@@ -65,12 +65,12 @@ export function releaseSubject(directory, producer, { sha256, tree, manifest, re
   assert.equal(pkg.name, manifest.name);
   assert.equal(pkg.version, manifest.version);
   plannedReleaseTag(pkg.version);
-  assert.equal(filename, `${pkg.name}-${pkg.version}.tgz`);
+  assert.equal(filename, `${pkg.name.slice(1).replace('/', '-')}-${pkg.version}.tgz`);
   assert.equal(pkg.repository.url, `git+https://github.com/${repository}.git`);
   assert.deepEqual(pkg.publishConfig, { access: 'public' });
   return {
     filename,
-    purl: `pkg:npm/${pkg.name}@${pkg.version}`,
+    purl: `pkg:npm/${pkg.name.split('/').map(encodeURIComponent).join('/')}@${pkg.version}`,
     sha512: Buffer.from(artifact.integrity.slice('sha512-'.length), 'base64').toString('hex'),
   };
 }

@@ -3,7 +3,7 @@
  *
  * `auth-par-surface.test.ts`（OID4VCI 経路）と同じ観点を、型を共有しない
  * 本経路に対して個別に確認する。内部パス（`internal/auth/oid4vp-par/index.js`）から import すると
- * 公開面の欠落を検知できないため、必ず公開バレル（`vericerts-wallet-sdk/experimental`）経由で
+ * 公開面の欠落を検知できないため、必ず公開バレル（`@vericerts/vericerts-wallet-sdk/experimental`）経由で
  * import すること。
  */
 

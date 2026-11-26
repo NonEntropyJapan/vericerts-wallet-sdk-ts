@@ -20,12 +20,12 @@ export function boundaryFixture() {
   for (const name of ['runtime-node.mjs', 'runtime-bun.mjs', ...boundarySupportFiles]) {
     cpSync(new URL(`../${name}`, import.meta.url), join(consumer, name));
   }
-  const sdk = join(consumer, 'node_modules/vericerts-wallet-sdk');
+  const sdk = join(consumer, 'node_modules/@vericerts/vericerts-wallet-sdk');
   mkdirSync(join(sdk, 'dist'), { recursive: true });
   writeFileSync(
     join(sdk, 'package.json'),
     JSON.stringify({
-      name: 'vericerts-wallet-sdk',
+      name: '@vericerts/vericerts-wallet-sdk',
       type: 'module',
       exports: {
         '.': { types: './dist/index.d.ts', import: './dist/index.js', require: './dist/index.cjs' },
@@ -71,7 +71,7 @@ export function boundaryFixture() {
   );
   writeFileSync(
     join(consumer, 'consumer.mts'),
-    'import {value} from "vericerts-wallet-sdk"; void value;',
+    'import {value} from "@vericerts/vericerts-wallet-sdk"; void value;',
   );
   function reset() {
     writeFileSync(join(sdk, 'dist/index.js'), 'export const value = 1;');

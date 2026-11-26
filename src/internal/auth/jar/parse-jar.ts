@@ -41,7 +41,7 @@ function asObjectClaim(value: unknown): Record<string, unknown> | undefined {
  * （`request_uri` は攻撃者が値を選べる URL であり、`client_id` と `response_uri` を攻撃者の
  * ドメインで揃えれば上記の検査はすべて通る）。取得も SDK に任せるなら `fetchJAR` /
  * `parsePresentationRequest`（どちらも解析前に `verifyJarSignature` を通す）を、取得を
- * 自前で行うなら本関数の前に `verifyJarSignature`（`vericerts-wallet-sdk/experimental`）を使う。
+ * 自前で行うなら本関数の前に `verifyJarSignature`（`@vericerts/vericerts-wallet-sdk/experimental`）を使う。
  *
  * @param jarJwt 取得済み JAR JWT（コンパクト JWS）。
  * @returns 正規化された `PresentationRequest`。
